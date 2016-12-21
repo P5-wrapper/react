@@ -1,0 +1,29 @@
+{
+  "name": "react-p5-wrapper",
+  "version": "0.0.0",
+  "description": "p5-wrapper",
+  "main": "dist/react-p5-wrapper.min.js",
+  "homepage": "https://github.com/NeroCor/react-p5-wrapper",
+  "authors": [
+    "Andreas Wolf"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
