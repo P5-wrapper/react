@@ -49,8 +49,8 @@
     "build": "gulp clean && gulp build",
     "examples": "gulp dev:server",
     "lint": "eslint ./; true",
-    "publish:site": "NODE_ENV=production gulp publish:examples",
-    "release": "NODE_ENV=production gulp release",
+    "publish:site": "gulp publish:examples",
+    "release": "gulp release",
     "start": "gulp dev",
     "test": "echo \"no tests yet\" && exit 0",
     "watch": "gulp watch:lib"
