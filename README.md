@@ -32,8 +32,6 @@ npm install react-p5-wrapper --save
 
 ## Usage
 
-__EXPLAIN USAGE HERE__
-
 ```
 var P5Wrapper = require('react-p5-wrapper');
 or

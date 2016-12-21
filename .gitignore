@@ -19,6 +19,8 @@ node_modules
 # Example build directory
 example/dist
 .publish
+lib
+dist
 
 # Editor and other tmp files
 *.swp
