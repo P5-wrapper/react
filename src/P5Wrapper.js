@@ -4,7 +4,8 @@ import p5 from 'p5';
 export default class P5Wrapper extends React.Component {
 
   componentDidMount() {
-    this.canvas = new p5(this.props.sketch, this.refs.wrapper)
+    this.canvas = new p5(this.props.sketch, this.refs.wrapper);
+    this.canvas.myCustomRedrawAccordingToNewPropsHandler(this.props);
   }
 
   componentWillReceiveProps(newprops) {
