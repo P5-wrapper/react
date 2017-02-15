@@ -1,6 +1,6 @@
 {
   "name": "react-p5-wrapper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "p5-wrapper",
   "main": "lib/P5Wrapper.js",
   "author": {
