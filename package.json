@@ -1,34 +1,20 @@
 {
-  "name": "react-p5-wrapper",
-  "version": "0.0.4",
+  "name": "dereks-test-of-a-thing-that-probably-wont-work-anyway",
+  "version": "0.0.1",
   "description": "p5-wrapper",
   "main": "lib/P5Wrapper.js",
   "author": {
-    "name": "Andreas Wolf <andreas.wolf@diva-e.com",
-    "company": "diva-e zeros+ones GmbH"
+    "name": "Derek Kinsman <derek@siberia.io>",
+    "company": "Siberia Holding LLC"
   },
-  "contributors": [
-    {
-      "name": "Andreas Wolf",
-      "email": "andreas.wolf@diva-e.com",
-      "company": "diva-e zeros+ones GmbH"
-    },
-    {
-      "name": "Ivan Malyugin"
-    },
-    {
-      "name": "Benjamin Saphier",
-      "url" : "https://github.com/bsaphier"
-    }
-  ],
-  "homepage": "https://github.com/NeroCor/react-p5-wrapper",
+  "homepage": "https://github.com/derekkinsman/react-p5-wrapper",
   "license": "The MIT License (MIT)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NeroCor/react-p5-wrapper.git"
+    "url": "https://github.com/derekkinsman/react-p5-wrapper"
   },
   "bugs": {
-    "url": "https://github.com/NeroCor/react-p5-wrapper/issues"
+    "url": "https://github.com/derekkinsman/react-p5-wrapper/issues"
   },
   "dependencies": {
     "classnames": "^2.1.2",
@@ -39,12 +25,12 @@
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
     "gulp": "^3.9.0",
-    "react": "^0.14.0",
+    "react": "^15.4.2",
     "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^0.14.0"
+    "react-dom": "^15.4.2"
   },
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^15.4.2"
   },
   "browserify-shim": {
     "react": "global:React"
