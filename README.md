@@ -7,7 +7,7 @@ Original Code was from [Ivan Malyugin](https://discuss.reactjs.org/users/IMalyug
 
 ## Demo & Examples
 
-Live demo: [NeroCor.github.io/react-p5-wrapper](http://NeroCor.github.io/react-p5-wrapper/)
+Live demo: [and-who.github.io/react-p5-wrapper](http://and-who.github.io/react-p5-wrapper/)
 
 To build the examples locally, run:
 
