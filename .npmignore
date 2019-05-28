@@ -26,6 +26,10 @@ src
 .eslintignore
 .eslintrc
 .gitignore
+.tsconfig.json
+webpack.config.js
+.babelrc
+package-lock.json
 bower.json
 gulpfile.js
 

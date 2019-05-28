@@ -56,6 +56,7 @@ export default function sketch (p) {
 
   p.draw = function () {
     p.background(100);
+    p.normalMaterial();
     p.noStroke();
     p.push();
     p.rotateY(rotation);
