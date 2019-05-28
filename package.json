@@ -62,7 +62,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open development",
     "build": "webpack --mode production",
-    "deploy": "gh-pages -d examples/dist",
+    "deploy": "gh-pages -d example/dist",
     "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [
