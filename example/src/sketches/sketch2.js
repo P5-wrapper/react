@@ -7,25 +7,27 @@ export default function sketch (p) {
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     if (props.rotation){
-      rotation = (props.rotation+90) * Math.PI / 180;
+      rotation = (props.rotation/4+10) * Math.PI / 180;
     }
   };
+
   p.draw = function () {
     p.background(100);
+    p.normalMaterial();
     p.noStroke();
 
     p.push();
     p.translate(-150, 100);
     p.rotateY(rotation);
     p.rotateX(-0.9);
-    p.box(100);
+    p.torus(70, 20);
     p.pop();
 
     p.noFill();
     p.stroke(255);
     p.push();
-    p.translate(500, p.height*0.35, -200);
-    p.sphere(100);
+    p.translate(300, p.height*0.35, -300);
+    p.cone(70, 70);
     p.pop();
   };
 };

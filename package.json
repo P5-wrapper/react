@@ -1,63 +1,69 @@
 {
   "name": "react-p5-wrapper",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "p5-wrapper",
-  "main": "lib/P5Wrapper.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/*"
+  ],
   "author": {
-    "name": "Andreas Wolf <andreas.wolf@diva-e.com",
-    "company": "diva-e zeros+ones GmbH"
+    "name": "Andreas Wolf <info@wolfandreas.com",
+    "company": "diva-e GmbH"
   },
   "contributors": [
     {
       "name": "Andreas Wolf",
       "email": "andreas.wolf@diva-e.com",
-      "company": "diva-e zeros+ones GmbH"
+      "company": "diva-e GmbH"
     },
     {
       "name": "Ivan Malyugin"
     },
     {
       "name": "Benjamin Saphier",
-      "url" : "https://github.com/bsaphier"
+      "url": "https://github.com/bsaphier"
     }
   ],
-  "homepage": "https://github.com/NeroCor/react-p5-wrapper",
+  "homepage": "https://github.com/and-who/react-p5-wrapper",
   "license": "The MIT License (MIT)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NeroCor/react-p5-wrapper.git"
+    "url": "https://github.com/and-who/react-p5-wrapper.git"
   },
   "bugs": {
-    "url": "https://github.com/NeroCor/react-p5-wrapper/issues"
-  },
-  "dependencies": {
-    "classnames": "^2.1.2",
-    "p5": "^0.5.10"
+    "url": "https://github.com/and-who/react-p5-wrapper/issues"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^1.6.0",
-    "eslint-plugin-react": "^3.5.1",
-    "gulp": "^3.9.0",
-    "react": "^15.5.4",
-    "react-component-gulp-tasks": "^0.7.7",
-    "react-dom": "^15.5.4"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/p5": "^0.7.2",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "p5": "^0.8.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.4.5",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
-  },
-  "browserify-shim": {
-    "react": "global:React"
+    "react": "*",
+    "p5": "*"
   },
   "scripts": {
-    "build": "gulp clean && gulp build",
-    "examples": "gulp dev:server",
-    "lint": "eslint ./; true",
-    "publish:site": "gulp publish:examples",
-    "release": "gulp release",
-    "start": "gulp dev",
-    "test": "echo \"no tests yet\" && exit 0",
-    "watch": "gulp watch:lib"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open development",
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d examples/dist",
+    "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [
     "react",

@@ -1,8 +1,9 @@
 import React from'react';
 import ReactDOM from 'react-dom';
-import P5Wrapper from 'react-p5-wrapper';
+import P5Wrapper from '../../src';
 import sketch from './sketches/sketch';
 import sketch2 from './sketches/sketch2';
+import css from './example.css';
 
 class App extends React.Component{
 
