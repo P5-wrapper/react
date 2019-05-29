@@ -65,7 +65,8 @@
     "start": "webpack-dev-server --open development",
     "build": "webpack --mode production",
     "deploy": "gh-pages -d example/dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "publish-demo": "npm run build && npm run deploy",
+    "compile": "tsc"
   },
   "keywords": [
     "react",
