@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import p5 = require('p5');
+require('p5/lib/addons/p5.dom');
+require('p5/lib/addons/p5.sound');
 import React = require('react');
 
 export interface P5WrapperProps {
