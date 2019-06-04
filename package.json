@@ -1,6 +1,6 @@
 {
   "name": "react-p5-wrapper",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Simple p5-wrapper for using p5 Sketches in React. And also pass React Props to the p5 Sketch",
   "main": "dist/index.js",
   "files": [
@@ -57,7 +57,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "peerDependencies": {
-    "react": "*",
+    "react": "^16.3.0",
     "p5": "*"
   },
   "scripts": {
