@@ -66,6 +66,7 @@
     "build": "webpack --mode production",
     "deploy": "gh-pages -d example/dist",
     "publish-demo": "npm run build && npm run deploy",
+    "publish": "npm publish",
     "compile": "tsc"
   },
   "keywords": [
