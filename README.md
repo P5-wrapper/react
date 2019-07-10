@@ -49,7 +49,7 @@ export default function sketch (p) {
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    if (props.rotation){
+    if (props.rotation !== null){
       rotation = props.rotation * Math.PI / 180;
     }
   };
