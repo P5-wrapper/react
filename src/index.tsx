@@ -60,6 +60,6 @@ export default class P5Wrapper extends Component <P5WrapperProps, P5WrapperState
 	}
 
   render() {
-    return <div ref={wrapper => this.wrapper = wrapper}></div>;
+    return <div ref={wrapper => this.wrapper = wrapper}>{this.props.children}</div>;
   }
 }
