@@ -1,33 +1,31 @@
-export default function sketch (p) {
+export default function sketch(p5) {
   let rotation = 0;
 
-  p.setup = function () {
-    p.createCanvas(600, 400, p.WEBGL);
-  };
+  p5.setup = () => p5.createCanvas(300, 300, p5.WEBGL);
 
-  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    if (props.rotation){
+  p5.myCustomRedrawAccordingToNewPropsHandler = props => {
+    if (props.rotation) {
       rotation = props.rotation * Math.PI / 180;
     }
   };
 
-  p.draw = function () {
-    p.background(100);
-    p.normalMaterial();
-    p.noStroke();
+  p5.draw = () => {
+    p5.background(100);
+    p5.normalMaterial();
+    p5.noStroke();
 
-    p.push();
-    p.translate(-150, 100);
-    p.rotateY(rotation);
-    p.rotateX(-0.9);
-    p.box(100);
-    p.pop();
+    p5.push();
+    p5.translate(-40, 50);
+    p5.rotateY(rotation);
+    p5.rotateX(-0.9);
+    p5.box(100);
+    p5.pop();
 
-    p.noFill();
-    p.stroke(255);
-    p.push();
-    p.translate(500, p.height*0.35, -200);
-    p.sphere(300);
-    p.pop();
+    p5.noFill();
+    p5.stroke(255);
+    p5.push();
+    p5.translate(400, p5.height * 0.35, -200);
+    p5.sphere(300);
+    p5.pop();
   };
 };
