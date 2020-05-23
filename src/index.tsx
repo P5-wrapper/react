@@ -61,7 +61,9 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
 
 
   componentWillUnmount() {
-    this.state.canvas.remove();
+    if (this.state.canvas !== null) {
+      this.state.canvas.remove();
+    }
   }
 
   render() {
