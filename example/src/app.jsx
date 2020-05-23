@@ -4,13 +4,14 @@ import P5Wrapper from "../../src";
 import sketch from "./sketches/sketch";
 import sketch2 from "./sketches/sketch2";
 import css from "./example.css";
+import image from './test.jpg';
 
 function App(props) {
-	const [state, setState] = useState({ rotation: 160, sketch });
+	const [state, setState] = useState({ rotation: 160, sketch, showImage: false });
 
 	return (
 		<Fragment>
-			<P5Wrapper sketch={state.sketch} rotation={state.rotation} />
+			<P5Wrapper {...state} image={state.showImage ? image : null} />
 			<input
 				type="range"
 				defaultValue={state.rotation}
@@ -22,9 +23,16 @@ function App(props) {
 			<button onClick={
 				event => setState({
 					...state,
-					sketch: state.sketch === sketch ? sketch2 : sketch
+					sketch: state.sketch === sketch ? sketch2 : sketch,
+					showImage: false
 				})
 			}>Change Sketch</button>
+			<button onClick={
+				event => setState({
+					...state,
+					showImage: !state.showImage
+				})
+			}>Show Image</button>
 		</Fragment>
 	);
 }
