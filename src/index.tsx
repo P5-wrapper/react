@@ -48,7 +48,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
   }
 
   componentDidMount() {
-    const canvas = new p5(this.state.sketch, this.wrapper);
+    const canvas = new p5(this.state.sketch, this.wrapper, true);
     // @ts-ignore
     // @TODO: fix type definitions
     if (canvas.myCustomRedrawAccordingToNewPropsHandler) {
