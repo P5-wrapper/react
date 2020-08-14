@@ -75,6 +75,9 @@ In this case the Wrapper Component would be integrated like this: `<P5Wrapper sk
 * sketch: This is the Sketch Script which should be executed in the P5 Canvas
 * You can add as many custom Properties as you want
 
+### Children
+* To Render a component on top of the sketch, simply add it as a child of the P5Wrapper component
+
 
 ## Development (`src`, `lib` and the build process)
 

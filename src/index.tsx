@@ -67,7 +67,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
   }
 
   render() {
-    return <div ref={wrapper => this.wrapper = wrapper}></div>;
+    return <div ref={wrapper => this.wrapper = wrapper}>{this.props.children}</div>;
   }
 }
 
