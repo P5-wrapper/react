@@ -1,20 +1,18 @@
 {
   "name": "react-p5-wrapper",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple p5-wrapper for using p5 Sketches in React. And also pass React Props to the p5 Sketch",
   "main": "dist/index.js",
   "files": [
     "dist/*"
   ],
   "author": {
-    "name": "Andreas Wolf <info@wolfandreas.com",
-    "company": "diva-e GmbH"
+    "name": "Andreas Wolf <info@wolfandreas.com"
   },
   "contributors": [
     {
       "name": "Andreas Wolf",
-      "email": "andreas.wolf@diva-e.com",
-      "company": "diva-e GmbH"
+      "email": "info@wolfandreas.com"
     },
     {
       "name": "Ivan Malyugin"
