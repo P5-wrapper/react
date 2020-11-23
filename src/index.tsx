@@ -1,21 +1,21 @@
 import p5 from 'p5';
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-export interface IP5WrapperProps {
+export interface IProps {
   sketch: (p: p5) => void;
 }
 
-export interface IP5WrapperState {
+export interface IState {
   sketch: (p: p5) => void;
   canvas: p5;
   wrapper?: HTMLElement;
 }
 
-class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
-  public state: IP5WrapperState;
+class P5Wrapper extends PureComponent<IProps, IState> {
+  public state: IState;
   public wrapper: HTMLElement = null;
 
-  constructor(props: IP5WrapperProps) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       ...props,
@@ -25,10 +25,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
     }
   }
 
-  static getDerivedStateFromProps(
-    props: IP5WrapperProps,
-    state: IP5WrapperState
-  ) {
+  static getDerivedStateFromProps(props: IProps, state: IState) {
     if (state.sketch !== props.sketch) {
       const { sketch } = props;
       const canvas = new p5(sketch, state.wrapper);
