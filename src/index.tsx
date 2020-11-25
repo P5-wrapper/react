@@ -1,71 +1,21 @@
 import p5 from 'p5';
-import React, { PureComponent } from 'react';
+import React, { FC, PureComponent, useEffect, useRef, useReducer } from 'react';
 
-export interface IProps {
+export interface IP5WrapperProps {
   sketch: (p: p5) => void;
 }
 
-export interface IState {
-  sketch: (p: p5) => void;
-  canvas: p5;
-  wrapper?: HTMLElement;
-}
+let canvas: p5 = null;
 
-class P5Wrapper extends PureComponent<IProps, IState> {
-  public state: IState;
-  public wrapper: HTMLElement = null;
+const P5Wrapper: FC<IP5WrapperProps> = ({ sketch, children }) => {
+  const wrapper = useRef(null);
 
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      ...props,
-      canvas: null,
-      // TODO: find a workaround since refs in state are bad practice
-      wrapper: this.wrapper
-    }
-  }
+  useEffect(() => {
+    canvas = new p5(sketch, wrapper.current);
+    return () => canvas && canvas.remove();
+  }, [sketch]);
 
-  static getDerivedStateFromProps(props: IProps, state: IState) {
-    if (state.sketch !== props.sketch) {
-      const { sketch } = props;
-      const canvas = new p5(sketch, state.wrapper);
-      state.canvas.remove();
-      return { ...state, sketch, canvas };
-    }
-
-    // @ts-ignore
-    // @TODO: fix type definitions
-    if (state.canvas && state.canvas.myCustomRedrawAccordingToNewPropsHandler) {
-      // @ts-ignore
-      // @TODO: fix type definitions
-      state.canvas.myCustomRedrawAccordingToNewPropsHandler(props);
-    }
-
-    return state;
-  }
-
-  componentDidMount() {
-    const canvas = new p5(this.state.sketch, this.wrapper);
-    // @ts-ignore
-    // @TODO: fix type definitions
-    if (canvas.myCustomRedrawAccordingToNewPropsHandler) {
-      // @ts-ignore
-      // @TODO: fix type definitions
-      canvas.myCustomRedrawAccordingToNewPropsHandler(this.props);
-    }
-    this.setState({ ...this.state, canvas, wrapper: this.wrapper });
-  }
-
-
-  componentWillUnmount() {
-    if (this.state.canvas !== null) {
-      this.state.canvas.remove();
-    }
-  }
-
-  render() {
-    return <div ref={wrapper => this.wrapper = wrapper}>{this.props.children}</div>;
-  }
+  return <div ref={wrapper}>{children}</div>;
 }
 
 export default P5Wrapper;

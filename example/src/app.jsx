@@ -1,16 +1,15 @@
 import React, { Fragment, useState } from "react";
 import { render } from "react-dom";
 import P5Wrapper from "../../src";
-import sketch from "./sketches/sketch";
-import sketch2 from "./sketches/sketch2";
+import sketch from "./sketch";
 import css from "./example.css";
 
 function App(props) {
-	const [state, setState] = useState({ rotation: 160, sketch });
+	const [state, setState] = useState({ rotation: 160 });
 
 	return (
 		<Fragment>
-			<P5Wrapper sketch={state.sketch} rotation={state.rotation} />
+			<P5Wrapper sketch={sketch({ ...state })} />
 			<input
 				type="range"
 				defaultValue={state.rotation}
@@ -19,12 +18,6 @@ function App(props) {
 				step="1"
 				onChange={event => setState({ ...state, rotation: event.target.value })}
 			/>
-			<button onClick={
-				event => setState({
-					...state,
-					sketch: state.sketch === sketch ? sketch2 : sketch
-				})
-			}>Change Sketch</button>
 		</Fragment>
 	);
 }

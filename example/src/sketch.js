@@ -1,13 +1,7 @@
-export default function sketch(p5) {
-  let rotation = 0;
+const sketch = props => p5 => {
+  let rotation = parseInt(props.rotation) * Math.PI / 180;
 
   p5.setup = () => p5.createCanvas(300, 300, p5.WEBGL);
-
-  p5.myCustomRedrawAccordingToNewPropsHandler = props => {
-    if (props.rotation) {
-      rotation = props.rotation * Math.PI / 180;
-    }
-  };
 
   p5.draw = () => {
     p5.background(100);
@@ -29,3 +23,5 @@ export default function sketch(p5) {
     p5.pop();
   };
 };
+
+export default sketch;
