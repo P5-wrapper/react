@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import React, { FC, PureComponent, useEffect, useRef, useReducer } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 
 export interface IP5WrapperProps {
   sketch: (p: p5) => void;
