@@ -61,7 +61,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
-    "react": "^17.0.1",
+    "react": "*",
     "p5": "*"
   },
   "scripts": {
