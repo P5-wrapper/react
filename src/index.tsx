@@ -1,12 +1,16 @@
 import p5 from 'p5';
 import React from 'react';
 
+type TAttributes = { [key: string]: string };
+
 export interface IP5WrapperProps {
   sketch: (p: p5) => void;
+  attributes: TAttributes;
 }
 
 export interface IP5WrapperState {
   sketch: (p: p5) => void;
+  attributes: TAttributes;
   canvas: p5;
   wrapper?: HTMLElement;
 }
@@ -67,7 +71,11 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
   }
 
   render() {
-    return <div ref={wrapper => this.wrapper = wrapper}>{this.props.children}</div>;
+    return (
+      <div {...this.state.attributes} ref={wrapper => this.wrapper = wrapper}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
