@@ -61,8 +61,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "p5": "*"
+    "p5": "*",
+    "react": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
