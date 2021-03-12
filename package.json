@@ -63,7 +63,8 @@
   },
   "peerDependencies": {
     "p5": "*",
-    "react": "*"
+    "react": "*",
+    "react-dom": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
