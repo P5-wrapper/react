@@ -69,12 +69,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack.config.demo.js --env development --mode development",
+    "build": "npm run clean && tsc",
     "build-demo": "npm run clean && webpack --config webpack.config.demo.js --mode production",
     "clean": "rimraf dist",
     "deploy": "gh-pages -d example/dist",
     "publish-demo": "npm run build-demo && npm run deploy",
-    "publish-npm-package": "npm run compile && npm publish",
-    "compile": "npm run clean && tsc"
+    "publish-npm-package": "npm run build && npm publish"
   },
   "keywords": [
     "react",
