@@ -89,4 +89,4 @@ To build, watch and serve the examples (which will also watch the component sour
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Andreas Wolf.
+Copyright (c) 2016 Andreas Wolf and [contributors](https://github.com/and-who/react-p5-wrapper/graphs/contributors).
