@@ -75,7 +75,8 @@
     "clean": "rimraf dist",
     "deploy": "gh-pages -d dist",
     "publish-demo": "npm run build-demo && npm run deploy",
-    "publish-npm-package": "npm run build && npm publish"
+    "publish-npm-package": "npm run build && npm publish",
+    "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md}'"
   },
   "keywords": [
     "react",
