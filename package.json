@@ -81,7 +81,9 @@
     "deploy": "gh-pages -d dist",
     "publish-demo": "npm run build-demo && npm run deploy",
     "publish-npm-package": "npm run build && npm publish",
-    "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md}'"
+    "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md}'",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
