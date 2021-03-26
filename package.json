@@ -80,11 +80,11 @@
     "publish-npm-package": "npm run build && npm publish",
     "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md}'"
   },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
   "lint-staged": {
-    "*.tsx": [
-      "npm run format",
-      "git add"
-    ]
+    "*.{js,jsx,ts,tsx,md}": "npm run format"
   },
   "keywords": [
     "react",
