@@ -79,6 +79,12 @@
     "publish-npm-package": "npm run build && npm publish",
     "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md}'"
   },
+  "lint-staged": {
+    "*.tsx": [
+      "npm run format",
+      "git add"
+    ]
+  },
   "keywords": [
     "react",
     "react-component",
