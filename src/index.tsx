@@ -25,7 +25,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
       ...props,
       canvas: null,
       // TODO: find a workaround since refs in state are bad practice
-      wrapper: this.wrapper,
+      wrapper: this.wrapper
     };
   }
 
