@@ -8,7 +8,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 module.exports = {
   entry: path.join(__dirname, './example/src/app.jsx'),
   output: {
-    path: path.join(__dirname, 'example/dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
