@@ -3,9 +3,9 @@ export default function sketch(p5) {
 
   p5.setup = () => p5.createCanvas(300, 300, p5.WEBGL);
 
-  p5.myCustomRedrawAccordingToNewPropsHandler = props => {
+  p5.myCustomRedrawAccordingToNewPropsHandler = (props) => {
     if (props.rotation) {
-      rotation = props.rotation * Math.PI / 180;
+      rotation = (props.rotation * Math.PI) / 180;
     }
   };
 
@@ -28,4 +28,4 @@ export default function sketch(p5) {
     p5.sphere(300);
     p5.pop();
   };
-};
+}
