@@ -3,9 +3,9 @@ import { render } from "react-dom";
 import P5Wrapper from "../../src";
 import sketch from "./sketches/sketch";
 import sketch2 from "./sketches/sketch2";
-import css from "./example.css";
+import "./example.css";
 
-function App(props) {
+function App() {
   const [state, setState] = useState({ rotation: 160, sketch });
 
   return (
@@ -22,7 +22,7 @@ function App(props) {
         }
       />
       <button
-        onClick={(event) =>
+        onClick={() =>
           setState({
             ...state,
             sketch: state.sketch === sketch ? sketch2 : sketch
