@@ -17,17 +17,30 @@ We use the following packages:
 
 ESLint is configured in a `.eslintrc` file in the project root.
 
-The configuration file contains the following:
+The configuration file contains the basic settings for JS files used in the examples:
 
-1. A parser that allows ESLint to understand TypeScript syntax.
+1. Specify an environment provide browser global variables.
 
 ```json
 {
-  "parser": "@typescript-eslint/parser"
+  "env": {
+    "browser": true
+  }
 }
 ```
 
-2. Automatically select the React version you have installed.
+2. Parser options are set to use ECMAScript 2018 syntax and ECMAScript modules.
+
+```json
+{
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  }
+}
+```
+
+3. Automatically select the React version you have installed.
 
 ```json
 {
@@ -39,7 +52,23 @@ The configuration file contains the following:
 }
 ```
 
-3. Register the installed plugin package for linting TypeScript.
+4. Presets that extend the given ESLint configuration:
+
+- `eslint:recommended`: This is the core eslint recommended rules.
+- `plugin:react/recommended`: This plugin exports a recommended configuration that enforces React good practices.
+- `plugin:prettier/recommended`: This plugin disables all formatting-related ESLint rules, and only enables rules that detect potential bugs. Must be added as the last extension.
+
+We override the following properties for the Typescript related files:
+
+1. A parser that allows ESLint to understand TypeScript syntax.
+
+```json
+{
+  "parser": "@typescript-eslint/parser"
+}
+```
+
+2. Register the installed plugin package for linting TypeScript.
 
 ```json
 {
@@ -47,12 +76,9 @@ The configuration file contains the following:
 }
 ```
 
-4. Presets that extend the given ESLint configuration:
+3. Presets that extend the given ESLint configuration:
 
-- `eslint:recommended`: This is the core eslint recommended rules.
-- `plugin:react/recommended`: This plugin exports a recommended configuration that enforces React good practices.
 - `plugin:@typescript-eslint/recommended`: This plugin exports all the recommended rules for TypeScript.
-- `plugin:prettier/recommended`: This plugin disables all formatting-related ESLint rules, and only enables rules that detect potential bugs. Must be added as the last extension.
 
 ## Usage
 
