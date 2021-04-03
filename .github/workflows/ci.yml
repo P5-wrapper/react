@@ -1,21 +1,59 @@
-name: CI
+name: CI workflow
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-      - name: Install dependencies
-        run: npm ci
-        env:
-          CI: true
-      - name: Lint files
-        run: npm run lint
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+        
+    - name: Setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+        
+    - name: Install dependencies
+      run: npm ci
+      env:
+        CI: true
+    
+    - name: Cache npm packages
+      id: npm-cache
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+        
+    - name: Lint files
+      run: npm run lint
+
+    - name: Linting failed (attempting fix...)
+      if: ${{ failure() }}
+      run: npm run lint:fix
+
+    - name: Commit fixed lint issues
+      uses: stefanzweifel/git-auto-commit-action@v4.1.2
+      with:
+        commit_message: Apply fixed lint issues
+        branch: ${{ github.head_ref }}
+
+    - name: Run test suite
+      run: npm run test
+
+    - name: Format files
+      run: npm run format
+
+    - name: Commit formatting changes
+      uses: stefanzweifel/git-auto-commit-action@v4.1.2
+      with:
+        commit_message: Apply formatting changes
+        branch: ${{ github.head_ref }}
