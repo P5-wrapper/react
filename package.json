@@ -69,7 +69,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
-    "p5": "*",
+    "p5": "^1.1.9",
     "react": "*",
     "react-dom": "*"
   },
