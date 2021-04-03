@@ -17,11 +17,11 @@ npm start
 
 Then open [`localhost:3001`](localhost:3001) in a browser.
 
-For more details see the source code of [examples](https://github.com/and-who/react-p5-wrapper/tree/master/example/src).
+For more details see the source code in our [examples](https://github.com/and-who/react-p5-wrapper/tree/master/example/src).
 
 ## Installation
 
-The easiest way to use `react-p5-wrapper` is to install it from NPM and include it in your own React build process (using [Browserify](http://browserify.org), [Webpack](http://webpack.github.io/), etc).
+Install the package with `npm` and save it to your project:
 
 ```
 npm install react-p5-wrapper --save
@@ -108,4 +108,4 @@ npm start
 
 The MIT License (MIT)
 
-Copyright (c) 2016 - 2021 Andreas Wolf and [contributors](https://github.com/and-who/react-p5-wrapper/graphs/contributors).
+Copyright (c) 2016 Andreas Wolf and [contributors](https://github.com/and-who/react-p5-wrapper/graphs/contributors).
