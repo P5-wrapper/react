@@ -2,7 +2,7 @@
 
 This component lets you integrate p5 sketches into your React App.
 
-Original code was created by Ivan Malyugin.
+The original idea belongs to Ivan Malyugin, posted on a React forum that no longer exists.
 
 ## Demo & Examples
 
