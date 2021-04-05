@@ -93,12 +93,12 @@ To render a component on top of the sketch, simply add it as a child of the `P5W
 
 ## Development
 
-**NOTE:** The source code for the component is in `src` directory.
+**NOTE:** The source code for the component is in the `src` directory.
 
 To build, watch and serve the examples which will also watch the component source, run:
 
-```
-npm start
+```sh
+  npm start
 ```
 
 ## License
