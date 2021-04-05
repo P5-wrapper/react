@@ -19,29 +19,30 @@ For more details see the source code in our [examples](https://github.com/and-wh
 
 ## Installation
 
-Install the package with `npm` and save it to your project:
+### NPM
 
+```sh
+  npm install react-p5-wrapper --save
 ```
-npm install react-p5-wrapper --save
+
+### Yarn
+
+```sh
+  yarn add react-p5-wrapper
 ```
 
 ## Usage
 
 ```js
-// file:src/App.jsx
+import React from "react";
 import P5Wrapper from 'react-p5-wrapper';
 
 function App() {
-  let sketch = (p5) => {
-    p5.setup = () => {
-      ...
-    }
-
-    p5.draw = () => {
-      ...
-    };
-  }
-
+  const sketch = p5 => {
+    p5.setup = () => {};
+    p5.draw = () => {};
+  };
+  
   return <P5Wrapper sketch={sketch} />;
 }
 
@@ -56,19 +57,17 @@ export default App;
 In the below example you see the `myCustomRedrawAccordingToNewPropsHandler` function, which is called when the properties of a wrapper component are changed.
 
 ```js
-// file:src/App.jsx
+import React from "react";
 import P5Wrapper from 'react-p5-wrapper';
 
 function App() {
-  let sketch = (p5) => {
+  const sketch = p5 => {
     let rotation = 0;
 
     p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-    p5.myCustomRedrawAccordingToNewPropsHandler = (props) => {
-      if (props.rotation) {
-        rotation = (props.rotation * Math.PI) / 180;
-      }
+    p5.myCustomRedrawAccordingToNewPropsHandler = props => {
+      if (props.rotation) rotation = (props.rotation * Math.PI) / 180;
     };
 
     p5.draw = () => {
