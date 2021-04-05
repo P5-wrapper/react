@@ -6,16 +6,16 @@ A component to integrate [p5.js](https://p5js.org/) sketches into [React](https:
 
 Live demo: [and-who.github.io/react-p5-wrapper](http://and-who.github.io/react-p5-wrapper/)
 
-To build the examples locally, run:
+The repository contains [examples](https://github.com/and-who/react-p5-wrapper/tree/master/example/src). To try them out, run the following:
 
-```
+```sh
+git clone git@github.com:and-who/react-p5-wrapper.git
+cd react-p5-wrapper
 npm install
 npm start
 ```
 
-Then open [`localhost:3001`](localhost:3001) in a browser.
-
-For more details see the source code in our [examples](https://github.com/and-who/react-p5-wrapper/tree/master/example/src).
+Then just open `http://localhost:3001` in a browser.
 
 ## Installation
 
