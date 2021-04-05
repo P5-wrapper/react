@@ -1,8 +1,6 @@
 # react-p5-wrapper
 
-This component lets you integrate p5 sketches into your React App.
-
-The original idea belongs to Ivan Malyugin, posted on a React forum that no longer exists.
+A component to integrate [P5 JS](https://p5js.org/) sketches into [React JS](https://reactjs.org/) apps.
 
 ## Demo & Examples
 
