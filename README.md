@@ -35,7 +35,7 @@ For more details see the source code in our [examples](https://github.com/and-wh
 
 ```js
 import React from "react";
-import P5Wrapper from 'react-p5-wrapper';
+import P5Wrapper from "react-p5-wrapper";
 
 function App() {
   const sketch = p5 => {
@@ -58,7 +58,7 @@ In the below example you see the `myCustomRedrawAccordingToNewPropsHandler` func
 
 ```js
 import React from "react";
-import P5Wrapper from 'react-p5-wrapper';
+import P5Wrapper from "react-p5-wrapper";
 
 function App() {
   const sketch = p5 => {
