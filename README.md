@@ -22,7 +22,7 @@ For more details see the source code in our [examples](https://github.com/and-wh
 ### NPM
 
 ```sh
-  npm install react-p5-wrapper --save
+  npm install react-p5-wrapper
 ```
 
 ### Yarn
