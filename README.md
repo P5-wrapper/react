@@ -38,11 +38,11 @@ import React from "react";
 import P5Wrapper from "react-p5-wrapper";
 
 function App() {
-  const sketch = p5 => {
+  const sketch = (p5) => {
     p5.setup = () => {};
     p5.draw = () => {};
   };
-  
+
   return <P5Wrapper sketch={sketch} />;
 }
 
@@ -61,12 +61,12 @@ import React from "react";
 import P5Wrapper from "react-p5-wrapper";
 
 function App() {
-  const sketch = p5 => {
+  const sketch = (p5) => {
     let rotation = 0;
 
     p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-    p5.myCustomRedrawAccordingToNewPropsHandler = props => {
+    p5.myCustomRedrawAccordingToNewPropsHandler = (props) => {
       if (props.rotation) rotation = (props.rotation * Math.PI) / 180;
     };
 
@@ -79,9 +79,9 @@ function App() {
       p5.box(100);
       p5.pop();
     };
-  }
+  };
 
-  return <P5Wrapper sketch={sketch} rotation={rotation}/>;
+  return <P5Wrapper sketch={sketch} rotation={rotation} />;
 }
 
 export default App;
