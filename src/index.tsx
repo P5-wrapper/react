@@ -1,5 +1,5 @@
-import p5 from 'p5';
-import React from 'react';
+import p5 from "p5";
+import React from "react";
 
 type TAttributes = { [key: string]: string };
 
@@ -26,7 +26,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
       canvas: null,
       // TODO: find a workaround since refs in state are bad practice
       wrapper: this.wrapper
-    }
+    };
   }
 
   static getDerivedStateFromProps(
@@ -63,7 +63,6 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
     this.setState({ ...this.state, canvas, wrapper: this.wrapper });
   }
 
-
   componentWillUnmount() {
     if (this.state.canvas !== null) {
       this.state.canvas.remove();
@@ -72,7 +71,10 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
 
   render() {
     return (
-      <div {...this.state.attributes} ref={wrapper => this.wrapper = wrapper}>
+      <div
+        {...this.state.attributes}
+        ref={(wrapper) => (this.wrapper = wrapper)}
+      >
         {this.props.children}
       </div>
     );
