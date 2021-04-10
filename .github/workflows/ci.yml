@@ -14,7 +14,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref }}
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -42,7 +42,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply formatting changes
-          branch: ${{ github.head_ref }}
+          branch: ${{ github.ref }}
 
       - name: Lint files
         run: npm run lint
@@ -55,7 +55,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply fixed lint issues
-          branch: ${{ github.head_ref }}
+          branch: ${{ github.ref }}
 
   test:
     runs-on: ubuntu-latest
@@ -64,7 +64,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref }}
 
       - name: Setup node
         uses: actions/setup-node@v2
