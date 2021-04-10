@@ -8,6 +8,7 @@ on:
 
 jobs:
   lint:
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -58,6 +59,7 @@ jobs:
           branch: ${{ github.ref }}
 
   test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
