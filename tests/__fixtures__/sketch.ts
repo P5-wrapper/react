@@ -1,6 +1,6 @@
 import p5 from "p5";
 
-const sketch = (p5: p5) => {
+export function sketch(p5: p5) {
   p5.setup = () => p5.createCanvas(720, 400);
 
   p5.draw = () => {
@@ -14,6 +14,4 @@ const sketch = (p5: p5) => {
       p5.rect(i, 0, 10, p5.height);
     }
   };
-};
-
-export default sketch;
+}
