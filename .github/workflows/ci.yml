@@ -43,7 +43,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply formatting changes
-          branch: ${{ github.ref }}
+          branch: ${{ github.head_ref }}
 
       - name: Lint files
         run: npm run lint
@@ -56,7 +56,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply fixed lint issues
-          branch: ${{ github.ref }}
+          branch: ${{ github.head_ref }}
 
   test:
     name: Test
