@@ -37,9 +37,11 @@ jobs:
           CI: true
 
       - name: Format files
+        if: ${{ github.event_name == 'push' }}
         run: npm run format
 
       - name: Commit formatting changes
+        if: ${{ github.event_name == 'push' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply formatting changes
@@ -49,10 +51,11 @@ jobs:
         run: npm run lint
 
       - name: Linting failed (attempting fix...)
-        if: ${{ failure() }}
+        if: ${{ failure() && github.event_name == 'push' }}
         run: npm run lint:fix
 
       - name: Commit fixed lint issues
+        if: ${{ github.event_name == 'push' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply fixed lint issues
