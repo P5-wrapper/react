@@ -74,6 +74,7 @@ class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
       <div
         {...this.state.attributes}
         ref={(wrapper) => (this.wrapper = wrapper)}
+        data-testid="canvas-wrapper"
       >
         {this.props.children}
       </div>

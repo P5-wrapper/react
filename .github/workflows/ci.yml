@@ -8,13 +8,14 @@ on:
 
 jobs:
   lint:
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref }}
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -36,9 +37,11 @@ jobs:
           CI: true
 
       - name: Format files
+        if: ${{ github.event_name == 'push' }}
         run: npm run format
 
       - name: Commit formatting changes
+        if: ${{ github.event_name == 'push' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply formatting changes
@@ -48,23 +51,25 @@ jobs:
         run: npm run lint
 
       - name: Linting failed (attempting fix...)
-        if: ${{ failure() }}
+        if: ${{ failure() && github.event_name == 'push' }}
         run: npm run lint:fix
 
       - name: Commit fixed lint issues
+        if: ${{ github.event_name == 'push' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply fixed lint issues
           branch: ${{ github.head_ref }}
 
   test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref }}
 
       - name: Setup node
         uses: actions/setup-node@v2

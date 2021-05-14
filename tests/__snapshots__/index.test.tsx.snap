@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`P5Wrapper renders the component 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="canvas-wrapper"
+  >
+    <canvas
+      class="p5Canvas"
+      height="400"
+      id="defaultCanvas0"
+      style="width: 720px; height: 400px;"
+      width="720"
+    />
+  </div>
+</DocumentFragment>
+`;
