@@ -35,9 +35,6 @@
   "bugs": {
     "url": "https://github.com/and-who/react-p5-wrapper/issues"
   },
-  "dependencies": {
-    "p5": "1.x"
-  },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.2",
@@ -75,7 +72,6 @@
     "webpack-dev-server": "^3.11.2"
   },
   "peerDependencies": {
-    "p5": "1.x",
     "react": "*",
     "react-dom": "*"
   },
@@ -97,5 +93,8 @@
     "react-component",
     "p5",
     "processing"
-  ]
+  ],
+  "dependencies": {
+    "p5": "^1.3.1"
+  }
 }
