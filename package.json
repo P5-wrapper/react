@@ -24,16 +24,20 @@
     {
       "name": "James Robb",
       "url": "https://github.com/jamesrweb"
+    },
+    {
+      "name": "Eugene Dyko",
+      "url": "https://github.com/yevdyko"
     }
   ],
-  "homepage": "https://github.com/and-who/react-p5-wrapper",
+  "homepage": "https://github.com/jamesrweb/react-p5-wrapper",
   "license": "The MIT License (MIT)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/and-who/react-p5-wrapper.git"
+    "url": "https://github.com/jamesrweb/react-p5-wrapper.git"
   },
   "bugs": {
-    "url": "https://github.com/and-who/react-p5-wrapper/issues"
+    "url": "https://github.com/jamesrweb/react-p5-wrapper/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",

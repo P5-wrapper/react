@@ -4,12 +4,12 @@ A component to integrate [p5.js](https://p5js.org/) sketches into [React](https:
 
 ## Demo & Examples
 
-Live demo: [and-who.github.io/react-p5-wrapper](http://and-who.github.io/react-p5-wrapper/)
+Live demo: [jamesrweb.github.io/react-p5-wrapper](http://jamesrweb.github.io/react-p5-wrapper/)
 
-The repository contains [examples](https://github.com/and-who/react-p5-wrapper/tree/master/example/src). To try them out, run the following:
+The repository contains [examples](https://github.com/jamesrweb/react-p5-wrapper/tree/master/example/src). To try them out, run the following:
 
 ```sh
-git clone git@github.com:and-who/react-p5-wrapper.git
+git clone git@github.com:jamesrweb/react-p5-wrapper.git
 cd react-p5-wrapper
 npm install
 npm start
@@ -105,4 +105,4 @@ To build, watch and serve the examples which will also watch the component sourc
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Andreas Wolf and [contributors](https://github.com/and-who/react-p5-wrapper/graphs/contributors).
+Copyright (c) 2016 Andreas Wolf and [contributors](https://github.com/jamesrweb/react-p5-wrapper/graphs/contributors).
