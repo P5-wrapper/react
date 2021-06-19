@@ -105,5 +105,9 @@
   },
   "prettier": {
     "trailingComma": "none"
-  }
+  },
+  "eslintignore": [
+    "dist",
+    "node_modules"
+  ]
 }
