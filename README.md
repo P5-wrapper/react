@@ -100,9 +100,3 @@ To build, watch and serve the examples which will also watch the component sourc
 ```sh
   npm start
 ```
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2016 Andreas Wolf and [contributors](https://github.com/jamesrweb/react-p5-wrapper/graphs/contributors).

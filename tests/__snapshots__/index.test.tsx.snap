@@ -2,9 +2,7 @@
 
 exports[`P5Wrapper renders the component 1`] = `
 <DocumentFragment>
-  <div
-    data-testid="canvas-wrapper"
-  >
+  <div>
     <canvas
       class="p5Canvas"
       height="400"

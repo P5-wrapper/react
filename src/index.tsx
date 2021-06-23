@@ -1,85 +1,50 @@
 import p5 from "p5";
-import React from "react";
+import deepEqual from "deep-equal";
+import React, { createRef, FC, memo, useEffect, useState } from "react";
 
-type TAttributes = { [key: string]: string };
-
-export interface IP5WrapperProps {
-  sketch: (p: p5) => void;
-  attributes: TAttributes;
+export interface Sketch {
+  (instance: p5): void;
 }
 
-export interface IP5WrapperState {
-  sketch: (p: p5) => void;
-  attributes: TAttributes;
-  canvas: p5;
-  wrapper?: HTMLElement;
+export interface P5WrapperProps {
+  sketch: Sketch;
+  [key: string]: any;
 }
 
-class P5Wrapper extends React.Component<IP5WrapperProps, IP5WrapperState> {
-  public state: IP5WrapperState;
-  public wrapper: HTMLElement = null;
-
-  constructor(props: IP5WrapperProps) {
-    super(props);
-    this.state = {
-      ...props,
-      canvas: null,
-      // TODO: find a workaround since refs in state are bad practice
-      wrapper: this.wrapper
-    };
-  }
-
-  static getDerivedStateFromProps(
-    props: IP5WrapperProps,
-    state: IP5WrapperState
-  ) {
-    if (state.sketch !== props.sketch) {
-      const { sketch } = props;
-      const canvas = new p5(sketch, state.wrapper);
-      state.canvas.remove();
-      return { ...state, sketch, canvas };
-    }
-
-    // @ts-ignore
-    // @TODO: fix type definitions
-    if (state.canvas && state.canvas.myCustomRedrawAccordingToNewPropsHandler) {
-      // @ts-ignore
-      // @TODO: fix type definitions
-      state.canvas.myCustomRedrawAccordingToNewPropsHandler(props);
-    }
-
-    return state;
-  }
-
-  componentDidMount() {
-    const canvas = new p5(this.state.sketch, this.wrapper);
-    // @ts-ignore
-    // @TODO: fix type definitions
-    if (canvas.myCustomRedrawAccordingToNewPropsHandler) {
-      // @ts-ignore
-      // @TODO: fix type definitions
-      canvas.myCustomRedrawAccordingToNewPropsHandler(this.props);
-    }
-    this.setState({ ...this.state, canvas, wrapper: this.wrapper });
-  }
-
-  componentWillUnmount() {
-    if (this.state.canvas !== null) {
-      this.state.canvas.remove();
-    }
-  }
-
-  render() {
-    return (
-      <div
-        {...this.state.attributes}
-        ref={(wrapper) => (this.wrapper = wrapper)}
-        data-testid="canvas-wrapper"
-      >
-        {this.props.children}
-      </div>
-    );
-  }
+export interface P5Instance extends p5 {
+  updateWithProps?: (props: any) => void;
 }
 
-export default P5Wrapper;
+function createCanvas(sketch: Sketch, container: HTMLDivElement) {
+  return new p5(sketch, container) as P5Instance;
+}
+
+const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
+  sketch,
+  children,
+  ...props
+}) => {
+  const wrapper = createRef<HTMLDivElement>();
+  const [instance, setInstance] = useState<P5Instance>();
+
+  useEffect(() => {
+    instance?.updateWithProps?.(props);
+  }, [props]);
+
+  useEffect(() => {
+    if (wrapper.current === null) return;
+    instance?.remove();
+    const canvas = createCanvas(sketch, wrapper.current);
+    canvas.updateWithProps?.(props);
+    setInstance(canvas);
+  }, [sketch, wrapper.current]);
+
+  return <div ref={wrapper}>{children}</div>;
+};
+
+export const ReactP5Wrapper = memo(
+  ReactP5WrapperComponent,
+  (previousProps: P5WrapperProps, nextProps: P5WrapperProps) => {
+    return deepEqual(previousProps, nextProps, { strict: true });
+  }
+);
