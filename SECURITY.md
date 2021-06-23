@@ -15,7 +15,7 @@
 ## Reporting a Vulnerability
 
 To report a security vulnerability please [open a new issue](https://github.com/jamesrweb/react-p5-wrapper/issues/new) with the label `security`.
-Security issues are a priority and we aim to resolve them within 48 hours. 
+Security issues are a priority and we aim to resolve them within 48 hours.
 If a security vulnerability cannot be resolved by us, we will raise the issue upstream with relevant parties such as 3rd party package managers.
 
 ## Contacts
