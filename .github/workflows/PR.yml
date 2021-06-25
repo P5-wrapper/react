@@ -1,0 +1,41 @@
+name: Master Pull Request
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - uses: c-hive/gha-npm-cache@v1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+      
+      - name: Linting failed (attempting fix...)
+        if: ${{ failure() }}
+        run: npm run lint:fix
+
+      - name: Commit fixed linting issues
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply fixed linting issues
+          branch: ${{ github.head_ref }}
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
