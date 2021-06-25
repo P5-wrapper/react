@@ -17,7 +17,7 @@ function App() {
         min="0"
         max="360"
         step="1"
-        onChange={(event) =>
+        onChange={event =>
           setState({ ...state, rotation: parseInt(event.target.value, 10) })
         }
       />

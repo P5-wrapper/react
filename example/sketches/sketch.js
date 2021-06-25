@@ -3,7 +3,7 @@ export default function sketch(p5) {
 
   p5.setup = () => p5.createCanvas(300, 300, p5.WEBGL);
 
-  p5.updateWithProps = (props) => {
+  p5.updateWithProps = props => {
     if (props.rotation) {
       rotation = (props.rotation * Math.PI) / 180;
     }
