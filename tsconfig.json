@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": false,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
+    "outDir": "dist",
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "esModuleInterop": true
+    "module": "ES2015",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "moduleResolution": "node"
   },
-  "include": ["./src/**/*"]
+  "include": ["src/**/*"]
 }
