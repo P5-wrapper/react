@@ -13,7 +13,7 @@
     "build": "npm run clean && rollup -c",
     "build:demo": "npm run clean && webpack --config webpack.config.demo.js --mode production",
     "clean": "rimraf dist",
-    "format": "prettier --config .prettierrc --write '**/*.{js,jsx,ts,tsx,md,json}'",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,yml}'",
     "lint": "eslint example/ src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "publish": "npm run build-demo && gh-pages -d dist && npm run build && npm publish",
