@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "../dist",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,5 +11,5 @@
     "target": "es5",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*"]
+  "include": ["../src/**/*"]
 }

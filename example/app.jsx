@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { render } from "react-dom";
-import { ReactP5Wrapper } from "../../src";
+import { ReactP5Wrapper } from "../src/index.tsx";
 import sketch from "./sketches/sketch";
 import sketch2 from "./sketches/sketch2";
 import "./example.css";
