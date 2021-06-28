@@ -1,5 +1,5 @@
-dist
+*.log
+coverage
 node_modules
-package.json
-package-lock.json
-*.html
+dist
+.DS_Store

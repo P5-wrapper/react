@@ -1,6 +1,7 @@
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
-import pkg from "./package.json";
+import pkg from "../package.json";
+import { join } from "path";
 
 const input = "src/index.tsx";
 const external = [
@@ -9,7 +10,8 @@ const external = [
 ];
 const plugins = [
   typescript({
-    typescript: require("typescript")
+    typescript: require("typescript"),
+    tsconfig: join(__dirname, "tsconfig.json")
   }),
   terser()
 ];

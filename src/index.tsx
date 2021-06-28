@@ -2,6 +2,10 @@ import p5 from "p5";
 import deepEqual from "deep-equal";
 import React, { createRef, FC, memo, useEffect, useState } from "react";
 
+export interface SketchProps {
+  [key: string]: any;
+}
+
 export interface Sketch {
   (instance: p5): void;
 }
@@ -12,7 +16,7 @@ export interface P5WrapperProps {
 }
 
 export interface P5Instance extends p5 {
-  updateWithProps?: (props: any) => void;
+  updateWithProps?: (props: SketchProps) => void;
 }
 
 function createCanvas(sketch: Sketch, container: HTMLDivElement) {
