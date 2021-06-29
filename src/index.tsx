@@ -10,9 +10,8 @@ export interface Sketch {
   (instance: p5): void;
 }
 
-export interface P5WrapperProps {
+export interface P5WrapperProps extends SketchProps {
   sketch: Sketch;
-  [key: string]: any;
 }
 
 export interface P5Instance extends p5 {

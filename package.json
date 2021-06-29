@@ -11,13 +11,13 @@
   ],
   "scripts": {
     "build": "npm run clean && rollup -c config/rollup.config.js",
-    "build:demo": "npm run clean && webpack --config config/webpack.config.demo.js --mode production",
+    "build:demo": "npm run clean && webpack --config config/webpack.config.js --mode production",
     "clean": "rimraf dist",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,yml}'",
-    "lint": "eslint --config config/.eslintrc.js src/ --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --config config/prettier.config.js --write '**/*.{js,jsx,ts,tsx,md,json,yml}'",
+    "lint": "eslint --config config/eslint.config.js src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "publish": "npm run build:demo && gh-pages -d dist && npm run build && npm publish",
-    "start": "webpack serve --config config/webpack.config.demo.js --env development --mode development --port 3001",
+    "start": "webpack serve --config config/webpack.config.js --env development --mode development --port 3001",
     "test": "jest --config config/jest.config.js --coverage"
   },
   "keywords": [
