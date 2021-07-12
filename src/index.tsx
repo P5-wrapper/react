@@ -7,7 +7,7 @@ export interface SketchProps {
 }
 
 export interface Sketch {
-  (instance: p5): void;
+  (instance: P5Instance): void;
 }
 
 export interface P5WrapperProps extends SketchProps {
@@ -31,16 +31,15 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
   const [instance, setInstance] = useState<P5Instance>();
 
   useEffect(() => {
-    instance?.updateWithProps?.(props);
-  }, [props]);
-
-  useEffect(() => {
     if (wrapper.current === null) return;
     instance?.remove();
     const canvas = createCanvas(sketch, wrapper.current);
-    canvas.updateWithProps?.(props);
     setInstance(canvas);
   }, [sketch, wrapper.current]);
+
+  useEffect(() => {
+    instance?.updateWithProps?.(props);
+  }, [props]);
 
   return <div ref={wrapper}>{children}</div>;
 };
