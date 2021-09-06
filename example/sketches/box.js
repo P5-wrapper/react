@@ -1,4 +1,4 @@
-export default function sketch(p5) {
+export function sketch(p5) {
   let rotation = 0;
 
   p5.setup = () => p5.createCanvas(300, 300, p5.WEBGL);
