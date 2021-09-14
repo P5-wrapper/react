@@ -61,11 +61,9 @@ function sketch(p5) {
   };
 }
 
-function App() {
+export default function App() {
   return <ReactP5Wrapper sketch={sketch} />;
 }
-
-export default App;
 ```
 
 ### Props
@@ -87,7 +85,7 @@ wrapper are changed, if it is set within your sketch. This way we can render our
 our sketches!
 
 ```js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5) {
@@ -96,7 +94,9 @@ function sketch(p5) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
   p5.updateWithProps = props => {
-    if (props.rotation) rotation = (props.rotation * Math.PI) / 180;
+    if (props.rotation) {
+      rotation = (props.rotation * Math.PI) / 180;
+    }
   };
 
   p5.draw = () => {
@@ -110,11 +110,22 @@ function sketch(p5) {
   };
 }
 
-function App() {
+export default function App() {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRotation(rotation => rotation + 100),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
 }
-
-export default App;
 ```
 
 ### Children
