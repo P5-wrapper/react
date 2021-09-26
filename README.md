@@ -42,6 +42,8 @@ Then just open `http://localhost:3001` in a browser.
 
 ## Usage
 
+### Javascript
+
 ```js
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
@@ -63,6 +65,118 @@ function sketch(p5) {
 
 export default function App() {
   return <ReactP5Wrapper sketch={sketch} />;
+}
+```
+
+### Typescript
+
+Typescript sketches can be declared in two different ways, below you will find
+two ways to declare a sketch, both examples do the exact same thing.
+
+In short though, the `ReactP5Wrapper` component requires you to pass a `sketch`
+prop. The `sketch` prop is typed as a `(instance: P5Instance): void;`. As long
+as the function declaration of your sketch is set to take in a single argument
+of type `P5Instance`, you are good to go!
+
+#### Option 1: Declaring a sketch using the `P5Instance` type
+
+```ts
+import React, { useState, useEffect } from "react";
+import { ReactP5Wrapper, P5Instance } from "react-p5-wrapper";
+
+function sketch(p5: P5Instance) {
+  let rotation = 0;
+
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.updateWithProps = props => {
+    if (props.rotation) {
+      rotation = (props.rotation * Math.PI) / 180;
+    }
+  };
+
+  p5.draw = () => {
+    p5.background(100);
+    p5.normalMaterial();
+    p5.noStroke();
+    p5.push();
+    p5.rotateY(rotation);
+    p5.box(100);
+    p5.pop();
+  };
+}
+
+export default function App() {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRotation(rotation => rotation + 100),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
+}
+```
+
+#### Option 2: Declaring a sketch using the `Sketch` type
+
+Using the `Sketch` type has one nice benefit over using `P5Instance` and that is
+that the `p5` argument passed to the sketch function is auto-typed as a
+`P5Instance` for you.
+
+> Sidenote:
+>
+> In general it comes down to personal preference as to how you declare your
+> sketches and there is nothing wrong with using the `P5Instance` manually in a
+> regular `function` declaration.
+
+```ts
+import React, { useState, useEffect } from "react";
+import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+
+const sketch: Sketch = p5 => {
+  let rotation = 0;
+
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.updateWithProps = props => {
+    if (props.rotation) {
+      rotation = (props.rotation * Math.PI) / 180;
+    }
+  };
+
+  p5.draw = () => {
+    p5.background(100);
+    p5.normalMaterial();
+    p5.noStroke();
+    p5.push();
+    p5.rotateY(rotation);
+    p5.box(100);
+    p5.pop();
+  };
+};
+
+export default function App() {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRotation(rotation => rotation + 100),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
 }
 ```
 
