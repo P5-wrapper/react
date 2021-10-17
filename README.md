@@ -1,6 +1,6 @@
 # react-p5-wrapper
 
-A component to integrate [p5.js](https://p5js.org/) sketches into
+A component to integrate [P5.js](https://p5js.org/) sketches into
 [React](https://reactjs.org/) apps.
 
 ## Demo & Examples
@@ -8,7 +8,7 @@ A component to integrate [p5.js](https://p5js.org/) sketches into
 ### Live demo
 
 A live demo can be viewed at
-[p5-wrapper.github.io/react](https://p5-wrapper.github.io/react/).
+[P5-wrapper.github.io/react](https://P5-wrapper.github.io/react/).
 
 ### Examples
 
