@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import p5 from "p5";
 import { render } from "@testing-library/react";
 import { P5Instance, ReactP5Wrapper } from "../src/index";
-import p5 from "p5";
 import { unwrapReadableStream } from "./helpers/streams";
 
 describe("P5Wrapper", () => {

@@ -17,14 +17,15 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module"
   },
-  plugins: ["prettier", "react", "@typescript-eslint"],
+  plugins: ["prettier", "react", "@typescript-eslint", "simple-import-sort"],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
     quotes: ["error", "double"],
     semi: ["error", "always"],
-    "@typescript-eslint/no-explicit-any": "off",
-    "react/prop-types": "off"
+    "@typescript-eslint/no-explicit-any": "off"
   },
   settings: {
     react: {

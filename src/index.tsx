@@ -1,6 +1,7 @@
-import p5 from "p5";
 import deepEqual from "deep-equal";
-import React, { createRef, FC, memo, useEffect, useState } from "react";
+import p5 from "p5";
+import React, { createRef, FC, memo, useState } from "react";
+import { useIsomorphicEffect } from "rooks";
 
 export interface SketchProps {
   [key: string]: any;
@@ -18,8 +19,8 @@ export interface P5Instance extends p5 {
   updateWithProps?: (props: SketchProps) => void;
 }
 
-function createCanvas(sketch: Sketch, container: HTMLDivElement) {
-  return new p5(sketch, container) as P5Instance;
+function createCanvas(sketch: Sketch, container: HTMLDivElement): P5Instance {
+  return new p5(sketch, container);
 }
 
 const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
@@ -30,14 +31,17 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
   const wrapper = createRef<HTMLDivElement>();
   const [instance, setInstance] = useState<P5Instance>();
 
-  useEffect(() => {
-    if (wrapper.current === null) return;
+  useIsomorphicEffect(() => {
+    if (wrapper.current === null) {
+      return;
+    }
+
     instance?.remove();
     const canvas = createCanvas(sketch, wrapper.current);
     setInstance(canvas);
   }, [sketch, wrapper.current]);
 
-  useEffect(() => {
+  useIsomorphicEffect(() => {
     instance?.updateWithProps?.(props);
   }, [props]);
 
