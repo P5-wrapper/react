@@ -13,7 +13,11 @@ const plugins = [
     typescript: require("typescript"),
     tsconfig: join(__dirname, "tsconfig.json")
   }),
-  terser()
+  terser({
+    format: {
+      comments: false
+    }
+  })
 ];
 
 const config = {

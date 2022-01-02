@@ -1,4 +1,4 @@
-import deepEqual from "deep-equal";
+import diff from "microdiff";
 import p5 from "p5";
 import React, { createRef, FC, memo, useState } from "react";
 import { useIsomorphicEffect } from "rooks";
@@ -51,6 +51,8 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
 export const ReactP5Wrapper = memo(
   ReactP5WrapperComponent,
   (previousProps: P5WrapperProps, nextProps: P5WrapperProps) => {
-    return deepEqual(previousProps, nextProps, { strict: true });
+    const differences = diff(previousProps, nextProps);
+
+    return differences.length === 0;
   }
 );
