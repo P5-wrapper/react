@@ -4,21 +4,22 @@
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
   "homepage": "https://github.com/jamesrweb/react-p5-wrapper",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/components/index.js",
+  "module": "dist/components/index.esm.js",
+  "types": "dist/components/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/components/*"
   ],
   "scripts": {
-    "build": "npm run clean && rollup -c config/rollup.config.js",
-    "build:demo": "npm run clean && webpack --config config/webpack.config.js --mode production",
+    "build": "npm run clean && npm run build:demo && npm run build:components",
+    "build:components": "rollup -c config/rollup.config.js",
+    "build:demo": "webpack --config config/webpack.config.js --mode production",
     "clean": "rimraf dist",
     "format": "prettier --config config/prettier.config.js --ignore-path .gitignore --write .",
-    "lint": "eslint --config config/eslint.config.js src/ --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint --config config/eslint.config.js src/ --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
-    "release": "npm run build:demo && gh-pages -d dist && npm run build && npm publish",
-    "start": "webpack serve --config config/webpack.config.js --env development --mode development --port 3001",
+    "release": "npm run build && gh-pages -d dist/demo && npm publish",
+    "start": "webpack serve --config config/webpack.config.js --mode development",
     "test": "jest --config config/jest.config.js --coverage"
   },
   "keywords": [
@@ -104,12 +105,5 @@
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
-  },
-  "prettier": {
-    "trailingComma": "none"
-  },
-  "eslintignore": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }
