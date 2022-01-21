@@ -18,6 +18,11 @@ module.exports = {
     sourceType: "module"
   },
   plugins: ["prettier", "react", "@typescript-eslint", "simple-import-sort"],
+  overrides: [
+    {
+      files: [".js", ".jsx", ".ts", ".tsx"]
+    }
+  ],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],

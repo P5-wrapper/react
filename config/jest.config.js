@@ -2,6 +2,7 @@ const { join } = require("path");
 
 module.exports = {
   rootDir: "..",
+  silent: true,
   testEnvironment: "jsdom",
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   transform: {
