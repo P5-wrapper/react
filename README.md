@@ -65,7 +65,7 @@ function sketch(p5) {
   };
 }
 
-export default function App() {
+export function App() {
   return <ReactP5Wrapper sketch={sketch} />;
 }
 ```
@@ -100,7 +100,7 @@ function sketch(p5) {
   p5.draw = draw(p5);
 }
 
-export default function App() {
+export function App() {
   return <ReactP5Wrapper sketch={sketch} />;
 }
 ```
@@ -143,7 +143,7 @@ function sketch(p5: P5Instance) {
   };
 }
 
-export default function App() {
+export function App() {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -199,7 +199,7 @@ const sketch: Sketch = p5 => {
   };
 };
 
-export default function App() {
+export function App() {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -261,7 +261,7 @@ function sketch(p5) {
   };
 }
 
-export default function App() {
+export function App() {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
