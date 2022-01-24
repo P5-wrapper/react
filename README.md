@@ -82,7 +82,7 @@ of type `P5Instance`, you are good to go!
 
 ```ts
 import React from "react";
-import { ReactP5Wrapper } from "react-p5-wrapper";
+import { ReactP5Wrapper, P5Instance } from "react-p5-wrapper";
 
 function sketch(p5: P5Instance) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
@@ -118,7 +118,7 @@ that the `p5` argument passed to the sketch function is auto-typed as a
 
 ```ts
 import React from "react";
-import { ReactP5Wrapper } from "react-p5-wrapper";
+import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 
 const sketch: Sketch = p5 => {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
