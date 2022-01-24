@@ -143,7 +143,7 @@ export function App() {
 ### Using abstracted setup and draw functions
 
 ```js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function setup(p5) {
