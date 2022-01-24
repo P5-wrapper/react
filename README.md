@@ -118,46 +118,26 @@ of type `P5Instance`, you are good to go!
 #### Option 1: Declaring a sketch using the `P5Instance` type
 
 ```ts
-import React, { useState, useEffect } from "react";
-import { ReactP5Wrapper, P5Instance } from "react-p5-wrapper";
+import React from "react";
+import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5: P5Instance) {
-  let rotation = 0;
-
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-  p5.updateWithProps = props => {
-    if (props.rotation) {
-      rotation = (props.rotation * Math.PI) / 180;
-    }
-  };
-
   p5.draw = () => {
-    p5.background(100);
+    p5.background(250);
     p5.normalMaterial();
-    p5.noStroke();
     p5.push();
-    p5.rotateY(rotation);
-    p5.box(100);
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
     p5.pop();
   };
 }
 
 export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
+  return <ReactP5Wrapper sketch={sketch} />;
 }
 ```
 
@@ -174,46 +154,26 @@ that the `p5` argument passed to the sketch function is auto-typed as a
 > regular `function` declaration.
 
 ```ts
-import React, { useState, useEffect } from "react";
-import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+import React from "react";
+import { ReactP5Wrapper } from "react-p5-wrapper";
 
 const sketch: Sketch = p5 => {
-  let rotation = 0;
-
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-  p5.updateWithProps = props => {
-    if (props.rotation) {
-      rotation = (props.rotation * Math.PI) / 180;
-    }
-  };
-
   p5.draw = () => {
-    p5.background(100);
+    p5.background(250);
     p5.normalMaterial();
-    p5.noStroke();
     p5.push();
-    p5.rotateY(rotation);
-    p5.box(100);
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
     p5.pop();
   };
 };
 
 export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
+  return <ReactP5Wrapper sketch={sketch} />;
 }
 ```
 
