@@ -6,11 +6,19 @@ import * as torus from "./sketches/torus";
 import "./example.css";
 
 function App() {
-  const [state, setState] = useState({ rotation: 160, sketch: box.sketch });
+  const [state, setState] = useState({
+    rotation: 160,
+    sketch: box.sketch,
+    unmount: false
+  });
 
   return (
     <>
-      <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
+      {state.unmount ? (
+        <p>Unmounted the sketch</p>
+      ) : (
+        <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
+      )}
       <input
         type="range"
         defaultValue={state.rotation}
@@ -27,14 +35,20 @@ function App() {
       <button
         onClick={() => {
           const useTorus = state.sketch === box.sketch;
-          setState({
-            ...state,
-            sketch: useTorus ? torus.sketch : box.sketch
-          });
+          setState({ ...state, sketch: useTorus ? torus.sketch : box.sketch });
         }}
       >
         Change Sketch
       </button>
+      {state.unmount ? (
+        <button onClick={() => setState({ ...state, unmount: false })}>
+          Remount
+        </button>
+      ) : (
+        <button onClick={() => setState({ ...state, unmount: true })}>
+          Unmount
+        </button>
+      )}
     </>
   );
 }
