@@ -3,6 +3,8 @@ import p5 from "p5";
 import React, { createRef, FC, memo, useState } from "react";
 import { useIsomorphicEffect } from "rooks";
 
+type Wrapper = HTMLDivElement;
+
 export interface SketchProps {
   [key: string]: any;
 }
@@ -19,8 +21,8 @@ export interface P5Instance extends p5 {
   updateWithProps?: (props: SketchProps) => void;
 }
 
-function createCanvas(sketch: Sketch, container: HTMLDivElement): P5Instance {
-  return new p5(sketch, container);
+function createCanvas(sketch: Sketch, wrapper: Wrapper): P5Instance {
+  return new p5(sketch, wrapper);
 }
 
 const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
@@ -28,16 +30,16 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
   children,
   ...props
 }) => {
-  const wrapper = createRef<HTMLDivElement>();
+  const wrapperRef = createRef<Wrapper>();
   const [instance, setInstance] = useState<P5Instance>();
 
   useIsomorphicEffect(() => {
-    if (wrapper.current === null) {
+    if (wrapperRef.current === null) {
       return;
     }
 
     instance?.remove();
-    const canvas = createCanvas(sketch, wrapper.current);
+    const canvas = createCanvas(sketch, wrapperRef.current);
     setInstance(canvas);
   }, [sketch]);
 
@@ -47,14 +49,13 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
 
   useIsomorphicEffect(() => () => instance?.remove(), []);
 
-  return <div ref={wrapper}>{children}</div>;
+  return <div ref={wrapperRef}>{children}</div>;
 };
 
-export const ReactP5Wrapper = memo(
-  ReactP5WrapperComponent,
-  (previousProps: P5WrapperProps, nextProps: P5WrapperProps) => {
-    const differences = diff(previousProps, nextProps);
+function propsAreEqual(previous: P5WrapperProps, next: P5WrapperProps) {
+  const differences = diff(previous, next);
 
-    return differences.length === 0;
-  }
-);
+  return differences.length === 0;
+}
+
+export const ReactP5Wrapper = memo(ReactP5WrapperComponent, propsAreEqual);

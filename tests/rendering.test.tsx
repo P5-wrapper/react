@@ -1,6 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import ReactDOMServer from "react-dom/server";
+import {
+  renderToNodeStream,
+  renderToStaticMarkup,
+  renderToStaticNodeStream,
+  renderToString
+} from "react-dom/server";
 import { unwrapReadableStream } from "./helpers/streams";
 import { ReactP5Wrapper, Sketch } from "../src/index";
 
@@ -9,57 +14,60 @@ const sketch: Sketch = p5 => {
 };
 
 describe("Rendering", () => {
-  describe("Client side", () => {
-    it("Renders the canvas into the wrapping element", () => {
-      const { container } = render(<ReactP5Wrapper sketch={sketch} />);
-      const canvas = container.querySelector("canvas");
+  it("[Client] Renders the canvas into the wrapping element", () => {
+    const { container } = render(<ReactP5Wrapper sketch={sketch} />);
+    const canvas = container.querySelector("canvas");
 
-      expect(canvas).not.toBeNull();
-      expect(canvas).toBeInstanceOf(HTMLCanvasElement);
-    });
-
-    it("Unmounts the canvas when the element is removed from the DOM", () => {
-      const { container, unmount } = render(<ReactP5Wrapper sketch={sketch} />);
-
-      unmount();
-
-      expect(container.innerHTML).toBe("");
-    });
+    expect(canvas).not.toBeNull();
+    expect(canvas).toBeInstanceOf(HTMLCanvasElement);
   });
 
-  describe("Server side", () => {
-    const SERVER_MARKUP = `<div></div>`;
+  it("[Client] Recreates the P5 instance when the sketch is changed", () => {
+    const { container, rerender } = render(<ReactP5Wrapper sketch={sketch} />);
 
-    it("Server side string component", () => {
-      const StringComponent = ReactDOMServer.renderToString(
-        <ReactP5Wrapper sketch={sketch} />
-      );
+    rerender(<ReactP5Wrapper sketch={sketch} />);
 
-      expect(StringComponent).toBe(SERVER_MARKUP);
-    });
+    const canvas = container.querySelector("canvas");
 
-    it("Server side static component", () => {
-      const StaticComponent = ReactDOMServer.renderToStaticMarkup(
-        <ReactP5Wrapper sketch={sketch} />
-      );
+    expect(canvas).not.toBeNull();
+    expect(canvas).toBeInstanceOf(HTMLCanvasElement);
+  });
 
-      expect(StaticComponent).toBe(SERVER_MARKUP);
-    });
+  it("[Client] Unmounts the canvas when the element is removed from the DOM", () => {
+    const { container, unmount } = render(<ReactP5Wrapper sketch={sketch} />);
 
-    it("Server side node stream", async () => {
-      const nodeStream = ReactDOMServer.renderToNodeStream(
-        <ReactP5Wrapper sketch={sketch} />
-      );
-      const content = await unwrapReadableStream(nodeStream);
-      expect(content).toBe(SERVER_MARKUP);
-    });
+    unmount();
 
-    it("Server side static node stream", async () => {
-      const staticNodeStream = ReactDOMServer.renderToStaticNodeStream(
-        <ReactP5Wrapper sketch={sketch} />
-      );
-      const content = await unwrapReadableStream(staticNodeStream);
-      expect(content).toBe(SERVER_MARKUP);
-    });
+    expect(container.innerHTML).toBe("");
+  });
+
+  it("[Server] Renders as expected when using `renderToString`", () => {
+    const StringComponent = renderToString(<ReactP5Wrapper sketch={sketch} />);
+
+    expect(StringComponent).toBe(`<div></div>`);
+  });
+
+  it("[Server] Renders as expected when using `renderToStaticMarkup`", () => {
+    const StaticComponent = renderToStaticMarkup(
+      <ReactP5Wrapper sketch={sketch} />
+    );
+
+    expect(StaticComponent).toBe(`<div></div>`);
+  });
+
+  it("[Server] Renders as expected when using `renderToNodeStream`", async () => {
+    const nodeStream = renderToNodeStream(<ReactP5Wrapper sketch={sketch} />);
+    const content = await unwrapReadableStream(nodeStream);
+
+    expect(content).toBe(`<div></div>`);
+  });
+
+  it("[Server] Renders as expected when using `renderToStaticNodeStream`", async () => {
+    const staticNodeStream = renderToStaticNodeStream(
+      <ReactP5Wrapper sketch={sketch} />
+    );
+    const content = await unwrapReadableStream(staticNodeStream);
+
+    expect(content).toBe(`<div></div>`);
   });
 });
