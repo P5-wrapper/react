@@ -1,7 +1,9 @@
-Fixes issue #
+Fixes #
 
 ## Proposed Changes
 
 -
 -
 -
+
+## Additional Notes (optional)
