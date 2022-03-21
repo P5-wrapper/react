@@ -1,7 +1,6 @@
 import diff from "microdiff";
 import p5 from "p5";
-import React, { createRef, FC, memo, MutableRefObject } from "react";
-import { useRef } from "react";
+import React, { createRef, FC, memo, MutableRefObject, useRef } from "react";
 import { useIsomorphicEffect } from "rooks";
 
 type Wrapper = HTMLDivElement;
