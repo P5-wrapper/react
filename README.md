@@ -44,7 +44,7 @@ Then just open `http://localhost:3001` in a browser.
 
 ### Javascript
 
-```js
+```javascript
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -68,9 +68,9 @@ export function App() {
 }
 ```
 
-### Typescript
+### TypeScript
 
-Typescript sketches can be declared in two different ways, below you will find
+TypeScript sketches can be declared in two different ways, below you will find
 two ways to declare a sketch, both examples do the exact same thing.
 
 In short though, the `ReactP5Wrapper` component requires you to pass a `sketch`
@@ -80,7 +80,7 @@ of type `P5Instance`, you are good to go!
 
 #### Option 1: Declaring a sketch using the `P5Instance` type
 
-```ts
+```typescript
 import React from "react";
 import { ReactP5Wrapper, P5Instance } from "react-p5-wrapper";
 
@@ -116,7 +116,7 @@ that the `p5` argument passed to the sketch function is auto-typed as a
 > sketches and there is nothing wrong with using the `P5Instance` manually in a
 > regular `function` declaration.
 
-```ts
+```typescript
 import React from "react";
 import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 
@@ -140,9 +140,135 @@ export function App() {
 }
 ```
 
+#### TypeScript Generics
+
+We also support the use of Generics to add type definitions for your props. If
+used, the props will be properly typed when the props are passed to the
+`updateWithProps` method.
+
+To utilise generics you can use one of two methods. In both of the exampled
+below, we create a custom internal type called `MySketchProps` which is a union
+type of `SketchProps` and a custom type which has a `rotation` key applied to
+it.
+
+> Sidenote:
+>
+> We could also write the `MySketchProps` type as an interface to do exactly the
+> same thing if that is to your personal preference:
+>
+> ```typescript
+> interface MySketchProps extends SketchProps {
+>   rotation: number;
+> }
+> ```
+
+This means, in these examples, that when the `rotation` prop that is provided as
+part of the `props` passed to the `updateWithProps` function, it will be
+correctly typed as a `number`.
+
+##### Usage with the `P5Instance` type
+
+```typescript
+import React, { useState, useEffect } from "react";
+import { ReactP5Wrapper, P5Instance, SketchProps } from "react-p5-wrapper";
+
+type MySketchProps = SketchProps & {
+  rotation: number;
+};
+
+function sketch<MySketchProps>(p5: P5Instance<MySketchProps>) {
+  let rotation = 0;
+
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.updateWithProps = props => {
+    if (props.rotation) {
+      rotation = (props.rotation * Math.PI) / 180;
+    }
+  };
+
+  p5.draw = () => {
+    p5.background(100);
+    p5.normalMaterial();
+    p5.noStroke();
+    p5.push();
+    p5.rotateY(rotation);
+    p5.box(100);
+    p5.pop();
+  };
+}
+
+export function App() {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRotation(rotation => rotation + 100),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
+}
+```
+
+##### Usage with the `Sketch` type
+
+```typescript
+import React, { useState, useEffect } from "react";
+import { ReactP5Wrapper, Sketch, SketchProps } from "react-p5-wrapper";
+
+type MySketchProps = SketchProps & {
+  rotation: number;
+};
+
+const sketch: Sketch<MySketchProps> = p5 => {
+  let rotation = 0;
+
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.updateWithProps = props => {
+    if (props.rotation) {
+      rotation = (props.rotation * Math.PI) / 180;
+    }
+  };
+
+  p5.draw = () => {
+    p5.background(100);
+    p5.normalMaterial();
+    p5.noStroke();
+    p5.push();
+    p5.rotateY(rotation);
+    p5.box(100);
+    p5.pop();
+  };
+};
+
+export function App() {
+  const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRotation(rotation => rotation + 100),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
+}
+```
+
 ### Using abstracted setup and draw functions
 
-```js
+```javascript
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -193,7 +319,7 @@ wrapper are changed, if it is set within your sketch. This way we can render our
 `ReactP5Wrapper` component and react to component prop changes directly within
 our sketches!
 
-```js
+```javascript
 import React, { useState, useEffect } from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
