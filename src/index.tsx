@@ -1,28 +1,36 @@
 import diff from "microdiff";
 import p5 from "p5";
-import React, { createRef, FC, memo, useState } from "react";
+import React, { createRef, FC, memo, MutableRefObject } from "react";
+import { useRef } from "react";
 import { useIsomorphicEffect } from "rooks";
 
 type Wrapper = HTMLDivElement;
-
-export interface SketchProps {
+export type Sketch = (instance: P5CanvasInstance) => void;
+export type SketchProps = {
   [key: string]: any;
-}
-
-export interface Sketch {
-  (instance: P5Instance): void;
-}
-
-export interface P5WrapperProps extends SketchProps {
+};
+export type P5WrapperProps = SketchProps & {
   sketch: Sketch;
-}
-
-export interface P5Instance extends p5 {
+};
+export type P5CanvasInstance = p5 & {
   updateWithProps?: (props: SketchProps) => void;
+};
+
+// @TODO: remove in next major version, keep for compatibility reasons for now.
+export type P5Instance = P5CanvasInstance;
+
+function createCanvasInstance(
+  sketch: Sketch,
+  wrapper: Wrapper
+): P5CanvasInstance {
+  return new p5(sketch, wrapper);
 }
 
-function createCanvas(sketch: Sketch, wrapper: Wrapper): P5Instance {
-  return new p5(sketch, wrapper);
+function removeCanvasInstance(
+  canvasInstanceRef: MutableRefObject<P5CanvasInstance | undefined>
+) {
+  canvasInstanceRef.current?.remove();
+  canvasInstanceRef.current = undefined;
 }
 
 const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
@@ -31,23 +39,23 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
   ...props
 }) => {
   const wrapperRef = createRef<Wrapper>();
-  const [instance, setInstance] = useState<P5Instance>();
+  const instanceRef = useRef<P5CanvasInstance>();
 
   useIsomorphicEffect(() => {
     if (wrapperRef.current === null) {
       return;
     }
 
-    instance?.remove();
-    const canvas = createCanvas(sketch, wrapperRef.current);
-    setInstance(canvas);
+    removeCanvasInstance(instanceRef);
+    instanceRef.current = createCanvasInstance(sketch, wrapperRef.current);
   }, [sketch]);
 
-  useIsomorphicEffect(() => {
-    instance?.updateWithProps?.(props);
-  }, [props, instance]);
+  useIsomorphicEffect(
+    () => instanceRef.current?.updateWithProps?.(props),
+    [props]
+  );
 
-  useIsomorphicEffect(() => () => instance?.remove(), []);
+  useIsomorphicEffect(() => () => removeCanvasInstance(instanceRef), []);
 
   return <div ref={wrapperRef}>{children}</div>;
 };
