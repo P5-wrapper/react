@@ -38,23 +38,26 @@ const ReactP5WrapperComponent: FC<P5WrapperProps> = ({
   ...props
 }) => {
   const wrapperRef = createRef<Wrapper>();
-  const instanceRef = useRef<P5CanvasInstance>();
+  const canvasInstanceRef = useRef<P5CanvasInstance>();
 
   useIsomorphicEffect(() => {
     if (wrapperRef.current === null) {
       return;
     }
 
-    removeCanvasInstance(instanceRef);
-    instanceRef.current = createCanvasInstance(sketch, wrapperRef.current);
+    removeCanvasInstance(canvasInstanceRef);
+    canvasInstanceRef.current = createCanvasInstance(
+      sketch,
+      wrapperRef.current
+    );
   }, [sketch]);
 
   useIsomorphicEffect(
-    () => instanceRef.current?.updateWithProps?.(props),
+    () => canvasInstanceRef.current?.updateWithProps?.(props),
     [props]
   );
 
-  useIsomorphicEffect(() => () => removeCanvasInstance(instanceRef), []);
+  useIsomorphicEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return <div ref={wrapperRef}>{children}</div>;
 };
