@@ -1,6 +1,6 @@
 import diff from "microdiff";
 import p5 from "p5";
-import React, { createRef, memo, useState } from "react";
+import React, { createRef, memo, MutableRefObject, useRef } from "react";
 import { useIsomorphicEffect } from "rooks";
 
 type Wrapper = HTMLDivElement;
@@ -9,20 +9,31 @@ type InputProps<Props extends SketchProps = SketchProps> = Props & {
   sketch: Sketch<Props>;
 };
 export type Sketch<Props extends SketchProps = SketchProps> = (
-  instance: P5Instance<Props>
+  instance: P5CanvasInstance<Props>
 ) => void;
 export type SketchProps = { [key: string]: unknown };
 export type P5WrapperProps<Props extends SketchProps = SketchProps> =
   WithChildren<InputProps<Props>>;
-export type P5Instance<Props extends SketchProps = SketchProps> = p5 & {
+export type P5CanvasInstance<Props extends SketchProps = SketchProps> = p5 & {
   updateWithProps?: (props: Props) => void;
 };
 
-function createCanvas<Props extends SketchProps = SketchProps>(
+// @TODO: remove in next major version, keep for compatibility reasons for now.
+export type P5Instance<Props extends SketchProps = SketchProps> =
+  P5CanvasInstance<Props>;
+
+function createCanvasInstance<Props extends SketchProps = SketchProps>(
   sketch: Sketch<Props>,
   wrapper: Wrapper
-): P5Instance<Props> {
+): P5CanvasInstance<Props> {
   return new p5(sketch, wrapper);
+}
+
+function removeCanvasInstance<Props extends SketchProps = SketchProps>(
+  canvasInstanceRef: MutableRefObject<P5CanvasInstance<Props> | undefined>
+) {
+  canvasInstanceRef.current?.remove();
+  canvasInstanceRef.current = undefined;
 }
 
 function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
@@ -31,16 +42,18 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   ...props
 }: P5WrapperProps<Props>) {
   const wrapperRef = createRef<Wrapper>();
-  const [instance, setInstance] = useState<P5Instance<Props>>();
+  const canvasInstanceRef = useRef<P5CanvasInstance<Props>>();
 
   useIsomorphicEffect(() => {
     if (wrapperRef.current === null) {
       return;
     }
 
-    instance?.remove();
-    const canvas = createCanvas<Props>(sketch, wrapperRef.current);
-    setInstance(canvas);
+    removeCanvasInstance(canvasInstanceRef);
+    canvasInstanceRef.current = createCanvasInstance(
+      sketch,
+      wrapperRef.current
+    );
   }, [sketch]);
 
   useIsomorphicEffect(
@@ -58,11 +71,11 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
      * We could also remove this if we manage find a reasonable, more fitting workaround of some sort to avoid casting in the first place.
      * If a workaround / change of implementation comes to mind, please raise an issue on the repository or feel free to open a PR!
      */
-    () => instance?.updateWithProps?.(props as any),
-    [props, instance]
+    () => canvasInstanceRef.current?.updateWithProps?.(props as any),
+    [props]
   );
 
-  useIsomorphicEffect(() => () => instance?.remove(), []);
+  useIsomorphicEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return <div ref={wrapperRef}>{children}</div>;
 }
