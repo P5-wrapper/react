@@ -146,7 +146,7 @@ We also support the use of Generics to add type definitions for your props. If
 used, the props will be properly typed when the props are passed to the
 `updateWithProps` method.
 
-To utilise generics you can use one of two methods. In both of the exampled
+To utilise generics you can use one of two methods. In both of the examples
 below, we create a custom internal type called `MySketchProps` which is a union
 type of `SketchProps` and a custom type which has a `rotation` key applied to
 it.
