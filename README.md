@@ -176,7 +176,7 @@ type MySketchProps = SketchProps & {
   rotation: number;
 };
 
-function sketch<MySketchProps>(p5: P5Instance<MySketchProps>) {
+function sketch(p5: P5Instance<MySketchProps>) {
   let rotation = 0;
 
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
