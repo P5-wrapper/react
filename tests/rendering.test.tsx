@@ -22,6 +22,12 @@ describe("Rendering", () => {
     expect(canvas).toBeInstanceOf(HTMLCanvasElement);
   });
 
+  it("[Client] Adds a utility css class to the wrapping element", () => {
+    const { container } = render(<ReactP5Wrapper sketch={sketch} />);
+
+    expect(container.firstElementChild!.className).toBe("react-p5-wrapper");
+  });
+
   it("[Client] Recreates the P5 instance when the sketch is changed", () => {
     const { container, rerender } = render(<ReactP5Wrapper sketch={sketch} />);
 
@@ -44,7 +50,7 @@ describe("Rendering", () => {
   it("[Server] Renders as expected when using `renderToString`", () => {
     const StringComponent = renderToString(<ReactP5Wrapper sketch={sketch} />);
 
-    expect(StringComponent).toBe(`<div></div>`);
+    expect(StringComponent).toBe('<div class="react-p5-wrapper"></div>');
   });
 
   it("[Server] Renders as expected when using `renderToStaticMarkup`", () => {
@@ -52,14 +58,14 @@ describe("Rendering", () => {
       <ReactP5Wrapper sketch={sketch} />
     );
 
-    expect(StaticComponent).toBe(`<div></div>`);
+    expect(StaticComponent).toBe('<div class="react-p5-wrapper"></div>');
   });
 
   it("[Server] Renders as expected when using `renderToNodeStream`", async () => {
     const nodeStream = renderToNodeStream(<ReactP5Wrapper sketch={sketch} />);
     const content = await unwrapReadableStream(nodeStream);
 
-    expect(content).toBe(`<div></div>`);
+    expect(content).toBe('<div class="react-p5-wrapper"></div>');
   });
 
   it("[Server] Renders as expected when using `renderToStaticNodeStream`", async () => {
@@ -68,6 +74,6 @@ describe("Rendering", () => {
     );
     const content = await unwrapReadableStream(staticNodeStream);
 
-    expect(content).toBe(`<div></div>`);
+    expect(content).toBe('<div class="react-p5-wrapper"></div>');
   });
 });
