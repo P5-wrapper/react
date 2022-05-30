@@ -74,17 +74,16 @@ TypeScript sketches can be declared in two different ways, below you will find
 two ways to declare a sketch, both examples do the exact same thing.
 
 In short though, the `ReactP5Wrapper` component requires you to pass a `sketch`
-prop. The `sketch` prop is typed as a `(instance: P5Instance): void;`. As long
-as the function declaration of your sketch is set to take in a single argument
-of type `P5Instance`, you are good to go!
+prop. The `sketch` prop is simply a function which takes a `p5` instance as it's
+first and only argument.
 
-#### Option 1: Declaring a sketch using the `P5Instance` type
+#### Option 1: Declaring a sketch using the `P5CanvasInstance` type
 
 ```typescript
 import React from "react";
-import { ReactP5Wrapper, P5Instance } from "react-p5-wrapper";
+import { ReactP5Wrapper, P5CanvasInstance } from "react-p5-wrapper";
 
-function sketch(p5: P5Instance) {
+function sketch(p5: P5CanvasInstance) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
   p5.draw = () => {
@@ -106,15 +105,15 @@ export function App() {
 
 #### Option 2: Declaring a sketch using the `Sketch` type
 
-Using the `Sketch` type has one nice benefit over using `P5Instance` and that is
-that the `p5` argument passed to the sketch function is auto-typed as a
-`P5Instance` for you.
+Using the `Sketch` type has one nice benefit over using `P5CanvasInstance` and
+that is that the `p5` argument passed to the sketch function is auto-typed as a
+`P5CanvasInstance` for you.
 
 > Sidenote:
 >
 > In general it comes down to personal preference as to how you declare your
-> sketches and there is nothing wrong with using the `P5Instance` manually in a
-> regular `function` declaration.
+> sketches and there is nothing wrong with using the `P5CanvasInstance` manually
+> in a regular `function` declaration.
 
 ```typescript
 import React from "react";
@@ -166,17 +165,21 @@ This means, in these examples, that when the `rotation` prop that is provided as
 part of the `props` passed to the `updateWithProps` function, it will be
 correctly typed as a `number`.
 
-##### Usage with the `P5Instance` type
+##### Usage with the `P5CanvasInstance` type
 
 ```typescript
 import React, { useState, useEffect } from "react";
-import { ReactP5Wrapper, P5Instance, SketchProps } from "react-p5-wrapper";
+import {
+  ReactP5Wrapper,
+  P5CanvasInstance,
+  SketchProps
+} from "react-p5-wrapper";
 
 type MySketchProps = SketchProps & {
   rotation: number;
 };
 
-function sketch(p5: P5Instance<MySketchProps>) {
+function sketch(p5: P5CanvasInstance<MySketchProps>) {
   let rotation = 0;
 
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
