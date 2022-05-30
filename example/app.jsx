@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import { render } from "react-dom";
 import { ReactP5Wrapper } from "../src/index.tsx";
 import * as box from "./sketches/box";
 import * as torus from "./sketches/torus";
 import "./example.css";
-import { useCallback } from "react";
-import { Fragment } from "react";
 
 function App() {
   const [state, setState] = useState({
@@ -27,7 +25,7 @@ function App() {
   }, []);
   const onMountStateChange = useCallback(() => {
     setState(state => ({ ...state, unmount: !state.unmount }));
-  });
+  }, []);
 
   if (state.unmount) {
     return (
