@@ -10,14 +10,17 @@
     </h2>
     <div id="app"></div>
     <div class="footer">
-      Copyright &copy; 2016 -
-      <script>
-        new Date().getFullYear() > 2016 &&
-          document.write(new Date().getFullYear());
-      </script>
+      Copyright &copy; 2016 - <span id="currentYear"></span>
       <a href="https://github.com/P5-wrapper/react/graphs/contributors"
         >Contributors</a
       >.
     </div>
+    <script>
+      if (new Date().getFullYear() > 2016) {
+        document.getElementById("currentYear").textContent = new Date()
+          .getFullYear()
+          .toString();
+      }
+    </script>
   </div>
 </body>
