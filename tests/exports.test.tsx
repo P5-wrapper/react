@@ -1,15 +1,15 @@
 import React, { createFactory } from "react";
 
-import { ReactP5Wrapper, wrapperClassName } from "../src";
+import { ReactP5Wrapper, P5WrapperClassName } from "../src";
 
 describe("Exports", () => {
   it("should export the css class name used on the wrapper", () => {
-    expect(wrapperClassName).not.toBeUndefined();
+    expect(P5WrapperClassName).not.toBeUndefined();
   });
 
   it("should export the css class name used on the wrapper as a non-empty string", () => {
-    expect(typeof wrapperClassName).toBe("string");
-    expect(wrapperClassName.length).toBeGreaterThan(0);
+    expect(typeof P5WrapperClassName).toBe("string");
+    expect(P5WrapperClassName.length).toBeGreaterThan(0);
   });
 
   it("should export the wrapper component", () => {

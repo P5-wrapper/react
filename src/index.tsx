@@ -22,7 +22,7 @@ export type P5CanvasInstance<Props extends SketchProps = SketchProps> = p5 & {
 export type P5Instance<Props extends SketchProps = SketchProps> =
   P5CanvasInstance<Props>;
 
-export const wrapperClassName = "react-p5-wrapper";
+export const P5WrapperClassName = "react-p5-wrapper";
 export const ReactP5Wrapper = memo(ReactP5WrapperComponent, propsAreEqual);
 
 function createCanvasInstance<Props extends SketchProps = SketchProps>(
@@ -95,7 +95,7 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   useIsomorphicEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return (
-    <div ref={wrapperRef} className={wrapperClassName}>
+    <div ref={wrapperRef} className={P5WrapperClassName}>
       {children}
     </div>
   );

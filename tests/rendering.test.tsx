@@ -90,7 +90,7 @@ describe("Rendering", () => {
     expect(content).toBe('<div class="react-p5-wrapper"></div>');
   });
 
-  it("[General] [Future] should throw an error when the `sketch` prop is not provided", () => {
+  it("[General] should throw an error when the `sketch` prop is not provided", () => {
     expect(() => render(<ReactP5Wrapper />)).toThrow(/sketch/);
   });
 
