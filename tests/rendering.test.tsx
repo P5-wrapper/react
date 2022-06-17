@@ -90,15 +90,21 @@ describe("Rendering", () => {
     expect(content).toBe('<div class="react-p5-wrapper"></div>');
   });
 
-  it("[General] Not render anything when the sketch prop is not provided", () => {
+  it("[General] [Future] should throw an error when the `sketch` prop is not provided", () => {
+    expect(() => render(<ReactP5Wrapper />)).toThrow(/sketch/);
+  });
+
+  xit("[General] Should not render anything when the `sketch` prop is not provided", () => {
     const { container } = render(<ReactP5Wrapper />);
 
     expect(container.innerHTML).toBe("");
   });
 
-  it("[General] Log an error to the console when the sketch prop is not provided", () => {
+  xit("[General] [Future] Should log an error to the console when the `sketch` prop is not provided", () => {
     const errorMock = jest.fn();
-    const errorMockSpy = jest.spyOn(console, "error").mockImplementation(errorMock);
+    const errorMockSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(errorMock);
 
     render(<ReactP5Wrapper />);
 

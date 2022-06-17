@@ -45,8 +45,7 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   ...props
 }: P5WrapperProps<Props>) {
   if (sketch === undefined) {
-    console.error("[ReactP5Wrapper] The `sketch` prop is required.");
-    return null;
+    throw new Error("[ReactP5Wrapper] The `sketch` prop is required.");
   }
 
   const wrapperRef = createRef<Wrapper>();
