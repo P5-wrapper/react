@@ -11,6 +11,7 @@
     "dist/components/*"
   ],
   "scripts": {
+    "aui": "pnpm audit && pnpm update && pnpm install",
     "build": "npm run clean && npm run build:demo && npm run build:components",
     "build:components": "rollup -c config/rollup/rollup.config.js",
     "build:demo": "webpack --config config/webpack/webpack.config.js --mode production",
