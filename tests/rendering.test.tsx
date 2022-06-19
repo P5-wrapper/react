@@ -1,11 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import {
-  renderToNodeStream,
-  renderToStaticMarkup,
-  renderToStaticNodeStream,
-  renderToString
-} from "react-dom/server";
+import { renderToStaticMarkup, renderToString } from "react-dom/server";
 
 import { ReactP5Wrapper, Sketch } from "../src/index";
 import { unwrapReadableStream } from "./helpers/streams";
@@ -70,24 +65,6 @@ describe("Rendering", () => {
     );
 
     expect(StaticComponent).toBe('<div class="react-p5-wrapper"></div>');
-  });
-
-  it("[Server] Renders as expected when using `renderToNodeStream`", async () => {
-    const { sketch } = setupTest();
-    const nodeStream = renderToNodeStream(<ReactP5Wrapper sketch={sketch} />);
-    const content = await unwrapReadableStream(nodeStream);
-
-    expect(content).toBe('<div class="react-p5-wrapper"></div>');
-  });
-
-  it("[Server] Renders as expected when using `renderToStaticNodeStream`", async () => {
-    const { sketch } = setupTest();
-    const staticNodeStream = renderToStaticNodeStream(
-      <ReactP5Wrapper sketch={sketch} />
-    );
-    const content = await unwrapReadableStream(staticNodeStream);
-
-    expect(content).toBe('<div class="react-p5-wrapper"></div>');
   });
 
   it("[General] should throw an error when the `sketch` prop is not provided", () => {

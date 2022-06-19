@@ -6,9 +6,9 @@ import { P5Instance, ReactP5Wrapper, Sketch } from "../src";
 function sketchFromUpdateFunction(
   updateFunction: P5Instance["updateWithProps"]
 ) {
-  const sketch: Sketch = p5 => {
+  const sketch: Sketch = jest.fn(p5 => {
     p5.updateWithProps = updateFunction;
-  };
+  });
 
   return { sketch };
 }
@@ -19,7 +19,8 @@ describe("Updates", () => {
     const { sketch } = sketchFromUpdateFunction(updateFunction);
 
     render(<ReactP5Wrapper sketch={sketch} x={100} />);
-    expect(updateFunction).toBeCalledTimes(1);
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(1);
     expect(updateFunction).toHaveBeenCalledWith({ x: 100 });
   });
 
@@ -29,7 +30,9 @@ describe("Updates", () => {
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
     rerender(<ReactP5Wrapper sketch={sketch} x={200} />);
-    expect(updateFunction).toBeCalledTimes(2);
+
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
     expect(updateFunction).toHaveBeenCalledWith({ x: 200 });
   });
 
@@ -39,7 +42,8 @@ describe("Updates", () => {
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
     rerender(<ReactP5Wrapper sketch={sketch} />);
-    expect(updateFunction).toBeCalledTimes(2);
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
     expect(updateFunction).toHaveBeenCalledWith({});
   });
 
@@ -49,7 +53,8 @@ describe("Updates", () => {
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
     rerender(<ReactP5Wrapper sketch={sketch} x={200} y={50} />);
-    expect(updateFunction).toBeCalledTimes(2);
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
     expect(updateFunction).toHaveBeenCalledWith({ x: 200, y: 50 });
   });
 
@@ -59,7 +64,8 @@ describe("Updates", () => {
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
     rerender(<ReactP5Wrapper sketch={sketch} y={100} />);
-    expect(updateFunction).toBeCalledTimes(2);
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
     expect(updateFunction).toHaveBeenCalledWith({ y: 100 });
   });
 });

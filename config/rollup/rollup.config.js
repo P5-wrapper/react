@@ -1,9 +1,14 @@
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
-import { dependencies, peerDependencies, module, main } from "../package.json";
+import {
+  dependencies,
+  peerDependencies,
+  module,
+  main
+} from "../../package.json";
 import { join } from "path";
 
-const input = "src/index.tsx";
+const input = join(__dirname, "..", "..", "src", "index.tsx");
 const external = [
   ...Object.keys(dependencies ?? {}),
   ...Object.keys(peerDependencies ?? {})
@@ -11,7 +16,7 @@ const external = [
 const plugins = [
   typescript({
     typescript: require("typescript"),
-    tsconfig: join(__dirname, "tsconfig.json")
+    tsconfig: join(__dirname, "..", "typescript", "tsconfig.json")
   }),
   terser({
     format: {
