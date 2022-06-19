@@ -34,6 +34,12 @@ Then just open `http://localhost:3001` in a browser.
   npm install react-p5-wrapper
 ```
 
+### PNPM
+
+```sh
+  pnpm add react-p5-wrapper
+```
+
 ### Yarn
 
 ```sh
