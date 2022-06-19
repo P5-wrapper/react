@@ -372,8 +372,8 @@ To render a component on top of the sketch, you can add it as a child of the
 `ReactP5Wrapper` component and then use the exported `P5WrapperClassName`
 constant in your to style one element above the other via css.
 
-For instance, using [styled components](https://styled-components.com),
-we could center some text on top of our sketch like so:
+For instance, using [styled components](https://styled-components.com), we could
+center some text on top of our sketch like so:
 
 ```jsx
 import { ReactP5Wrapper, P5WrapperClassName } from "../src/index.tsx";
