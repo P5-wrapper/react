@@ -1,7 +1,7 @@
 const { join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const BASE_DIR = join(__dirname, "..");
+const BASE_DIR = join(__dirname, "..", "..");
 const DISTRIBUTION_DIRECTORY = join(BASE_DIR, "dist", "demo");
 const EXAMPLE_DIRECTORY = join(BASE_DIR, "example");
 
@@ -22,7 +22,7 @@ module.exports = (env, options) => {
           test: /\.tsx?$/,
           loader: "ts-loader",
           options: {
-            configFile: join(__dirname, "tsconfig.json")
+            configFile: join(__dirname, "..", "typescript", "tsconfig.json")
           }
         },
         {
