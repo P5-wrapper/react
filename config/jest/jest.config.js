@@ -1,9 +1,8 @@
 const { join } = require("path");
 
 module.exports = {
-  rootDir: "..",
+  rootDir: join(__dirname, "..", ".."),
   silent: true,
-  testEnvironment: "jsdom",
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   transform: {
     "^.+\\.tsx?$": "ts-jest"
@@ -11,7 +10,8 @@ module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   globals: {
     "ts-jest": {
-      tsconfig: join(__dirname, "tsconfig.json")
+      tsconfig: join(__dirname, "..", "typescript", "tsconfig.json")
     }
-  }
+  },
+  testEnvironment: join(__dirname, "jest.environment.js")
 };

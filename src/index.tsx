@@ -6,7 +6,7 @@ import { useIsomorphicEffect } from "rooks";
 type Wrapper = HTMLDivElement;
 type WithChildren<T = unknown> = T & { children?: React.ReactNode };
 type InputProps<Props extends SketchProps = SketchProps> = Props & {
-  sketch: Sketch<Props>;
+  sketch?: Sketch<Props>;
 };
 export type Sketch<Props extends SketchProps = SketchProps> = (
   instance: P5CanvasInstance<Props>
@@ -21,6 +21,9 @@ export type P5CanvasInstance<Props extends SketchProps = SketchProps> = p5 & {
 // @TODO: remove in next major version, keep for compatibility reasons for now.
 export type P5Instance<Props extends SketchProps = SketchProps> =
   P5CanvasInstance<Props>;
+
+export const P5WrapperClassName = "react-p5-wrapper";
+export const ReactP5Wrapper = memo(ReactP5WrapperComponent, propsAreEqual);
 
 function createCanvasInstance<Props extends SketchProps = SketchProps>(
   sketch: Sketch<Props>,
@@ -41,6 +44,10 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   children,
   ...props
 }: P5WrapperProps<Props>) {
+  if (sketch === undefined) {
+    throw new Error("[ReactP5Wrapper] The `sketch` prop is required.");
+  }
+
   const wrapperRef = createRef<Wrapper>();
   const canvasInstanceRef = useRef<P5CanvasInstance<Props>>();
 
@@ -79,15 +86,16 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
      * We could also remove this if we manage find a reasonable, more fitting workaround of some sort to avoid casting in the first place.
      * If a workaround / change of implementation comes to mind, please raise an issue on the repository or feel free to open a PR!
      */
-    () =>
-      canvasInstanceRef.current?.updateWithProps?.(props as unknown as Props),
+    () => {
+      canvasInstanceRef.current?.updateWithProps?.(props as unknown as Props);
+    },
     [props]
   );
 
   useIsomorphicEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return (
-    <div ref={wrapperRef} className="react-p5-wrapper">
+    <div ref={wrapperRef} className={P5WrapperClassName}>
       {children}
     </div>
   );
@@ -101,5 +109,3 @@ function propsAreEqual<Props extends SketchProps = SketchProps>(
 
   return differences.length === 0;
 }
-
-export const ReactP5Wrapper = memo(ReactP5WrapperComponent, propsAreEqual);
