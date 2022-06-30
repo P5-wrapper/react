@@ -12,20 +12,20 @@
   ],
   "scripts": {
     "aui": "pnpm audit && pnpm update && pnpm install",
-    "build": "pnpm run clean && pnpm run build:demo && pnpm run build:components",
+    "build": "pnpm clean && pnpm build:demo && pnpm build:components",
     "build:components": "rollup -c config/rollup/rollup.config.js",
     "build:demo": "webpack --config config/webpack/webpack.config.js --mode production",
-    "ci": "pnpm run format:check && pnpm run lint && pnpm run test && pnpm run build",
+    "ci": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
     "clean": "rimraf dist",
-    "format": "pnpm run prettier --write .",
-    "format:check": "pnpm run prettier --check .",
+    "format": "pnpm prettier --write .",
+    "format:check": "pnpm prettier --check .",
     "lint": "eslint --config config/eslint/eslint.config.js src/ --ignore-path .gitignore",
-    "lint:fix": "pnpm run lint --fix",
+    "lint:fix": "pnpm lint --fix",
     "prettier": "prettier --config config/prettier/prettier.config.js --ignore-path .gitignore",
-    "release": "pnpm run build && gh-pages -d dist/demo && pnpm publish",
+    "release": "pnpm build && gh-pages -d dist/demo && pnpm publish",
     "start": "webpack serve --config config/webpack/webpack.config.js --mode development",
     "test": "jest --config config/jest/jest.config.js --coverage",
-    "test:watch": "pnpm run test --watch"
+    "test:watch": "pnpm test --watch"
   },
   "keywords": [
     "react",
