@@ -382,7 +382,7 @@ For instance, using [styled components](https://styled-components.com), we could
 center some text on top of our sketch like so:
 
 ```jsx
-import { ReactP5Wrapper, P5WrapperClassName } from "../src/index.tsx";
+import { ReactP5Wrapper, P5WrapperClassName } from "react-p5-wrapper";
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalWrapperStyles = createGlobalStyle`
