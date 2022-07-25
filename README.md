@@ -20,8 +20,8 @@ To try them out for yourself, run the following:
 ```sh
 git clone git@github.com:P5-wrapper/react.git
 cd react
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 Then just open `http://localhost:3001` in a browser.
@@ -441,5 +441,5 @@ To build, watch and serve the examples which will also watch the component
 source, run:
 
 ```sh
-  npm start
+  pnpm start
 ```
