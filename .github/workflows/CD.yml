@@ -1,18 +1,22 @@
-name: Master Pull Request
+name: CD
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
+concurrency: cd-${{ github.ref }}
+
 jobs:
-  validate:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: Checkout the latest code for the current PR
         with:
           token: ${{ secrets.GH_TOKEN }}
 
       - uses: actions/setup-node@v2
+        name: Setup node
         with:
           node-version: 16
 
@@ -39,34 +43,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check formatting
-        run: pnpm format:check
+      - name: Build the demo application
+        run: pnpm build:demo
 
-      - name: Formatting issues detected (attempting fix...)
-        if: ${{ failure() }}
-        run: pnpm format
-
-      - name: Commit fixed formatting issues
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Deploy the demo application
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          commit_message: Apply fixed formatting issues
-          branch: ${{ github.head_ref }}
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Linting issues detected (attempting fix...)
-        if: ${{ failure() }}
-        run: pnpm lint:fix
-
-      - name: Commit fixed linting issues
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply fixed linting issues
-          branch: ${{ github.head_ref }}
-
-      - name: Test
-        run: pnpm test
-
-      - name: Build
-        run: pnpm build
+          folder: dist/demo
