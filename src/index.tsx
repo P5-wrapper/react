@@ -1,6 +1,6 @@
 import diff from "microdiff";
 import p5 from "p5";
-import React, { createRef, memo, MutableRefObject, useRef } from "react";
+import React from "react";
 import { useIsomorphicEffect } from "rooks";
 
 type Wrapper = HTMLDivElement;
@@ -8,6 +8,8 @@ type WithChildren<T = unknown> = T & { children?: React.ReactNode };
 type InputProps<Props extends SketchProps = SketchProps> = Props & {
   sketch?: Sketch<Props>;
 };
+type P5WrapperPropsWithSketch<Props extends SketchProps = SketchProps> =
+  P5WrapperProps<Props> & { sketch: Sketch<Props> };
 export type Sketch<Props extends SketchProps = SketchProps> = (
   instance: P5CanvasInstance<Props>
 ) => void;
@@ -18,12 +20,11 @@ export type P5CanvasInstance<Props extends SketchProps = SketchProps> = p5 & {
   updateWithProps?: (props: Props) => void;
 };
 
-// @TODO: remove in next major version, keep for compatibility reasons for now.
-export type P5Instance<Props extends SketchProps = SketchProps> =
-  P5CanvasInstance<Props>;
-
 export const P5WrapperClassName = "react-p5-wrapper";
-export const ReactP5Wrapper = memo(ReactP5WrapperComponent, propsAreEqual);
+export const ReactP5Wrapper = React.memo(
+  ReactP5WrapperComponentGuard,
+  propsAreEqual
+);
 
 function createCanvasInstance<Props extends SketchProps = SketchProps>(
   sketch: Sketch<Props>,
@@ -33,23 +34,32 @@ function createCanvasInstance<Props extends SketchProps = SketchProps>(
 }
 
 function removeCanvasInstance<Props extends SketchProps = SketchProps>(
-  canvasInstanceRef: MutableRefObject<P5CanvasInstance<Props> | undefined>
+  canvasInstanceRef: React.MutableRefObject<P5CanvasInstance<Props> | undefined>
 ) {
   canvasInstanceRef.current?.remove();
   canvasInstanceRef.current = undefined;
+}
+
+function ReactP5WrapperComponentGuard<Props extends SketchProps = SketchProps>({
+  sketch,
+  ...props
+}: P5WrapperProps<Props>) {
+  if (sketch === undefined) {
+    console.error("[ReactP5Wrapper] The `sketch` prop is required.");
+
+    return null;
+  }
+
+  return <ReactP5WrapperComponent sketch={sketch} {...props} />;
 }
 
 function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   sketch,
   children,
   ...props
-}: P5WrapperProps<Props>) {
-  if (sketch === undefined) {
-    throw new Error("[ReactP5Wrapper] The `sketch` prop is required.");
-  }
-
-  const wrapperRef = createRef<Wrapper>();
-  const canvasInstanceRef = useRef<P5CanvasInstance<Props>>();
+}: P5WrapperPropsWithSketch) {
+  const wrapperRef = React.createRef<Wrapper>();
+  const canvasInstanceRef = React.useRef<P5CanvasInstance<Props>>();
 
   useIsomorphicEffect(() => {
     if (wrapperRef.current === null) {

@@ -67,17 +67,13 @@ describe("Rendering", () => {
     expect(StaticComponent).toBe('<div class="react-p5-wrapper"></div>');
   });
 
-  it("[General] should throw an error when the `sketch` prop is not provided", () => {
-    expect(() => render(<ReactP5Wrapper />)).toThrow(/sketch/);
-  });
-
-  xit("[General] Should not render anything when the `sketch` prop is not provided", () => {
+  it("[General] Should not render anything when the `sketch` prop is not provided", () => {
     const { container } = render(<ReactP5Wrapper />);
 
     expect(container.innerHTML).toBe("");
   });
 
-  xit("[General] [Future] Should log an error to the console when the `sketch` prop is not provided", () => {
+  it("[General] Should log an error to the console when the `sketch` prop is not provided", () => {
     const errorMock = jest.fn();
     const errorMockSpy = jest
       .spyOn(console, "error")
@@ -86,7 +82,9 @@ describe("Rendering", () => {
     render(<ReactP5Wrapper />);
 
     expect(errorMockSpy).toHaveBeenCalledTimes(1);
-    expect(errorMockSpy).toHaveBeenCalledWith(expect.stringMatching(/sketch/));
+    expect(errorMockSpy).toHaveBeenCalledWith(
+      "[ReactP5Wrapper] The `sketch` prop is required."
+    );
 
     errorMockSpy.mockReset();
     errorMockSpy.mockRestore();
