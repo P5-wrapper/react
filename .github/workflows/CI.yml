@@ -7,41 +7,12 @@ on:
 concurrency: ci-${{ github.ref }}
 
 jobs:
-  format-lint-test-and-build:
+  format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout the latest code for the current PR
+      - uses: P5-wrapper/setup-action@v1
         with:
           token: ${{ secrets.GH_TOKEN }}
-
-      - uses: actions/setup-node@v2
-        name: Setup node
-        with:
-          node-version: 16
-
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Check formatting
         run: pnpm format:check
@@ -56,6 +27,13 @@ jobs:
           commit_message: Apply fixed formatting issues
           branch: ${{ github.head_ref }}
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
       - name: Lint
         run: pnpm lint
 
@@ -69,8 +47,22 @@ jobs:
           commit_message: Apply fixed linting issues
           branch: ${{ github.head_ref }}
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
       - name: Test
         run: pnpm test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Build
         run: pnpm build
