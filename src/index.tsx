@@ -1,7 +1,6 @@
 import diff from "microdiff";
 import p5 from "p5";
 import React from "react";
-import { useIsomorphicEffect } from "rooks";
 
 type Wrapper = HTMLDivElement;
 type WithChildren<T = unknown> = T & { children?: React.ReactNode };
@@ -61,7 +60,7 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
   const wrapperRef = React.createRef<Wrapper>();
   const canvasInstanceRef = React.useRef<P5CanvasInstance<Props>>();
 
-  useIsomorphicEffect(() => {
+  React.useEffect(() => {
     if (wrapperRef.current === null) {
       return;
     }
@@ -73,7 +72,7 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
     );
   }, [sketch]);
 
-  useIsomorphicEffect(
+  React.useEffect(
     /**
      * The `as unknown as Props` cast is begrudgingly required due to a known limitation of the TypeScript compiler as demonstrated in issues:
      *
@@ -102,7 +101,7 @@ function ReactP5WrapperComponent<Props extends SketchProps = SketchProps>({
     [props]
   );
 
-  useIsomorphicEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
+  React.useEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return (
     <div ref={wrapperRef} className={P5WrapperClassName}>
