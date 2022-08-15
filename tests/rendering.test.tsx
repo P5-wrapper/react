@@ -3,7 +3,6 @@ import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 
 import { ReactP5Wrapper, Sketch } from "../src/index";
-import { unwrapReadableStream } from "./helpers/streams";
 
 function setupTest() {
   const sketch: Sketch = p5 => {
