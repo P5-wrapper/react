@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist",
+    "outDir": "../../dist/components",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
