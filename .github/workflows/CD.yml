@@ -7,44 +7,22 @@ on:
 concurrency: cd-${{ github.ref }}
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout the latest code for the current PR
+      - uses: P5-wrapper/setup-action@v1
         with:
           token: ${{ secrets.GH_TOKEN }}
 
-      - uses: actions/setup-node@v2
-        name: Setup node
-        with:
-          node-version: 16
-
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Build the demo application
         run: pnpm build:demo
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Deploy the demo application
         uses: JamesIves/github-pages-deploy-action@v4

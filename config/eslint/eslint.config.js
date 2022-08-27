@@ -6,7 +6,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended"
   ],
@@ -18,7 +17,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module"
   },
-  plugins: ["@typescript-eslint", "prettier", "react", "simple-import-sort"],
+  plugins: ["@typescript-eslint", "react", "simple-import-sort"],
   overrides: [
     {
       files: [".js", ".jsx", ".ts", ".tsx"]
@@ -28,10 +27,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "linebreak-style": ["error", "unix"],
     "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": "error",
-    indent: ["error", 2],
-    quotes: ["error", "double"],
-    semi: ["error", "always"]
+    "simple-import-sort/imports": "error"
   },
   settings: {
     react: {
