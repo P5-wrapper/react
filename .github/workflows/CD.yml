@@ -7,7 +7,7 @@ on:
 concurrency: cd-${{ github.ref }}
 
 jobs:
-  deploy:
+  gh-pages:
     runs-on: ubuntu-latest
     steps:
       - uses: P5-wrapper/setup-action@v1
@@ -21,3 +21,16 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist/demo
+
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          # TODO: remove the dry run declaration after testing CD doesn't throw
+          dry-run: true
