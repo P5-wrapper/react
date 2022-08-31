@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useMemo } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ReactP5Wrapper } from "../src/index.tsx";
 import * as box from "./sketches/box";
 import * as torus from "./sketches/torus";
@@ -70,4 +70,6 @@ function App() {
   );
 }
 
-render(<App />, document.getElementById("app"));
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<App />);
