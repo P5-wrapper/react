@@ -27,3 +27,5 @@ jobs:
         with:
           delete-branch: true
           branch-suffix: short-commit-hash
+          labels: dependencies
+          team-reviewers: P5-wrapper/blue-team
