@@ -15,6 +15,13 @@ jobs:
       - name: Audit, update and install
         run: pnpm aui
 
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Formatting issues detected (attempting fix...)
+        if: ${{ failure() }}
+        run: pnpm format
+
       - name: Create dependency updates PR
         uses: peter-evans/create-pull-request@v4
         with:
