@@ -77,15 +77,15 @@
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^28.1.8",
     "@types/p5": "^1.4.2",
-    "@types/react": "^18.0.18",
+    "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "babel-loader": "^8.2.5",
-    "canvas": "^2.10.0",
+    "canvas": "^2.10.1",
     "css-loader": "^6.7.1",
     "eslint": "^8.23.0",
-    "eslint-plugin-react": "^7.31.7",
+    "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "gh-pages": "^4.0.0",
@@ -104,9 +104,9 @@
     "ts-jest": "^28.0.8",
     "ts-loader": "^9.3.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.8.2",
+    "typescript": "^4.8.3",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.10.1"
+    "webpack-dev-server": "^4.11.0"
   }
 }
