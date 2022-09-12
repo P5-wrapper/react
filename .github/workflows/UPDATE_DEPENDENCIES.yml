@@ -25,7 +25,9 @@ jobs:
       - name: Create dependency updates PR
         uses: peter-evans/create-pull-request@v4
         with:
+          commit-message: Update dependencies
           delete-branch: true
           branch-suffix: short-commit-hash
+          title: Update dependencies
           labels: dependencies
           team-reviewers: P5-wrapper/blue-team
