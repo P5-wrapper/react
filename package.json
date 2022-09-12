@@ -84,7 +84,7 @@
     "babel-loader": "^8.2.5",
     "canvas": "^2.10.1",
     "css-loader": "^6.7.1",
-    "eslint": "^8.23.0",
+    "eslint": "^8.23.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
