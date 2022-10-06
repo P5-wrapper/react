@@ -1,7 +1,6 @@
 module.exports = {
   env: {
-    browser: true,
-    es2021: true
+    browser: true
   },
   extends: [
     "eslint:recommended",
@@ -14,21 +13,10 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 12,
+    ecmaVersion: "latest",
     sourceType: "module"
   },
-  plugins: ["@typescript-eslint", "react", "simple-import-sort"],
-  overrides: [
-    {
-      files: [".js", ".jsx", ".ts", ".tsx"]
-    }
-  ],
-  rules: {
-    "@typescript-eslint/no-explicit-any": "off",
-    "linebreak-style": ["error", "unix"],
-    "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": "error"
-  },
+  plugins: ["@typescript-eslint", "react"],
   settings: {
     react: {
       version: "detect"

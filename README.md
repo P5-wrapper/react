@@ -87,7 +87,7 @@ first and only argument.
 
 ```typescript
 import React from "react";
-import { ReactP5Wrapper, P5CanvasInstance } from "react-p5-wrapper";
+import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
@@ -174,10 +174,10 @@ correctly typed as a `number`.
 ##### Usage with the `P5CanvasInstance` type
 
 ```typescript
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  ReactP5Wrapper,
   P5CanvasInstance,
+  ReactP5Wrapper,
   SketchProps
 } from "react-p5-wrapper";
 
@@ -228,7 +228,7 @@ export function App() {
 ##### Usage with the `Sketch` type
 
 ```typescript
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper, Sketch, SketchProps } from "react-p5-wrapper";
 
 type MySketchProps = SketchProps & {
@@ -329,7 +329,7 @@ wrapper are changed, if it is set within your sketch. This way we can render our
 our sketches!
 
 ```javascript
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5) {
@@ -382,7 +382,7 @@ For instance, using [styled components](https://styled-components.com), we could
 center some text on top of our sketch like so:
 
 ```jsx
-import { ReactP5Wrapper, P5WrapperClassName } from "react-p5-wrapper";
+import { P5WrapperClassName, ReactP5Wrapper } from "react-p5-wrapper";
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalWrapperStyles = createGlobalStyle`

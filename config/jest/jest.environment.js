@@ -4,6 +4,7 @@ const { TextEncoder, TextDecoder } = require("util");
 class CustomTestEnvironment extends Environment {
   async setup() {
     await super.setup();
+
     this.polyfillTextEncoder();
     this.polyfillTextDecoder();
   }
