@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "module": "ES2015",
+    "module": "ESNext",
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
