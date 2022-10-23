@@ -1,9 +1,10 @@
-import React, { Fragment, useState, useCallback, useMemo } from "react";
+import React, { Fragment, useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ReactP5Wrapper } from "../src/index.tsx";
+
 import * as box from "./sketches/box";
-import * as torus from "./sketches/torus";
 import * as plane from "./sketches/plane";
+import * as torus from "./sketches/torus";
+import { ReactP5Wrapper } from "../src/index.tsx";
 import "./example.css";
 
 function App() {

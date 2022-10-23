@@ -1,6 +1,6 @@
 import React, { createFactory } from "react";
 
-import { ReactP5Wrapper, P5WrapperClassName } from "../src";
+import { P5WrapperClassName, ReactP5Wrapper } from "../src";
 
 describe("Exports", () => {
   it("should export the css class name used on the wrapper", () => {

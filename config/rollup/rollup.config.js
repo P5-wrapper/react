@@ -1,12 +1,13 @@
-import typescript from "rollup-plugin-typescript2";
-import { terser } from "rollup-plugin-terser";
-import {
-  dependencies,
-  peerDependencies,
-  module,
-  main
-} from "../../package.json";
 import { join } from "path";
+import { terser } from "rollup-plugin-terser";
+import typescript from "rollup-plugin-typescript2";
+
+import {
+  main as cjs,
+  dependencies,
+  module as esm,
+  peerDependencies
+} from "../../package.json";
 
 const input = join(__dirname, "..", "..", "src", "index.tsx");
 const external = [
@@ -41,7 +42,7 @@ function createBundleConfiguration(filename, format) {
   };
 }
 
-const ESM = createBundleConfiguration(module, "esm");
-const CJS = createBundleConfiguration(main, "cjs");
+const ESM = createBundleConfiguration(esm, "esm");
+const CJS = createBundleConfiguration(cjs, "cjs");
 
 export default [ESM, CJS];
