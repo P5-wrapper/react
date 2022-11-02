@@ -1,23 +1,23 @@
-import { join } from "path";
+import { dirname, join } from "path";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
+import typescriptEngine from "typescript";
+import { fileURLToPath } from "url";
 
-import {
-  main as cjs,
-  dependencies,
-  module as esm,
-  peerDependencies
-} from "../../package.json";
+import packageJSON from "../../package.json" assert { type: "json" };
 
-const input = join(__dirname, "..", "..", "src", "index.tsx");
+const filePath = fileURLToPath(import.meta.url);
+const fileDirectory = dirname(filePath);
+
+const input = join(fileDirectory, "..", "..", "src", "index.tsx");
 const external = [
-  ...Object.keys(dependencies ?? {}),
-  ...Object.keys(peerDependencies ?? {})
+  ...Object.keys(packageJSON.dependencies ?? {}),
+  ...Object.keys(packageJSON.peerDependencies ?? {})
 ];
 const plugins = [
   typescript({
-    typescript: require("typescript"),
-    tsconfig: join(__dirname, "..", "typescript", "tsconfig.json")
+    typescript: typescriptEngine,
+    tsconfig: join(fileDirectory, "..", "typescript", "tsconfig.json")
   }),
   terser({
     format: {
@@ -27,6 +27,8 @@ const plugins = [
 ];
 
 function createBundleConfiguration(filename, format) {
+  console.log(filename, format);
+  /** @type {import("rollup").RollupOptions} */
   return {
     input,
     plugins,
@@ -34,7 +36,7 @@ function createBundleConfiguration(filename, format) {
     output: {
       file: filename,
       format,
-      sourcemap: true
+      sourcemap: "inline"
     },
     onwarn: warning => {
       throw new Error(warning.message);
@@ -42,7 +44,7 @@ function createBundleConfiguration(filename, format) {
   };
 }
 
-const ESM = createBundleConfiguration(esm, "esm");
-const CJS = createBundleConfiguration(cjs, "cjs");
+const ESM = createBundleConfiguration(packageJSON.module, "esm");
+const CJS = createBundleConfiguration(packageJSON.main, "cjs");
 
 export default [ESM, CJS];
