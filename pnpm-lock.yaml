@@ -13,7 +13,7 @@ specifiers:
   "@types/react-dom": ^18.0.6
   "@typescript-eslint/eslint-plugin": ^5.40.1
   "@typescript-eslint/parser": ^5.40.1
-  babel-loader: ^8.2.5
+  babel-loader: ^9.0.0
   canvas: ^2.10.1
   css-loader: ^6.7.1
   eslint: ^8.26.0
@@ -59,7 +59,7 @@ devDependencies:
   "@types/react-dom": 18.0.6
   "@typescript-eslint/eslint-plugin": 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
   "@typescript-eslint/parser": 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-  babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+  babel-loader: 9.0.1_6zc4kxld457avlfyhj3lzsljlm
   canvas: 2.10.1
   css-loader: 6.7.1_webpack@5.74.0
   eslint: 8.26.0
@@ -3523,21 +3523,19 @@ packages:
       - supports-color
     dev: true
 
-  /babel-loader/8.2.5_6zc4kxld457avlfyhj3lzsljlm:
+  /babel-loader/9.0.1_6zc4kxld457avlfyhj3lzsljlm:
     resolution:
       {
-        integrity: sha512-OSiFfH89LrEMiWd4pLNqGz4CwJDtbs2ZVc+iGu2HrkRfPxId9F2anQj38IxWpmRfsUY0aBZYi1EFcd3mhtRMLQ==
+        integrity: sha512-szYjslOXFlj/po5KfrVmiuBAcI6GVHFuAgC96Qd6mMPHdwl4lmAJkYtvjQ1RxxPjgdkKjd3LQgXDE4jxEutNuw==
       }
-    engines: { node: ">= 8.9" }
+    engines: { node: ">= 14.15.0" }
     peerDependencies:
-      "@babel/core": ^7.0.0
-      webpack: ">=2"
+      "@babel/core": ^7.12.0
+      webpack: ">=5"
     dependencies:
       "@babel/core": 7.19.6
       find-cache-dir: 3.3.2
-      loader-utils: 2.0.3
-      make-dir: 3.1.0
-      schema-utils: 2.7.1
+      schema-utils: 4.0.0
       webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
@@ -3663,13 +3661,6 @@ packages:
     resolution:
       {
         integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==
-      }
-    dev: true
-
-  /big.js/5.2.2:
-    resolution:
-      {
-        integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
       }
     dev: true
 
@@ -4639,14 +4630,6 @@ packages:
       {
         integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
       }
-    dev: true
-
-  /emojis-list/3.0.0:
-    resolution:
-      {
-        integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
-      }
-    engines: { node: ">= 4" }
     dev: true
 
   /encodeurl/1.0.2:
@@ -7269,18 +7252,6 @@ packages:
     engines: { node: ">=6.11.5" }
     dev: true
 
-  /loader-utils/2.0.3:
-    resolution:
-      {
-        integrity: sha512-THWqIsn8QRnvLl0shHYVBN9syumU8pYWEHPTmkiVGd+7K5eFNVSY6AJhRvgGF70gg1Dz+l/k8WicvFCxdEs60A==
-      }
-    engines: { node: ">=8.9.0" }
-    dependencies:
-      big.js: 5.2.2
-      emojis-list: 3.0.0
-      json5: 2.2.1
-    dev: true
-
   /locate-path/5.0.0:
     resolution:
       {
@@ -8797,18 +8768,6 @@ packages:
       }
     dependencies:
       loose-envify: 1.4.0
-    dev: true
-
-  /schema-utils/2.7.1:
-    resolution:
-      {
-        integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
-      }
-    engines: { node: ">= 8.9.0" }
-    dependencies:
-      "@types/json-schema": 7.0.11
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2_ajv@6.12.6
     dev: true
 
   /schema-utils/3.1.1:
