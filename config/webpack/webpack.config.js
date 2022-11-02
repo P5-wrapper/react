@@ -1,11 +1,15 @@
-const { join } = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 
-const BASE_DIR = join(__dirname, "..", "..");
+const filePath = fileURLToPath(import.meta.url);
+const fileDirectory = dirname(filePath);
+
+const BASE_DIR = join(fileDirectory, "..", "..");
 const DISTRIBUTION_DIRECTORY = join(BASE_DIR, "dist", "demo");
 const EXAMPLE_DIRECTORY = join(BASE_DIR, "example");
 
-module.exports = {
+export default {
   entry: join(EXAMPLE_DIRECTORY, "app.jsx"),
   output: {
     path: DISTRIBUTION_DIRECTORY,
@@ -21,7 +25,7 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         options: {
-          configFile: join(__dirname, "..", "typescript", "tsconfig.json")
+          configFile: join(fileDirectory, "..", "typescript", "tsconfig.json")
         }
       },
       {
