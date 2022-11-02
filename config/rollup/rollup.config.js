@@ -36,7 +36,7 @@ function createBundleConfiguration(filename, format) {
     output: {
       file: filename,
       format,
-      sourcemap: "inline"
+      sourcemap: true
     },
     onwarn: warning => {
       throw new Error(warning.message);
