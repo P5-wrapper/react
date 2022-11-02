@@ -82,7 +82,7 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
-    "babel-loader": "^8.2.5",
+    "babel-loader": "^9.0.0",
     "canvas": "^2.10.1",
     "css-loader": "^6.7.1",
     "eslint": "^8.26.0",
