@@ -10,7 +10,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.1
+      - uses: P5-wrapper/setup-action@v1.0.2
         with:
           token: ${{ secrets.GH_TOKEN }}
 
@@ -30,7 +30,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.1
+      - uses: P5-wrapper/setup-action@v1.0.2
         with:
           token: ${{ secrets.GH_TOKEN }}
 
@@ -50,7 +50,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.1
+      - uses: P5-wrapper/setup-action@v1.0.2
         with:
           token: ${{ secrets.GH_TOKEN }}
 
@@ -60,7 +60,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.1
+      - uses: P5-wrapper/setup-action@v1.0.2
         with:
           token: ${{ secrets.GH_TOKEN }}
 
