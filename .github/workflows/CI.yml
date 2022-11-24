@@ -22,7 +22,7 @@ jobs:
           commit_message: Apply formatting updates
           branch: ${{ github.head_ref }}
           token: ${{ secrets.GH_TOKEN }}
-          
+
   format:
     runs-on: ubuntu-latest
     steps:
