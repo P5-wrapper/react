@@ -1,6 +1,6 @@
+import terser from "@rollup/plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 import { dirname, join } from "path";
-import { terser } from "rollup-plugin-terser";
-import typescript from "rollup-plugin-typescript2";
 import typescriptEngine from "typescript";
 import { fileURLToPath } from "url";
 
@@ -8,7 +8,6 @@ import packageJSON from "../../package.json" assert { type: "json" };
 
 const filePath = fileURLToPath(import.meta.url);
 const fileDirectory = dirname(filePath);
-
 const input = join(fileDirectory, "..", "..", "src", "index.tsx");
 const external = [
   ...Object.keys(packageJSON.dependencies ?? {}),
@@ -27,7 +26,6 @@ const plugins = [
 ];
 
 function createBundleConfiguration(filename, format) {
-  console.log(filename, format);
   /** @type {import("rollup").RollupOptions} */
   return {
     input,
