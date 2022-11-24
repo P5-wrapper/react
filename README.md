@@ -15,10 +15,11 @@ A live demo can be viewed at
 The repository contains further
 [examples](https://github.com/P5-wrapper/react/tree/master/example/sketches).
 
-To try them out for yourself, run the following:
+To try them out for yourself fork the repository, be sure you have
+[PNPM](https://pnpm.io/) installed and then run the following:
 
 ```sh
-git clone git@github.com:P5-wrapper/react.git
+git clone git@github.com:<your username>/react.git
 cd react
 pnpm install
 pnpm start
