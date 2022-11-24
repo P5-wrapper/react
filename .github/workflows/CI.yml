@@ -10,6 +10,10 @@ jobs:
   renovate-bot:
     runs-on: ubuntu-latest
     steps:
+      - uses: P5-wrapper/setup-action@v1.0.3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
       - name: Run format if the PR is from the Renovate bot
         if: github.actor == 'renovate[bot]'
         run: pnpm format
