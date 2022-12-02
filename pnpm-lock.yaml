@@ -6,7 +6,7 @@ specifiers:
   "@babel/preset-react": ^7.18.6
   "@babel/preset-typescript": ^7.18.6
   "@rollup/plugin-terser": ^0.1.0
-  "@rollup/plugin-typescript": ^9.0.2
+  "@rollup/plugin-typescript": ^10.0.0
   "@testing-library/react": ^13.4.0
   "@trivago/prettier-plugin-sort-imports": ^4.0.0
   "@types/jest": ^29.2.3
@@ -44,7 +44,7 @@ specifiers:
 
 dependencies:
   "@rollup/plugin-terser": 0.1.0_rollup@3.4.0
-  "@rollup/plugin-typescript": 9.0.2_vmrh7niimjcuan47h4hgsgyxjy
+  "@rollup/plugin-typescript": 10.0.1_vmrh7niimjcuan47h4hgsgyxjy
   microdiff: 1.3.1
   p5: 1.5.0
 
@@ -2269,10 +2269,10 @@ packages:
       terser: 5.16.0
     dev: false
 
-  /@rollup/plugin-typescript/9.0.2_vmrh7niimjcuan47h4hgsgyxjy:
+  /@rollup/plugin-typescript/10.0.1_vmrh7niimjcuan47h4hgsgyxjy:
     resolution:
       {
-        integrity: sha512-/sS93vmHUMjzDUsl5scNQr1mUlNE1QjBBvOhmRwJCH8k2RRhDIm3c977B3wdu3t3Ap17W6dDeXP3hj1P1Un1bA==
+        integrity: sha512-wBykxRLlX7EzL8BmUqMqk5zpx2onnmRMSw/l9M1sVfkJvdwfxogZQVNUM9gVMJbjRLDR5H6U0OMOrlDGmIV45A==
       }
     engines: { node: ">=14.0.0" }
     peerDependencies:
