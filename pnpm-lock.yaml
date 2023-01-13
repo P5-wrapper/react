@@ -31,7 +31,7 @@ specifiers:
   prettier: ^2.8.0
   react: ^18.2.0
   react-dom: ^18.2.0
-  rimraf: ^3.0.2
+  rimraf: ^4.0.0
   rollup: ^3.4.0
   style-loader: ^3.3.1
   ts-jest: ^29.0.3
@@ -75,7 +75,7 @@ devDependencies:
   prettier: 2.8.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  rimraf: 3.0.2
+  rimraf: 4.0.4
   rollup: 3.4.0
   style-loader: 3.3.1_webpack@5.75.0
   ts-jest: 29.0.3_6crhf7ajeizammv76u753sn6i4
@@ -8632,6 +8632,15 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.0.4:
+    resolution:
+      {
+        integrity: sha512-R0hoVr9xTwemarQjoWlNt/nb5dEGVTBhVdkRmEX2zEkT8T6onH0XKiGjuaC7rNNj/gYzY2p4NVRJ3sjO1ascHQ==
+      }
+    engines: { node: ">=14" }
+    hasBin: true
     dev: true
 
   /rollup/3.4.0:
