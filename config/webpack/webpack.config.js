@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
