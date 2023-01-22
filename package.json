@@ -1,6 +1,6 @@
 {
   "name": "react-p5-wrapper",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
