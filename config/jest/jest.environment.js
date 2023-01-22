@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 import Environment from "jest-environment-jsdom-global";
 import { TextDecoder, TextEncoder } from "util";
 

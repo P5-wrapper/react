@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import { dirname, join } from "path";
@@ -18,31 +20,60 @@ const plugins = [
     typescript: typescriptEngine,
     tsconfig: join(fileDirectory, "..", "typescript", "tsconfig.json")
   }),
-  terser({
-    format: {
-      comments: false
+  replace({
+    preventAssignment: true,
+    values: {
+      "process.env.NODE_ENV": JSON.stringify("production")
     }
+  }),
+  terser({
+    format: { comments: false }
   })
 ];
 
+/**
+ * Generate a valid rollup bundle configuration.
+ *
+ * @param {string} filename
+ * @param {string} format
+ *
+ * @returns {import("rollup").RollupOptions}
+ */
 function createBundleConfiguration(filename, format) {
-  /** @type {import("rollup").RollupOptions} */
+  const lowercaseFormat = format.toLowerCase();
+
+  if (![packageJSON.module, packageJSON.browser].includes(filename)) {
+    throw new Error(`Invalid filename provided. Received: ${filename}`);
+  }
+
+  if (!["esm", "cjs"].includes(lowercaseFormat)) {
+    throw new Error(`Unrecognised output format provided. Received: ${format}`);
+  }
+
+  if (lowercaseFormat === "cjs" && filename !== packageJSON.browser) {
+    throw new Error("A CJS bundle can only be created for the main bundle.");
+  }
+
+  if (lowercaseFormat === "esm" && filename !== packageJSON.module) {
+    throw new Error("An ESM bundle can only be created for the module bundle.");
+  }
+
   return {
-    input,
-    plugins,
     external,
+    input,
+    onwarn(warning) {
+      throw new Error(warning.message);
+    },
     output: {
       file: filename,
       format,
       sourcemap: true
     },
-    onwarn: warning => {
-      throw new Error(warning.message);
-    }
+    plugins
   };
 }
 
 const ESM = createBundleConfiguration(packageJSON.module, "esm");
-const CJS = createBundleConfiguration(packageJSON.main, "cjs");
+const CJS = createBundleConfiguration(packageJSON.browser, "cjs");
 
 export default [ESM, CJS];

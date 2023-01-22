@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 
-import { ReactP5Wrapper, Sketch } from "../src/index";
+import { ReactP5Wrapper, Sketch } from "../src";
 
 function setupTest() {
   const sketch: Sketch = p5 => {
@@ -18,7 +18,6 @@ describe("Rendering", () => {
     const { container } = render(<ReactP5Wrapper sketch={sketch} />);
     const canvas = container.querySelector("canvas");
 
-    expect(canvas).not.toBeNull();
     expect(canvas).toBeInstanceOf(HTMLCanvasElement);
   });
 
@@ -26,7 +25,12 @@ describe("Rendering", () => {
     const { sketch } = setupTest();
     const { container } = render(<ReactP5Wrapper sketch={sketch} />);
 
-    expect(container.firstElementChild!.className).toBe("react-p5-wrapper");
+    if (!(container.firstElementChild instanceof HTMLDivElement)) {
+      fail("The wrapper container must be an instance of HTMLDivElement.");
+      return;
+    }
+
+    expect(container.firstElementChild.className).toBe("react-p5-wrapper");
   });
 
   it("[Client] Recreates the P5 instance when the sketch is changed", () => {
@@ -37,7 +41,6 @@ describe("Rendering", () => {
 
     const canvas = container.querySelector("canvas");
 
-    expect(canvas).not.toBeNull();
     expect(canvas).toBeInstanceOf(HTMLCanvasElement);
   });
 
