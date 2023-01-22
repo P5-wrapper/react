@@ -2,10 +2,11 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| > 3.0.0 | :white_check_mark: |
-| < 3.0.0 | :x:                |
+| Version | Supported          | Supported Until               |
+| ------- | ------------------ | ----------------------------- |
+| > 4.0.0 | :white_check_mark: | Next major version + 6 months |
+| > 3.0.0 | :white_check_mark: | 01.06.22                      |
+| < 3.0.0 | :x:                | N / A                         |
 
 ## Reporting a Vulnerability
 
@@ -18,5 +19,5 @@ managers.
 
 ## Contacts
 
-If you need to reach out regarding a security issue that is urgent then you can
-reach out to either @yevdyko or @jamesrweb.
+If you need to reach out regarding a security issue that is critically urgent
+then you can reach out directly to @jamesrweb.
