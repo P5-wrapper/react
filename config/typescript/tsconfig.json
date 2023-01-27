@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/components",
+    "outDir": "../../dist/react-p5-wrapper",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

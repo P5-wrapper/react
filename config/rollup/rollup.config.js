@@ -42,7 +42,11 @@ const plugins = [
 function createBundleConfiguration(filename, format) {
   const lowercaseFormat = format.toLowerCase();
 
-  if (![packageJSON.module, packageJSON.browser].includes(filename)) {
+  if (
+    ![packageJSON.module, packageJSON.main, packageJSON.browser].includes(
+      filename
+    )
+  ) {
     throw new Error(`Invalid filename provided. Received: ${filename}`);
   }
 
@@ -50,12 +54,17 @@ function createBundleConfiguration(filename, format) {
     throw new Error(`Unrecognised output format provided. Received: ${format}`);
   }
 
-  if (lowercaseFormat === "cjs" && filename !== packageJSON.browser) {
+  if (lowercaseFormat === "cjs" && filename !== packageJSON.main) {
     throw new Error("A CJS bundle can only be created for the main bundle.");
   }
 
-  if (lowercaseFormat === "esm" && filename !== packageJSON.module) {
-    throw new Error("An ESM bundle can only be created for the module bundle.");
+  if (
+    lowercaseFormat === "esm" &&
+    ![packageJSON.module, packageJSON.browser].includes(filename)
+  ) {
+    throw new Error(
+      "An ES module bundle can only be created for the module or browser bundle."
+    );
   }
 
   return {
@@ -73,7 +82,8 @@ function createBundleConfiguration(filename, format) {
   };
 }
 
-const ESM = createBundleConfiguration(packageJSON.module, "esm");
-const CJS = createBundleConfiguration(packageJSON.browser, "cjs");
-
-export default [ESM, CJS];
+export default [
+  createBundleConfiguration(packageJSON.module, "esm"),
+  createBundleConfiguration(packageJSON.browser, "esm"),
+  createBundleConfiguration(packageJSON.main, "cjs")
+];
