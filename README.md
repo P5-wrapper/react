@@ -51,7 +51,7 @@ Then just open `http://localhost:3001` in a browser.
 
 ### Javascript
 
-```javascript
+```jsx
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -86,7 +86,7 @@ first and only argument.
 
 #### Option 1: Declaring a sketch using the `P5CanvasInstance` type
 
-```typescript
+```tsx
 import React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -116,13 +116,13 @@ Using the `Sketch` type has one nice benefit over using `P5CanvasInstance` and
 that is that the `p5` argument passed to the sketch function is auto-typed as a
 `P5CanvasInstance` for you.
 
-> Sidenote:
+> Side note:
 >
-> In general it comes down to personal preference as to how you declare your
+> In general, it comes down to personal preference as to how you declare your
 > sketches and there is nothing wrong with using the `P5CanvasInstance` manually
 > in a regular `function` declaration.
 
-```typescript
+```tsx
 import React from "react";
 import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 
@@ -157,12 +157,12 @@ below, we create a custom internal type called `MySketchProps` which is a union
 type of `SketchProps` and a custom type which has a `rotation` key applied to
 it.
 
-> Sidenote:
+> Side note:
 >
 > We could also write the `MySketchProps` type as an interface to do exactly the
 > same thing if that is to your personal preference:
 >
-> ```typescript
+> ```ts
 > interface MySketchProps extends SketchProps {
 >   rotation: number;
 > }
@@ -174,7 +174,7 @@ correctly typed as a `number`.
 
 ##### Usage with the `P5CanvasInstance` type
 
-```typescript
+```tsx
 import React, { useEffect, useState } from "react";
 import {
   P5CanvasInstance,
@@ -228,7 +228,7 @@ export function App() {
 
 ##### Usage with the `Sketch` type
 
-```typescript
+```tsx
 import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper, Sketch, SketchProps } from "react-p5-wrapper";
 
@@ -278,7 +278,7 @@ export function App() {
 
 ### Using abstracted setup and draw functions
 
-```javascript
+```jsx
 import React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -329,7 +329,7 @@ wrapper are changed, if it is set within your sketch. This way we can render our
 `ReactP5Wrapper` component and react to component prop changes directly within
 our sketches!
 
-```javascript
+```jsx
 import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
@@ -377,7 +377,8 @@ export function App() {
 
 To render a component on top of the sketch, you can add it as a child of the
 `ReactP5Wrapper` component and then use the exported `P5WrapperClassName`
-constant in your to style one element above the other via css.
+constant in your css-in-js library of choice to style one element above the
+other via css.
 
 For instance, using [styled components](https://styled-components.com), we could
 center some text on top of our sketch like so:
@@ -430,9 +431,135 @@ export function App() {
 }
 ```
 
-Of course you can also use any other css-in-js library or by just using simple
+Of course, you can also use any other css-in-js library or by just using simple
 css to achieve almost anything you can imagine just by using the wrapper class
 as your root selector.
+
+## P5 plugins and constructors
+
+As discussed in multiple issues such as
+[#11](https://github.com/P5-wrapper/react/issues/11),
+[#23](https://github.com/P5-wrapper/react/issues/23),
+[#61](https://github.com/P5-wrapper/react/issues/61) and
+[#62](https://github.com/P5-wrapper/react/issues/62), there seems to be
+confusion as to how we can use P5 plugins and constructors out of the box. This
+section aims to clarify these!
+
+### Plugins
+
+Since P5 is being used in
+[P5 instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode)
+as part of this project, P5 will not automatically load global plugins like it
+usually might in global mode.
+
+Let's say we want to use the
+[P5 sound plugin](https://p5js.org/reference/#/libraries/p5.sound) in our
+component, we could do the following:
+
+```tsx
+import * as p5 from "p5";
+import React, { useEffect, useState } from "react";
+import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+
+(window as any).p5 = p5;
+
+await import("p5/lib/addons/p5.sound");
+
+const sketch: Sketch = p5 => {
+  let song: p5.SoundFile;
+  let button: p5.Element;
+
+  p5.setup = () => {
+    p5.createCanvas(600, 400, p5.WEBGL);
+    p5.background(255, 0, 0);
+    button = p5.createButton("Toggle audio");
+
+    button.mousePressed(() => {
+      if (!song) {
+        const songUrlPath = "/piano.mp3";
+        song = p5.loadSound(
+          songPath,
+          () => {
+            song.play();
+          },
+          () => {
+            console.error(
+              `Could not load the requested sound file ${songPath}`
+            );
+          }
+        );
+        return;
+      }
+
+      if (!song.isPlaying()) {
+        song.play();
+        return;
+      }
+
+      song.pause();
+    });
+  };
+
+  p5.draw = () => {
+    p5.background(250);
+    p5.normalMaterial();
+    p5.push();
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
+    p5.pop();
+  };
+};
+
+export default function App() {
+  return <ReactP5Wrapper sketch={sketch} />;
+}
+```
+
+In this Typescript + React example, we can see a few key things.
+
+- Firstly we need to set `p5` on the `window` object manually. This is because
+  `p5.sound` requires that it be executed client side only AND that `p5` be
+  available BEFORE it is imported into the global (`window`) scope.
+- Secondly, we ensure that audio is played after a user action, in our case this
+  happens on a button click. This is because in some browsers, without waiting
+  for a user interaction before playing audio, the audio will be blocked by the
+  browser from playing at all.
+- Thirdly and relevant especially to Safari users, Safari blocks audio from all
+  tabs by default, you will need to manually change this setting in your Safari
+  settings. This could affect other browsers but sadly this is a browser
+  decision and until [P5 Sound](https://github.com/processing/p5.js-sound) is
+  updated to support newer audio APIs and browser requirements. This could
+  happen at anytime in other places and is a
+  [P5 Sound](https://github.com/processing/p5.js-sound) issue most generally
+  because it does not ask for permissions by default, even though browsers have
+  been requiring it for some time.
+
+> **Note:** The above example requires support for
+> [top level await](https://caniuse.com/mdn-javascript_operators_await_top_level),
+> [dynamic import statements](https://caniuse.com/es6-module-dynamic-import) and
+> [the stream API](https://caniuse.com/stream) to be supported in your browser.
+> Furthermore, [the stream API](https://caniuse.com/stream) built into the
+> browser requires that HTTPS is used to ensure secure data transmission.
+
+### Constructors
+
+To access P5 constructors such as `p5.Vector` or `p5.Envelope`, you need to use
+the instance mode syntax instead. For example:
+
+| Constructor | Global mode accessor | Instance mode accessor  |
+| ----------- | -------------------- | ----------------------- |
+| Vector      | p5.Vector            | p5.constructor.Vector   |
+| Envelope    | p5.Envelope          | p5.constructor.Envelope |
+
+So now that we know this, let's imagine we want a random 2D Vector instance. In
+our `sketch` function we would simply call `p5.constructor.Vector.random2D()`
+instead of `p5.Vector.random2D()`. This is because of how the
+[P5 instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode)
+was implemented by the P5 team. While I am not sure why they decided to change
+the API for instance mode specifically, it is still quite simple to use the
+constructs we are used to without much extra work involved.
 
 ## Development
 
