@@ -1,3 +1,5 @@
+![@P5-wrapper/react](https://socialify.git.ci/p5-wrapper/react/image?description=1&font=Rokkitt&forks=1&issues=1&language=1&logo=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fc6%2FP5.js_icon.svg%2F1920px-P5.js_icon.svg.png%3F20210812123459&name=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Auto)
+
 # @P5-wrapper/react
 
 A component to integrate [P5.js](https://p5js.org/) sketches into
