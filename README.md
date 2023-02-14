@@ -478,7 +478,7 @@ const sketch: Sketch = p5 => {
 
     button.mousePressed(() => {
       if (!song) {
-        const songUrlPath = "/piano.mp3";
+        const songPath = "/piano.mp3";
         song = p5.loadSound(
           songPath,
           () => {
