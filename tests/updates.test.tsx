@@ -68,4 +68,81 @@ describe("Updates", () => {
     expect(updateFunction).toHaveBeenCalledTimes(2);
     expect(updateFunction).toHaveBeenCalledWith({ y: 100 });
   });
+
+  it("[updateWithProps] is not called if object prop address changes but content is same when deepCompare is true", () => {
+    const updateFunction = jest.fn();
+    const { sketch } = sketchFromUpdateFunction(updateFunction);
+    const obj1 = { x: 100, y: 200 };
+    const obj2 = { x: 100, y: 200 };
+    const { rerender } = render(
+      <ReactP5Wrapper sketch={sketch} data={obj1} deepCompare={true} />
+    );
+
+    rerender(<ReactP5Wrapper sketch={sketch} data={obj2} deepCompare={true} />);
+
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(1);
+  });
+
+  it("[updateWithProps] is called if object prop address changes even if content is same when deepCompare is false", () => {
+    const updateFunction = jest.fn();
+    const { sketch } = sketchFromUpdateFunction(updateFunction);
+    const obj1 = { x: 100, y: 200 };
+    const obj2 = { x: 100, y: 200 };
+    const { rerender } = render(
+      <ReactP5Wrapper sketch={sketch} data={obj1} deepCompare={false} />
+    );
+
+    rerender(
+      <ReactP5Wrapper sketch={sketch} data={obj2} deepCompare={false} />
+    );
+
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
+    expect(updateFunction).toHaveBeenCalledWith({
+      data: obj2,
+      deepCompare: false
+    });
+  });
+
+  it("[updateWithProps]is not called if object prop content changes and deepCompare is false", () => {
+    const updateFunction = jest.fn();
+    const { sketch } = sketchFromUpdateFunction(updateFunction);
+    const myObject = { x: 100, y: 200 };
+    const { rerender } = render(
+      <ReactP5Wrapper sketch={sketch} data={myObject} deepCompare={false} />
+    );
+
+    myObject.x = 150;
+    rerender(
+      <ReactP5Wrapper sketch={sketch} data={myObject} deepCompare={false} />
+    );
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(1);
+  });
+
+  it("[updateWithProps] is called if prop is added and deepCompare is false", () => {
+    const updateFunction = jest.fn();
+    const { sketch } = sketchFromUpdateFunction(updateFunction);
+    const myObject = { x: 100, y: 200 };
+    const { rerender } = render(
+      <ReactP5Wrapper sketch={sketch} data={myObject} deepCompare={false} />
+    );
+
+    rerender(
+      <ReactP5Wrapper
+        sketch={sketch}
+        data={myObject}
+        new={100}
+        deepCompare={false}
+      />
+    );
+    expect(sketch).toHaveBeenCalledTimes(1);
+    expect(updateFunction).toHaveBeenCalledTimes(2);
+    expect(updateFunction).toHaveBeenCalledWith({
+      data: myObject,
+      new: 100,
+      deepCompare: false
+    });
+  });
 });

@@ -1,16 +1,18 @@
+import * as Tone from "tone";
 import React, { Fragment, useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import * as box from "./sketches/box";
 import * as plane from "./sketches/plane";
+import * as synth from "./sketches/synth";
 import * as torus from "./sketches/torus";
 import { ReactP5Wrapper } from "../src/index.tsx";
 import "./example.css";
 
 function App() {
   const sketches = useMemo(
-    () => [box.sketch, torus.sketch, plane.sketch],
-    [box, torus, plane]
+    () => [box.sketch, torus.sketch, plane.sketch, synth.sketch],
+    [box, torus, plane, synth]
   );
   const [state, setState] = useState({
     rotation: 160,
@@ -42,7 +44,7 @@ function App() {
         rotation: parseInt(event.target.value, 10)
       }));
     },
-    [box, plane, torus]
+    [box, plane, torus, synth]
   );
 
   if (state.unmount) {
@@ -53,10 +55,27 @@ function App() {
       </Fragment>
     );
   }
+  const synth1 = useMemo(
+    () =>
+      new Tone.Synth({
+        oscillator: {
+          type: "sine"
+        }
+      }).toDestination(),
+    []
+  );
+  const gain = useMemo(() => new Tone.Gain(0.5).toDestination(), []);
+  const synth2 = useMemo(() => new Tone.Synth().connect(gain), []);
+  const [currentSynth, setCurrentSynth] = useState(synth1);
 
   return (
     <Fragment>
-      <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
+      <ReactP5Wrapper
+        sketch={state.sketch}
+        rotation={state.rotation}
+        deepCompare={false}
+        synth={currentSynth}
+      />
       <input
         type="range"
         defaultValue={state.rotation}
@@ -65,8 +84,15 @@ function App() {
         step="1"
         onChange={onRotationChange}
       />
+
       <button onClick={onChangeSketch}>Change Sketch</button>
       <button onClick={onMountStateChange}>Unmount</button>
+      {state.sketch === synth.sketch ? (
+        <>
+          <button onClick={() => setCurrentSynth(synth1)}>Synth 1</button>
+          <button onClick={() => setCurrentSynth(synth2)}>Synth 2</button>
+        </>
+      ) : null}
     </Fragment>
   );
 }

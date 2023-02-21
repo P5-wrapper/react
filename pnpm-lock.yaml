@@ -36,6 +36,7 @@ specifiers:
   rimraf: ^4.0.0
   rollup: ^3.4.0
   style-loader: ^3.3.1
+  tone: ^14.7.77
   ts-jest: ^29.0.3
   ts-loader: ^9.4.1
   tslib: ^2.4.1
@@ -82,6 +83,7 @@ devDependencies:
   rimraf: 4.0.4
   rollup: 3.4.0
   style-loader: 3.3.1_webpack@5.75.0
+  tone: 14.7.77
   ts-jest: 29.0.3_6crhf7ajeizammv76u753sn6i4
   ts-loader: 9.4.1_vfotqvx6lgcbf3upbs6hgaza4q
   tslib: 2.4.1
@@ -1715,6 +1717,16 @@ packages:
     resolution:
       {
         integrity: sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==
+      }
+    engines: { node: ">=6.9.0" }
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: true
+
+  /@babel/runtime/7.21.0:
+    resolution:
+      {
+        integrity: sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==
       }
     engines: { node: ">=6.9.0" }
     dependencies:
@@ -3587,6 +3599,17 @@ packages:
       {
         integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
       }
+    dev: true
+
+  /automation-events/5.0.1:
+    resolution:
+      {
+        integrity: sha512-zh2q/FVeT2A7GX8tD1ad0CNUbhMY4pPx72jxtBpHeWo6tB6NXIj+xq0P7tc3UVdegpx+sRola049W/TVVEJqIQ==
+      }
+    engines: { node: ">=14.15.4" }
+    dependencies:
+      "@babel/runtime": 7.21.0
+      tslib: 2.5.0
     dev: true
 
   /available-typed-arrays/1.0.5:
@@ -9187,6 +9210,17 @@ packages:
       escape-string-regexp: 2.0.0
     dev: true
 
+  /standardized-audio-context/25.3.40:
+    resolution:
+      {
+        integrity: sha512-IS+8bY17zfmxLRmrY259q0lLMlHCLXpgcpsWTePB9dvK3andC92tpijqMHxkhOlAUXl7q16iPmmtkTRSSaCrcA==
+      }
+    dependencies:
+      "@babel/runtime": 7.21.0
+      automation-events: 5.0.1
+      tslib: 2.5.0
+    dev: true
+
   /statuses/1.5.0:
     resolution:
       {
@@ -9506,6 +9540,16 @@ packages:
     engines: { node: ">=0.6" }
     dev: true
 
+  /tone/14.7.77:
+    resolution:
+      {
+        integrity: sha512-tCfK73IkLHyzoKUvGq47gyDyxiKLFvKiVCOobynGgBB9Dl0NkxTM2p+eRJXyCYrjJwy9Y0XCMqD3uOYsYt2Fdg==
+      }
+    dependencies:
+      standardized-audio-context: 25.3.40
+      tslib: 2.4.1
+    dev: true
+
   /tough-cookie/4.1.2:
     resolution:
       {
@@ -9612,6 +9656,13 @@ packages:
     resolution:
       {
         integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
+      }
+    dev: true
+
+  /tslib/2.5.0:
+    resolution:
+      {
+        integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
       }
     dev: true
 
