@@ -12,7 +12,7 @@ export function sketch(p5) {
 
   p5.setup = () => {
     p5.createCanvas(300, 300, p5.WEBGL);
-    p5.createButton("start").mousePressed(() => {
+    p5.createButton("Start Synth").mousePressed(() => {
       Tone.start();
       Tone.Transport.start();
       loop.start();

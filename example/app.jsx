@@ -19,6 +19,7 @@ function App() {
     sketch: box.sketch,
     unmount: false
   });
+  const [isDeepCompareEnabled, setIsDeepCompareEnabled] = useState(false);
   const onChangeSketch = useCallback(() => {
     setState(state => {
       const currentSketchIndex = sketches.findIndex(sketch => {
@@ -73,7 +74,7 @@ function App() {
       <ReactP5Wrapper
         sketch={state.sketch}
         rotation={state.rotation}
-        deepCompare={false}
+        deepCompareObjectsOnPropsDiff={isDeepCompareEnabled}
         synth={currentSynth}
       />
       <input
@@ -88,10 +89,13 @@ function App() {
       <button onClick={onChangeSketch}>Change Sketch</button>
       <button onClick={onMountStateChange}>Unmount</button>
       {state.sketch === synth.sketch ? (
-        <>
+        <div style={{ paddingTop: "10px" }}>
           <button onClick={() => setCurrentSynth(synth1)}>Synth 1</button>
           <button onClick={() => setCurrentSynth(synth2)}>Synth 2</button>
-        </>
+          <button onClick={() => setIsDeepCompareEnabled(prev => !prev)}>
+            {isDeepCompareEnabled ? "Disable" : "Enable"} deepCompare
+          </button>
+        </div>
       ) : null}
     </Fragment>
   );
