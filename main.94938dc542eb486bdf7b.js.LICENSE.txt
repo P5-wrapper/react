@@ -1,3 +1,5 @@
+/*! p5.js v1.6.0 February 22, 2023 */
+
 /**
  * @license React
  * react-dom.production.min.js
