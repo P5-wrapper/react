@@ -1,8 +1,9 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
+import { assert, describe, expect, it, vi } from "vitest";
 
-import { ReactP5Wrapper, Sketch } from "../src";
+import { ReactP5Wrapper, Sketch } from "../src/main";
 
 function setupTest() {
   const sketch: Sketch = p5 => {
@@ -25,10 +26,7 @@ describe("Rendering", () => {
     const { sketch } = setupTest();
     const { container } = render(<ReactP5Wrapper sketch={sketch} />);
 
-    if (!(container.firstElementChild instanceof HTMLDivElement)) {
-      fail("The wrapper container must be an instance of HTMLDivElement.");
-      return;
-    }
+    assert(container.firstElementChild instanceof HTMLDivElement);
 
     expect(container.firstElementChild.className).toBe("react-p5-wrapper");
   });
@@ -70,14 +68,16 @@ describe("Rendering", () => {
   });
 
   it("[General] Should not render anything when the `sketch` prop is not provided", () => {
+    vi.spyOn(console, "error").mockImplementation(vi.fn());
+
     const { container } = render(<ReactP5Wrapper />);
 
     expect(container.innerHTML).toBe("");
   });
 
   it("[General] Should log an error to the console when the `sketch` prop is not provided", () => {
-    const errorMock = jest.fn();
-    const errorMockSpy = jest
+    const errorMock = vi.fn();
+    const errorMockSpy = vi
       .spyOn(console, "error")
       .mockImplementation(errorMock);
 

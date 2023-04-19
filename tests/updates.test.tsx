@@ -1,12 +1,13 @@
 import { render } from "@testing-library/react";
 import React from "react";
+import { describe, expect, it, vi } from "vitest";
 
-import { P5CanvasInstance, ReactP5Wrapper, Sketch } from "../src";
+import { P5CanvasInstance, ReactP5Wrapper, Sketch } from "../src/main";
 
 function sketchFromUpdateFunction(
   updateFunction: P5CanvasInstance["updateWithProps"]
 ) {
-  const sketch: Sketch = jest.fn(p5 => {
+  const sketch: Sketch = vi.fn(p5 => {
     p5.updateWithProps = updateFunction;
   });
 
@@ -15,7 +16,7 @@ function sketchFromUpdateFunction(
 
 describe("Updates", () => {
   it("[updateWithProps] Is called when the component is mounted", () => {
-    const updateFunction = jest.fn();
+    const updateFunction = vi.fn();
     const { sketch } = sketchFromUpdateFunction(updateFunction);
 
     render(<ReactP5Wrapper sketch={sketch} x={100} />);
@@ -25,7 +26,7 @@ describe("Updates", () => {
   });
 
   it("[updateWithProps] Is called when a prop value changes", () => {
-    const updateFunction = jest.fn();
+    const updateFunction = vi.fn();
     const { sketch } = sketchFromUpdateFunction(updateFunction);
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
@@ -37,7 +38,7 @@ describe("Updates", () => {
   });
 
   it("[updateWithProps] Is called when a prop is removed", () => {
-    const updateFunction = jest.fn();
+    const updateFunction = vi.fn();
     const { sketch } = sketchFromUpdateFunction(updateFunction);
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
@@ -48,7 +49,7 @@ describe("Updates", () => {
   });
 
   it("[updateWithProps] Is called when new props are added", () => {
-    const updateFunction = jest.fn();
+    const updateFunction = vi.fn();
     const { sketch } = sketchFromUpdateFunction(updateFunction);
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
@@ -59,7 +60,7 @@ describe("Updates", () => {
   });
 
   it("[updateWithProps] Is called when props are traded", () => {
-    const updateFunction = jest.fn();
+    const updateFunction = vi.fn();
     const { sketch } = sketchFromUpdateFunction(updateFunction);
     const { rerender } = render(<ReactP5Wrapper sketch={sketch} x={100} />);
 
