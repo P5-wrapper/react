@@ -54,7 +54,7 @@ Then just open `http://localhost:3001` in a browser.
 ### Javascript
 
 ```jsx
-import React from "react";
+import * as React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5) {
@@ -89,7 +89,7 @@ first and only argument.
 #### Option 1: Declaring a sketch using the `P5CanvasInstance` type
 
 ```tsx
-import React from "react";
+import * as React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
 function sketch(p5: P5CanvasInstance) {
@@ -125,7 +125,7 @@ that is that the `p5` argument passed to the sketch function is auto-typed as a
 > in a regular `function` declaration.
 
 ```tsx
-import React from "react";
+import * as React from "react";
 import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
 
 const sketch: Sketch = p5 => {
@@ -281,7 +281,7 @@ export function App() {
 ### Using abstracted setup and draw functions
 
 ```jsx
-import React from "react";
+import * as React from "react";
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 function setup(p5) {

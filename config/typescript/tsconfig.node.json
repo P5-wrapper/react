@@ -5,5 +5,5 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["../../vite.config.ts"]
+  "include": ["../vite/vite.component.config.ts"]
 }

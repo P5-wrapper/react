@@ -1,5 +1,5 @@
+import * as React from "react";
 import { render } from "@testing-library/react";
-import React from "react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
 

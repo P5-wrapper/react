@@ -5,20 +5,22 @@
   "type": "module",
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
-  "types": "dist/main.d.ts",
+  "types": "dist/component/main.d.ts",
   "files": [
-    "dist"
+    "dist/component/*"
   ],
-  "main": "./dist/react.umd.cjs",
-  "module": "./dist/react.js",
+  "main": "./dist/component/react.umd.cjs",
+  "module": "./dist/component/react.js",
   "exports": {
     ".": {
-      "import": "./dist/react.js",
-      "require": "./dist/react.umd.cjs"
+      "import": "./dist/component/react.js",
+      "require": "./dist/component/react.umd.cjs"
     }
   },
   "scripts": {
-    "build": "rimraf dist && tsc && vite build",
+    "build": "rimraf dist && tsc --declaration --emitDeclarationOnly && pnpm build:component && pnpm build:demo",
+    "build:component": "vite build --config config/vite/vite.component.config.ts",
+    "build:demo": "vite build --config config/vite/vite.demo.config.ts",
     "ci": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
     "dev": "vite",
     "format": "pnpm prettier --write .",
@@ -26,10 +28,10 @@
     "lint": "eslint --config config/eslint/eslint.json . --ignore-path .gitignore",
     "lint:fix": "pnpm lint --fix",
     "prettier": "prettier --config config/prettier/prettier.json --ignore-path .gitignore",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch"
+    "preview": "vite preview --config config/vite/vite.demo.config.ts",
+    "test": "vitest run --config config/vite/vite.component.config.ts",
+    "test:coverage": "vitest run --coverage --config config/vite/vite.component.config.ts",
+    "test:watch": "vitest watch --config config/vite/vite.component.config.ts"
   },
   "keywords": [
     "react",
@@ -94,12 +96,12 @@
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^5.0.0",
     "jsdom": "^21.1.1",
     "prettier": "^2.8.7",
     "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
     "vite": "^4.2.2",
-    "vite-plugin-dts": "^2.3.0",
     "vitest": "^0.30.1"
   },
   "dependencies": {
