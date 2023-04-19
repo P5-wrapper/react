@@ -5,6 +5,21 @@
 A component to integrate [P5.js](https://p5js.org/) sketches into
 [React](https://reactjs.org/) apps.
 
+## NextJS
+
+If you plan to use this component within a NextJS application, you should
+instead use
+[our NextJS dynamic implementation](https://github.com/P5-wrapper/next) instead.
+To do get started, you can run:
+
+```shell
+[npm|yarn|pnpm] [install|add] @p5-wrapper/next react-p5-wrapper
+```
+
+Please continue reading these docs and also look at
+[the NextJS dynamic implementation docs](https://github.com/P5-wrapper/next) for
+further supporting information.
+
 ## Demo & Examples
 
 ### Live demo
@@ -31,22 +46,11 @@ Then just open `http://localhost:3001` in a browser.
 
 ## Installation
 
-### NPM
+To install, use the following command in the format appropriate to your chosen
+package manager:
 
-```sh
-  npm install react-p5-wrapper
-```
-
-### PNPM
-
-```sh
-  pnpm add react-p5-wrapper
-```
-
-### Yarn
-
-```sh
-  yarn add react-p5-wrapper
+```shell
+[npm|yarn|pnpm] [install|add] react-p5-wrapper
 ```
 
 ## Usage
