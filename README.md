@@ -24,7 +24,7 @@ To try them out for yourself fork the repository, be sure you have
 git clone git@github.com:<your username>/react.git
 cd react
 pnpm install
-pnpm start
+pnpm preview
 ```
 
 Then just open `http://localhost:3001` in a browser.
@@ -571,5 +571,5 @@ To build, watch and serve the examples which will also watch the component
 source, run:
 
 ```sh
-  pnpm start
+  pnpm preview
 ```
