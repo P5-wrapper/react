@@ -13,7 +13,7 @@ instead use
 To do get started, you can run:
 
 ```shell
-[npm|yarn|pnpm] [install|add] @p5-wrapper/next react-p5-wrapper
+[npm|yarn|pnpm] [install|add] @p5-wrapper/next @p5-wrapper/react
 ```
 
 Please continue reading these docs and also look at
@@ -50,7 +50,7 @@ To install, use the following command in the format appropriate to your chosen
 package manager:
 
 ```shell
-[npm|yarn|pnpm] [install|add] react-p5-wrapper
+[npm|yarn|pnpm] [install|add] @p5-wrapper/react
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ package manager:
 
 ```jsx
 import * as React from "react";
-import { ReactP5Wrapper } from "react-p5-wrapper";
+import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 function sketch(p5) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
@@ -94,7 +94,7 @@ first and only argument.
 
 ```tsx
 import * as React from "react";
-import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
+import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
 
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
@@ -130,7 +130,7 @@ that is that the `p5` argument passed to the sketch function is auto-typed as a
 
 ```tsx
 import * as React from "react";
-import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+import { ReactP5Wrapper, Sketch } from "@p5-wrapper/react";
 
 const sketch: Sketch = p5 => {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
@@ -186,7 +186,7 @@ import {
   P5CanvasInstance,
   ReactP5Wrapper,
   SketchProps
-} from "react-p5-wrapper";
+} from "@p5-wrapper/react";
 
 type MySketchProps = SketchProps & {
   rotation: number;
@@ -236,7 +236,7 @@ export function App() {
 
 ```tsx
 import React, { useEffect, useState } from "react";
-import { ReactP5Wrapper, Sketch, SketchProps } from "react-p5-wrapper";
+import { ReactP5Wrapper, Sketch, SketchProps } from "@p5-wrapper/react";
 
 type MySketchProps = SketchProps & {
   rotation: number;
@@ -286,7 +286,7 @@ export function App() {
 
 ```jsx
 import * as React from "react";
-import { ReactP5Wrapper } from "react-p5-wrapper";
+import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 function setup(p5) {
   return () => {
@@ -337,7 +337,7 @@ our sketches!
 
 ```jsx
 import React, { useEffect, useState } from "react";
-import { ReactP5Wrapper } from "react-p5-wrapper";
+import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 function sketch(p5) {
   let rotation = 0;
@@ -390,7 +390,7 @@ For instance, using [styled components](https://styled-components.com), we could
 center some text on top of our sketch like so:
 
 ```jsx
-import { P5WrapperClassName, ReactP5Wrapper } from "react-p5-wrapper";
+import { P5WrapperClassName, ReactP5Wrapper } from "@p5-wrapper/react";
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalWrapperStyles = createGlobalStyle`
@@ -465,7 +465,7 @@ component, we could do the following:
 ```tsx
 import * as p5 from "p5";
 import React, { useEffect, useState } from "react";
-import { ReactP5Wrapper, Sketch } from "react-p5-wrapper";
+import { ReactP5Wrapper, Sketch } from "@p5-wrapper/react";
 
 (window as any).p5 = p5;
 
