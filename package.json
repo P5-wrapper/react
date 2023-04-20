@@ -18,8 +18,8 @@
     }
   },
   "scripts": {
-    "build": "rimraf dist && tsc --declaration --emitDeclarationOnly && pnpm build:component && pnpm build:demo",
-    "build:component": "vite build --config config/vite/vite.component.config.ts",
+    "build": "rimraf dist && pnpm build:component && pnpm build:demo",
+    "build:component": "tsc --declaration --emitDeclarationOnly && vite build --config config/vite/vite.component.config.ts",
     "build:demo": "vite build --config config/vite/vite.demo.config.ts",
     "ci": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
     "dev": "vite",
