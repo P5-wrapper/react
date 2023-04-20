@@ -1,6 +1,7 @@
-import React, { createFactory } from "react";
+import { createElement, isValidElement } from "react";
+import { describe, expect, it, vi } from "vitest";
 
-import { P5WrapperClassName, ReactP5Wrapper } from "../src";
+import { P5WrapperClassName, ReactP5Wrapper } from "../src/main";
 
 describe("Exports", () => {
   it("should export the css class name used on the wrapper", () => {
@@ -17,12 +18,11 @@ describe("Exports", () => {
   });
 
   it("should export the wrapper component as a react element", () => {
-    const componentFactory = createFactory(ReactP5Wrapper);
-    const component = componentFactory({
-      sketch: jest.fn()
+    const component = createElement(ReactP5Wrapper, {
+      sketch: vi.fn()
     });
 
     expect(ReactP5Wrapper).toBeInstanceOf(Object);
-    expect(React.isValidElement(component)).toBe(true);
+    expect(isValidElement(component)).toBe(true);
   });
 });

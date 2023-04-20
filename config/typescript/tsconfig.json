@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/react-p5-wrapper",
-    "declaration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "module": "ESNext",
+    "outDir": "../../dist/component",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "types": ["vite/client"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
     "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "target": "es5",
-    "moduleResolution": "node"
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx"
   },
-  "include": ["../../src/**/*"]
+  "include": ["../../src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

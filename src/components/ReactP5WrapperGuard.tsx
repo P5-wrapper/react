@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { type P5WrapperProps } from "../contracts/P5WrapperProps";
 import { type P5WrapperPropsWithSketch } from "../contracts/P5WrapperPropsWithSketch";

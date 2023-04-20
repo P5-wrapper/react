@@ -4,8 +4,8 @@ import { createRoot } from "react-dom/client";
 import * as box from "./sketches/box";
 import * as plane from "./sketches/plane";
 import * as torus from "./sketches/torus";
-import { ReactP5Wrapper } from "../src/index.tsx";
-import "./example.css";
+import { ReactP5Wrapper } from "../src/main.tsx";
+import "./demo.css";
 
 function App() {
   const sketches = useMemo(

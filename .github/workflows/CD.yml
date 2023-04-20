@@ -29,9 +29,10 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: Build the components
-        run: pnpm build:components
+      - name: Build the component
+        run: pnpm build:component
 
       - uses: JS-DevTools/npm-publish@v1
         with:
+          access: "public"
           token: ${{ secrets.NPM_TOKEN }}
