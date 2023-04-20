@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
   root: resolve(__dirname, "..", "..", "demo"),
+  base: "./",
   plugins: [react()],
   preview: {
     open: true

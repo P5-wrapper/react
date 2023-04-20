@@ -181,12 +181,12 @@ correctly typed as a `number`.
 ##### Usage with the `P5CanvasInstance` type
 
 ```tsx
-import React, { useEffect, useState } from "react";
 import {
   P5CanvasInstance,
   ReactP5Wrapper,
   SketchProps
 } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
 
 type MySketchProps = SketchProps & {
   rotation: number;
@@ -235,8 +235,8 @@ export function App() {
 ##### Usage with the `Sketch` type
 
 ```tsx
-import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper, Sketch, SketchProps } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
 
 type MySketchProps = SketchProps & {
   rotation: number;
@@ -336,8 +336,8 @@ wrapper are changed, if it is set within your sketch. This way we can render our
 our sketches!
 
 ```jsx
-import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
 
 function sketch(p5) {
   let rotation = 0;
@@ -464,8 +464,8 @@ component, we could do the following:
 
 ```tsx
 import * as p5 from "p5";
-import React, { useEffect, useState } from "react";
 import { ReactP5Wrapper, Sketch } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
 
 (window as any).p5 = p5;
 
