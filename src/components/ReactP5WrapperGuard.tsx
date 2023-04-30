@@ -11,7 +11,7 @@ export function ReactP5WrapperGuard<Props extends SketchProps = SketchProps>(
   if (props.sketch === undefined) {
     console.error("[ReactP5Wrapper] The `sketch` prop is required.");
 
-    return null;
+    return props.fallback ?? null;
   }
 
   return (

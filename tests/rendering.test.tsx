@@ -68,7 +68,8 @@ describe("Rendering", () => {
   });
 
   it("[General] Should not render anything when the `sketch` prop is not provided", () => {
-    vi.spyOn(console, "error").mockImplementation(vi.fn());
+    const errorMock = vi.fn();
+    vi.spyOn(console, "error").mockImplementation(errorMock);
 
     const { container } = render(<ReactP5Wrapper />);
 
@@ -90,5 +91,31 @@ describe("Rendering", () => {
 
     errorMockSpy.mockReset();
     errorMockSpy.mockRestore();
+  });
+
+  it("[General] Should use the fallback UI if the sketch is undefined on initial render", () => {
+    const { sketch } = setupTest();
+    const { container } = render(<ReactP5Wrapper fallback={<h1>Oh no</h1>} />);
+
+    assert(container.firstElementChild instanceof HTMLHeadingElement);
+
+    expect(container.firstElementChild.textContent).toBe("Oh no");
+  });
+
+  it("[General] Should use the fallback UI if the sketch is undefined on future renders", () => {
+    const { sketch } = setupTest();
+    const { container, rerender } = render(
+      <ReactP5Wrapper fallback={<h1>Oh no</h1>} sketch={sketch} />
+    );
+
+    assert(container.firstElementChild instanceof HTMLDivElement);
+
+    expect(container.firstElementChild.className).toBe("react-p5-wrapper");
+
+    rerender(<ReactP5Wrapper fallback={<h1>Oh no</h1>} sketch={undefined} />);
+
+    assert(container.firstElementChild instanceof HTMLHeadingElement);
+
+    expect(container.firstElementChild.textContent).toBe("Oh no");
   });
 });
