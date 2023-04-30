@@ -1,0 +1,28 @@
+name: Renovate Bot
+
+on:
+  workflow_dispatch:
+    branches: [master]
+  pull_request_target:
+    branches: [master]
+
+jobs:
+  renovate-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1.0.4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Run format if the PR is from the Renovate bot
+        if: github.actor == 'renovate[bot]'
+        run: pnpm format
+        shell: bash
+
+      - name: Commit any formatting changes
+        if: github.actor == 'renovate[bot]'
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: Apply formatting updates
+          branch: ${{ github.head_ref }}
+          token: ${{ secrets.GH_TOKEN }}
