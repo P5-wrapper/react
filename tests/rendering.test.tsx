@@ -94,7 +94,6 @@ describe("Rendering", () => {
   });
 
   it("[General] Should use the fallback UI if the sketch is undefined on initial render", () => {
-    const { sketch } = setupTest();
     const { container } = render(<ReactP5Wrapper fallback={<h1>Oh no</h1>} />);
 
     assert(container.firstElementChild instanceof HTMLHeadingElement);
