@@ -441,6 +441,80 @@ Of course, you can also use any other css-in-js library or by just using simple
 css to achieve almost anything you can imagine just by using the wrapper class
 as your root selector.
 
+## Fallback UIs
+
+Lets say you want to have a fallback UI in case the `sketch` ever falls out of
+sync or is undefined for some reason. If this is a use case for you then you
+call use the `fallback` prop to provide the necessary UI to show in the case
+that the `sketch` becomes undefined. An example could be as follows:
+
+```jsx
+import * as React from "react";
+import { ReactP5Wrapper } from "@p5-wrapper/react";
+
+function sketchOne(p5) {
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.draw = () => {
+    p5.background(250);
+    p5.normalMaterial();
+    p5.push();
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
+    p5.pop();
+  };
+}
+
+function sketchTwo(p5) {
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.draw = () => {
+    p5.background(500);
+    p5.normalMaterial();
+    p5.push();
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
+    p5.pop();
+  };
+}
+
+export function App() {
+  const [sketch, setSketch] = React.useState(undefined);
+  const chooseNothing = () => setSketch(undefined);
+  const chooseSketchOne = () => setSketch(sketchOne);
+  const chooseSketchTwo = () => setSketch(sketchTwo);
+
+  return (
+    <>
+      <ul>
+        <li>
+          <button onClick={chooseNothing}>Choose nothing</button>
+        </li>
+        <li>
+          <button onClick={chooseSketchOne}>Choose sketch 1</button>
+        </li>
+        <li>
+          <button onClick={chooseSketchTwo}>Choose sketch 2</button>
+        </li>
+      </ul>
+      <ReactP5Wrapper
+        fallback={<h1>No sketch selected yet.</h1>}
+        sketch={sketch}
+      />
+    </>
+  );
+}
+```
+
+In this case, by default the fallback UI containing
+`<h1>No sketch selected yet.</h1>` will be rendered, then if you select a
+sketch, it will be rendered until you choose to once again "show nothing" which
+falls back to the fallback UI.
+
 ## P5 plugins and constructors
 
 As discussed in multiple issues such as
