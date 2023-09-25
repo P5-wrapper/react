@@ -12,7 +12,7 @@ export function ReactP5WrapperWithSketch<
   Props extends SketchProps = SketchProps
 >(props: P5WrapperPropsWithSketch<Props>) {
   const { sketch, children, ...rest } = props;
-  const wrapperRef = createRef<Wrapper>();
+  const wrapperRef = useRef<Wrapper | null>(null);
   const canvasInstanceRef = useRef<P5CanvasInstance<Props> | null>(null);
 
   useEffect(() => {
