@@ -19,7 +19,7 @@ jobs:
 
       - name: Commit any formatting changes
         if: github.actor == 'renovate[bot]'
-        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: Apply formatting updates
           branch: ${{ github.head_ref }}
