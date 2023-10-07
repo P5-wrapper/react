@@ -13,6 +13,7 @@
   "module": "./dist/component/react.js",
   "exports": {
     ".": {
+      "types": "./dist/component/main.d.ts",
       "import": "./dist/component/react.js",
       "require": "./dist/component/react.umd.cjs"
     }
