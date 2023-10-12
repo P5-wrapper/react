@@ -8,7 +8,7 @@ jobs:
   renovate-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
+      - uses: P5-wrapper/setup-action@v1.0.6
         with:
           token: ${{ secrets.GH_TOKEN }}
 
