@@ -10,9 +10,7 @@ jobs:
   gh-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Build the demo application
         run: pnpm build:demo
@@ -25,9 +23,7 @@ jobs:
   npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Build the component
         run: pnpm build:component
