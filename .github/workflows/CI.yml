@@ -10,9 +10,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Check formatting
         run: pnpm format:check
@@ -30,9 +28,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Lint
         run: pnpm lint
@@ -50,9 +46,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Test
         run: pnpm test
@@ -60,9 +54,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: P5-wrapper/setup-action@v1.0.5
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      - uses: P5-wrapper/setup-action@v1.0.6
 
       - name: Build
         run: pnpm build
