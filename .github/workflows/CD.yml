@@ -28,7 +28,7 @@ jobs:
       - name: Build the component
         run: pnpm build:component
 
-      - uses: JS-DevTools/npm-publish@v2
+      - uses: JS-DevTools/npm-publish@v3
         with:
           access: "public"
           token: ${{ secrets.NPM_TOKEN }}
