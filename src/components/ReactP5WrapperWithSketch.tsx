@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { P5WrapperClassName } from "../constants/P5WrapperClassName";
 import { type P5CanvasInstance } from "../contracts/P5CanvasInstance";
