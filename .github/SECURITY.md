@@ -4,7 +4,6 @@
 
 | Version  | Supported          | Supported Until               |
 | -------- | ------------------ | ----------------------------- |
-| >= 5.0.0 | :white_check_mark: | Next major version + 6 months |
 | >= 4.0.0 | :white_check_mark: | Next major version + 6 months |
 | >= 3.0.0 | :white_check_mark: | 01.06.22                      |
 | <= 3.0.0 | :x:                | N / A                         |
