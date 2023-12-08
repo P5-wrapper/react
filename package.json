@@ -1,7 +1,7 @@
 {
   "name": "@p5-wrapper/react",
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "type": "module",
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
@@ -24,7 +24,6 @@
     }
   },
   "scripts": {
-    "postinstall": "pnpm format",
     "build": "rimraf dist && pnpm build:component && pnpm build:demo",
     "build:component": "tsc --declaration --emitDeclarationOnly && vite build --config config/vite/vite.component.config.ts",
     "build:demo": "vite build --config config/vite/vite.demo.config.ts",
