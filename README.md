@@ -30,7 +30,7 @@ A live demo can be viewed at
 ### Examples
 
 The repository contains further
-[examples](https://github.com/P5-wrapper/react/tree/master/example/sketches).
+[examples](https://github.com/P5-wrapper/react/tree/master/demo/sketches).
 
 To try them out for yourself fork the repository, be sure you have
 [PNPM](https://pnpm.io/) installed and then run the following:
