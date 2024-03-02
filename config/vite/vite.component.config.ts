@@ -13,20 +13,30 @@ export default defineConfig({
       name: "ReactP5Wrapper"
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "p5"],
       output: {
         dir: resolve(__dirname, "..", "..", "dist", "component"),
         globals: {
           react: "React",
-          "react-dom": "ReactDom"
+          "react-dom": "ReactDom",
+          p5: "p5"
         }
       }
     }
   },
   test: {
     globals: true,
-    threads: false,
     environment: "jsdom",
-    setupFiles: resolve(__dirname, "..", "..", "tests", "setup.ts")
+    coverage: {
+      include: ["src"]
+    },
+    setupFiles: resolve(__dirname, "..", "..", "tests", "setup.ts"),
+    deps: {
+      optimizer: {
+        web: {
+          include: ["vitest-canvas-mock"]
+        }
+      }
+    }
   }
 });

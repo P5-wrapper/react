@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import * as box from "./sketches/box";
@@ -47,15 +47,15 @@ function App() {
 
   if (state.unmount) {
     return (
-      <Fragment>
+      <>
         <p>Unmounted the sketch</p>
         <button onClick={onMountStateChange}>Remount</button>
-      </Fragment>
+      </>
     );
   }
 
   return (
-    <Fragment>
+    <>
       <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
       <input
         type="range"
@@ -67,7 +67,7 @@ function App() {
       />
       <button onClick={onChangeSketch}>Change Sketch</button>
       <button onClick={onMountStateChange}>Unmount</button>
-    </Fragment>
+    </>
   );
 }
 
