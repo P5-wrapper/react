@@ -22,7 +22,7 @@ describe("removeCanvasInstance", () => {
     const canvasInstanceRef: CanvasInstanceRef = createRef();
     canvasInstanceRef.current = instance;
 
-    expect(canvasInstanceRef).not.toBeNull();
+    expect(canvasInstanceRef.current).not.toBeNull();
 
     removeCanvasInstance(canvasInstanceRef);
 
