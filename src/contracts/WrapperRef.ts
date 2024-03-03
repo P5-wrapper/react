@@ -1,5 +1,5 @@
-import { MutableRefObject } from "react";
+import { type MutableRefObject } from "react";
 
-import { Wrapper } from "./Wrapper";
+import { type Wrapper } from "./Wrapper";
 
 export type WrapperRef = MutableRefObject<Wrapper | null>;
