@@ -37,6 +37,9 @@ export default defineConfig({
           include: ["vitest-canvas-mock"]
         }
       }
+    },
+    onConsoleLog() {
+      return false;
     }
   }
 });

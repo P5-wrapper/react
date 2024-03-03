@@ -20,22 +20,21 @@ export default function ReactP5WrapperGuard<
   if (props.sketch === undefined) {
     console.error("[ReactP5Wrapper] The `sketch` prop is required.");
 
-    return props.fallback ?? null;
+    return props.fallback?.() ?? null;
   }
 
   return (
     <ErrorBoundary
       fallbackRender={info => {
-        logErrorBoundaryError(info.error);
-
-        if (props.error !== undefined) {
-          return React.cloneElement(props.error, info);
-        }
-
-        return <p>❌ - Something went wrong</p>;
+        return (
+          props.error?.(info.error) ?? (
+            <p data-testid="error">❌ - Something went wrong</p>
+          )
+        );
       }}
+      onError={logErrorBoundaryError}
     >
-      <React.Suspense fallback={props.loading ?? <p>🚀 Loading...</p>}>
+      <React.Suspense fallback={props.loading?.() ?? <p>🚀 Loading...</p>}>
         <ReactP5WrapperWithSketch
           /** @see https://github.com/P5-wrapper/react/issues/207 */
           {...(props as unknown as P5WrapperPropsWithSketch<Props>)}

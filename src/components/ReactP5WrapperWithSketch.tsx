@@ -1,42 +1,51 @@
 import * as React from "react";
 
 import { P5WrapperClassName } from "../constants/P5WrapperClassName";
-import { type P5CanvasInstance } from "../contracts/P5CanvasInstance";
+import { type CanvasInstanceRef } from "../contracts/CanvasInstanceRef";
 import { type P5WrapperPropsWithSketch } from "../contracts/P5WrapperPropsWithSketch";
 import { type SketchProps } from "../contracts/SketchProps";
-import { type Wrapper } from "../contracts/Wrapper";
-import { createCanvasInstance } from "../utils/createCanvasInstance";
+import { type WrapperRef } from "../contracts/WrapperRef";
 import { removeCanvasInstance } from "../utils/removeCanvasInstance";
+import { updateCanvasInstance } from "../utils/updateCanvasInstance";
+import { withoutKeys } from "../utils/withoutKeys";
 
 export default function ReactP5WrapperWithSketch<
   Props extends SketchProps = SketchProps
 >(props: P5WrapperPropsWithSketch<Props>) {
-  const { sketch, children, ...rest } = props;
-  const wrapperRef = React.useRef<Wrapper | null>(null);
-  const canvasInstanceRef = React.useRef<P5CanvasInstance<Props> | null>(null);
+  const wrapperRef: WrapperRef = React.useRef(null);
+  const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
+  const userProvidedProps = React.useMemo(
+    () =>
+      withoutKeys(props, [
+        "sketch",
+        "fallback",
+        "loading",
+        "error",
+        "children"
+      ]),
+    [props]
+  );
 
   React.useEffect(() => {
-    if (wrapperRef.current === null) {
-      return;
-    }
-
-    removeCanvasInstance(canvasInstanceRef);
-    canvasInstanceRef.current = createCanvasInstance(
-      sketch,
-      wrapperRef.current
+    canvasInstanceRef.current = updateCanvasInstance(
+      canvasInstanceRef,
+      wrapperRef,
+      props.sketch
     );
-  }, [sketch]);
+  }, [props.sketch]);
 
   React.useEffect(() => {
     /** @see https://github.com/P5-wrapper/react/issues/207 */
-    canvasInstanceRef.current?.updateWithProps?.(rest as unknown as Props);
-  }, [rest, wrapperRef]);
+    canvasInstanceRef.current?.updateWithProps?.(
+      userProvidedProps as unknown as Props
+    );
+  }, [userProvidedProps, wrapperRef, canvasInstanceRef]);
 
   React.useEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return (
     <div ref={wrapperRef} className={P5WrapperClassName} data-testid="wrapper">
-      {children}
+      {props.children}
     </div>
   );
 }
