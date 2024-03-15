@@ -1,8 +1,10 @@
 name: Dependabot Bot
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [master]
+
+concurrency: dependabot-${{ github.ref }}
 
 jobs:
   dependabot-bot:
