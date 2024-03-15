@@ -63,7 +63,7 @@ devDependencies:
     version: 4.6.0(eslint@8.57.0)
   gh-pages:
     specifier: ^6.1.0
-    version: 6.1.0
+    version: 6.1.1
   jsdom:
     specifier: ^24.0.0
     version: 24.0.0(canvas@2.11.2)
@@ -2377,8 +2377,8 @@ packages:
       get-intrinsic: 1.2.4
     dev: true
 
-  /gh-pages@6.1.0:
-    resolution: {integrity: sha512-MdXigvqN3I66Y+tAZsQJMzpBWQOI1snD6BYuECmP+GEdryYMMOQvzn4AConk/+qNg/XIuQhB1xNGrl3Rmj1iow==}
+  /gh-pages@6.1.1:
+    resolution: {integrity: sha512-upnohfjBwN5hBP9w2dPE7HO5JJTHzSGMV1JrLrHvNuqmjoYHg6TBrCcnEoorjG/e0ejbuvnwyKMdTyM40PEByw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
