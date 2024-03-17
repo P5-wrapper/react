@@ -7,10 +7,5 @@ updates:
     reviewers:
       - "jamesrweb"
     labels:
+      - "npm"
       - "dependencies"
-    groups:
-      development-dependencies:
-        dependency-type: "development"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]

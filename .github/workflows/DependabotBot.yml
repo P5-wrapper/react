@@ -1,8 +1,10 @@
 name: Dependabot Bot
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [master]
+
+concurrency: dependabot-${{ github.ref }}
 
 jobs:
   dependabot-bot:
@@ -20,5 +22,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: Apply formatting updates
-          branch: ${{ github.head_ref }}
+          branch: ${{ github.ref_name }}
           token: ${{ secrets.GH_TOKEN }}
