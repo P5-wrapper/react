@@ -1,1 +1,1 @@
-export const P5WrapperClassName = "react-p5-wrapper";
+export const P5WrapperClassName = "p5-wrapper/react";
