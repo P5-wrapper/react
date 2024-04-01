@@ -7,7 +7,7 @@ settings:
 dependencies:
   microdiff:
     specifier: ^1.3.2
-    version: 1.3.2
+    version: 1.4.0
   p5:
     specifier: '>=1.4.1 <2.0.0'
     version: 1.9.2
@@ -3106,8 +3106,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /microdiff@1.3.2:
-    resolution: {integrity: sha512-pKy60S2febliZIbwdfEQKTtL5bLNxOyiRRmD400gueYl9XcHyNGxzHSlJWn9IMHwYXT0yohPYL08+bGozVk8cQ==}
+  /microdiff@1.4.0:
+    resolution: {integrity: sha512-OBKBOa1VBznvLPb/3ljeJaENVe0fO0lnWl77lR4vhPlQD71UpjEoRV5P0KdQkcjbFlBu1Oy2mEUBMU3wxcBAGg==}
     dev: false
 
   /micromatch@4.0.5:
