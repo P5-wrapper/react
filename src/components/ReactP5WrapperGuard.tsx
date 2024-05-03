@@ -8,6 +8,7 @@ import { logErrorBoundaryError } from "../utils/logErrorBoundaryError";
 const ReactP5WrapperWithSketch = React.lazy(
   () => import("./ReactP5WrapperWithSketch")
 );
+
 const ErrorBoundary = React.lazy(() =>
   import("react-error-boundary").then(m => ({
     default: m.ErrorBoundary
@@ -34,7 +35,11 @@ export default function ReactP5WrapperGuard<
       }}
       onError={logErrorBoundaryError}
     >
-      <React.Suspense fallback={props.loading?.() ?? <p>🚀 Loading...</p>}>
+      <React.Suspense
+        fallback={
+          props.loading?.() ?? <p data-testid="loading">🚀 Loading...</p>
+        }
+      >
         <ReactP5WrapperWithSketch
           /** @see https://github.com/P5-wrapper/react/issues/207 */
           {...(props as unknown as P5WrapperPropsWithSketch<Props>)}

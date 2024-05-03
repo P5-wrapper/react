@@ -441,7 +441,7 @@ Of course, you can also use any other css-in-js library or by just using simple
 css to achieve almost anything you can imagine just by using the wrapper class
 as your root selector.
 
-## Fallback UIs
+### Fallback UIs
 
 Lets say you want to have a fallback UI in case the `sketch` ever falls out of
 sync or is undefined for some reason. If this is a use case for you then you
@@ -514,6 +514,115 @@ In this case, by default the fallback UI containing
 `<h1>No sketch selected yet.</h1>` will be rendered, then if you select a
 sketch, it will be rendered until you choose to once again "show nothing" which
 falls back to the fallback UI.
+
+### Error and Loading UIs
+
+Since version 4.4.0, it was possible to add a `fallback` prop, see the section
+on fallbacks.
+
+Since version 5 it is now possible to pass an `error` and `loading` prop to the
+wrapper which allow the user to pass different UIs for error and loading states.
+
+- The `error` state will trigger if the sketch or the wrapper encounter an
+  issue, otherwise a default error view will be shown.
+- The `loading` state will trigger while the wrapper is being lazy loaded,
+  otherwise a default loading view will be shown.
+
+#### Error UIs
+
+To show a custom UI when an error occurs within the sketch or the wrapper, you
+can pass a lazy function to the `error` prop.
+
+```tsx
+import * as React from "react";
+import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
+
+// This child will throw an error, oh no!
+function ErrorChild() {
+  throw new Error("oops");
+}
+
+// This view will catch the thrown error and give you access to what exactly was thrown.
+function ErrorUI(error: any) {
+  if (error instanceof Error) {
+    return <p>An error occured: {error.message}</p>;
+  }
+
+  return <p>An unknown error occured: {error.toString()}</p>;
+}
+
+function sketch(p5: P5CanvasInstance) {
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.draw = () => {
+    p5.background(250);
+    p5.normalMaterial();
+    p5.push();
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
+    p5.pop();
+  };
+}
+
+export function App() {
+  return (
+    <ReactP5Wrapper sketch={sketch} error={ErrorUI}>
+      <ErrorChild />
+    </ReactP5Wrapper>
+  );
+}
+```
+
+Instead of the sketch, this will render `<p>An error occured: oops</p>`. Note
+that in truth, the `ErrorView` will **always** receive `any` values since JS /
+TS allow you to `throw` whatever values you want to, this is why we have to add
+the `error instanceof Error` check to be sure the value we got was actually an
+`Error` instance and not some other value like a `number`, `string`, `object` or
+anything else that could be thrown by JS / TS.
+
+As mentioned above, the `error` state will trigger if the sketch or the wrapper
+encounter an issue, otherwise a default error view will be shown.
+
+#### Loading UIs
+
+To show a custom UI while the sketch UI is being lazy loaded, you can pass a
+lazy function to the `loading` prop.
+
+```tsx
+import * as React from "react";
+import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
+
+function LoadingUI() {
+  return <p>The sketch is being loaded.</p>;
+}
+
+function sketch(p5: P5CanvasInstance) {
+  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
+
+  p5.draw = () => {
+    p5.background(250);
+    p5.normalMaterial();
+    p5.push();
+    p5.rotateZ(p5.frameCount * 0.01);
+    p5.rotateX(p5.frameCount * 0.01);
+    p5.rotateY(p5.frameCount * 0.01);
+    p5.plane(100);
+    p5.pop();
+  };
+}
+
+export function App() {
+  return <ReactP5Wrapper sketch={sketch} loading={LoadingUI} />;
+}
+```
+
+In the initial period between the sketch render starting and it's lazy loading
+ending, the `LoadingUI` will be shown!
+
+As mentioned above, the `loading` state will trigger while the wrapper is being
+lazy loaded, otherwise a default loading view will be shown.
 
 ## P5 plugins and constructors
 

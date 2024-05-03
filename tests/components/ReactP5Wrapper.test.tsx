@@ -27,6 +27,16 @@ async function waitForCanvas(findByTestId: RenderResult["findByTestId"]) {
   });
 }
 
+async function waitForLoading(findByTestId: RenderResult["findByTestId"]) {
+  return await waitFor(async () => {
+    const loading = await findByTestId("loading");
+
+    assert(loading instanceof HTMLParagraphElement);
+
+    return loading;
+  });
+}
+
 describe("ReactP5Wrapper", () => {
   describe("Rendering", () => {
     describe("Client", () => {
@@ -129,13 +139,31 @@ describe("ReactP5Wrapper", () => {
         expect(fallback).toBeInTheDocument();
       });
 
+      it("Should show the loading UI when the `loading` prop is not set and the sketch is not yet loaded", async () => {
+        const sketch = createSketch();
+
+        const { findByTestId } = render(<ReactP5Wrapper sketch={sketch} />);
+
+        const loading = await waitForLoading(findByTestId);
+
+        expect(loading).toBeInstanceOf(HTMLParagraphElement);
+        expect(loading.innerHTML).toBe("🚀 Loading...");
+      });
+
       it("Should show the loading UI while the canvas has not yet rendered into the page", async () => {
         const sketch = createSketch();
-        const loadingView = vi.fn(() => <div data-testid="loading" />);
+        const LoadingView = vi.fn(() => (
+          <p data-testid="loading">Loading test...</p>
+        ));
 
-        render(<ReactP5Wrapper loading={loadingView} sketch={sketch} />);
+        const { findByTestId } = render(
+          <ReactP5Wrapper loading={LoadingView} sketch={sketch} />
+        );
+        const loading = await findByTestId("loading");
 
-        expect(loadingView).toHaveBeenCalledOnce();
+        expect(LoadingView).toHaveBeenCalledOnce();
+        expect(loading).toBeInstanceOf(HTMLParagraphElement);
+        expect(loading.innerHTML).toBe("Loading test...");
       });
 
       it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the wrapper", async () => {
@@ -158,26 +186,31 @@ describe("ReactP5Wrapper", () => {
 
       it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the wrapper", async () => {
         const sketch = createSketch();
-        const errorView = vi.fn(() => <div data-testid="error" />);
+        const ErrorView = vi.fn(error => {
+          assert(error instanceof Error);
+
+          return <div data-testid="error">Error: {error.message}</div>;
+        });
         const ErrorChild = () => {
           throw new Error("oops");
         };
 
         const { findByTestId } = render(
-          <ReactP5Wrapper error={errorView} sketch={sketch}>
+          <ReactP5Wrapper error={ErrorView} sketch={sketch}>
             <ErrorChild />
           </ReactP5Wrapper>
         );
 
         const error = await findByTestId("error");
 
-        expect(errorView).toHaveBeenCalledTimes(2); // Seems there is a double-render issue with the error-boundary, not sure why since we are not in strict-mode during testing and so I assume it is a library issue instead.
+        expect(ErrorView).toHaveBeenCalledTimes(2); // Seems there is a double-render issue with the error-boundary, not sure why since we are not in strict-mode during testing and so I assume it is a library issue instead.
         expect(error).toBeInstanceOf(HTMLDivElement);
+        expect(error.innerHTML).toBe("Error: oops");
       });
 
       it("Should log the error when an error is thrown within the subtree of the wrapper", async () => {
         const sketch = createSketch();
-        const errorView = vi.fn(() => <div data-testid="error" />);
+        const ErrorView = vi.fn(() => <div data-testid="error" />);
         const errorLogger = vi.fn();
         const errorLoggerSpy = vi
           .spyOn(console, "error")
@@ -187,7 +220,7 @@ describe("ReactP5Wrapper", () => {
         };
 
         const { findByTestId } = render(
-          <ReactP5Wrapper error={errorView} sketch={sketch}>
+          <ReactP5Wrapper error={ErrorView} sketch={sketch}>
             <ErrorChild />
           </ReactP5Wrapper>
         );
