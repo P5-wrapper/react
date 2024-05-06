@@ -6,10 +6,11 @@ import { ReactP5Wrapper } from "../../src/components/ReactP5Wrapper";
 import { P5WrapperClassName } from "../../src/constants/P5WrapperClassName";
 import { type P5CanvasInstance } from "../../src/contracts/P5CanvasInstance";
 import { type Sketch } from "../../src/contracts/Sketch";
+import { type SketchProps } from "../../src/contracts/SketchProps";
 
 function createSketch(
-  updateFunction?: P5CanvasInstance["updateWithProps"]
-): Sketch {
+  updateFunction?: P5CanvasInstance<SketchProps>["updateWithProps"]
+): Sketch<SketchProps> {
   return vi.fn(p5 => {
     p5.setup = () => p5.createCanvas(720, 400);
     p5.updateWithProps = updateFunction;

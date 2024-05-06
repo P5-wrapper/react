@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/component",
     "target": "ESNext",
     "composite": true,
     "useDefineForClassFields": true,
@@ -20,6 +19,6 @@
     "jsx": "react-jsx",
     "noImplicitAny": true
   },
-  "include": ["../../src", "../../tests", "../../config", "../../demo"],
+  "include": ["../../"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

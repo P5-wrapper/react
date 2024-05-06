@@ -9,29 +9,29 @@
   "files": [
     "dist/component/*"
   ],
-  "main": "./dist/component/react.umd.cjs",
-  "module": "./dist/component/react.js",
+  "main": "./dist/component/main.js",
+  "module": "./dist/component/main.js",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/component/main.d.ts",
-        "default": "./dist/component/react.js"
+        "default": "./dist/component/main.js"
       },
       "require": {
         "types": "./dist/component/main.d.ts",
-        "default": "./dist/component/react.umd.cjs"
+        "default": "./dist/component/main.js"
       }
     }
   },
   "scripts": {
     "build": "rimraf dist && pnpm build:component && pnpm build:demo",
-    "build:component": "tsc --declaration --emitDeclarationOnly && vite build --config config/vite/vite.component.config.ts",
+    "build:component": "tsc --declaration --noEmit && vite build --config config/vite/vite.component.config.ts",
     "build:demo": "vite build --config config/vite/vite.demo.config.ts",
     "ci": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
     "dev": "vite --config config/vite/vite.demo.config.ts --host",
     "format": "pnpm prettier --write .",
     "format:check": "pnpm prettier --check .",
-    "lint": "eslint  --ignore-pattern .gitignore --config config/eslint/eslint.config.js .",
+    "lint": "eslint  --ignore-pattern dist --config config/eslint/eslint.config.js .",
     "lint:fix": "pnpm lint --fix",
     "prettier": "prettier --config config/prettier/prettier.json --ignore-path .gitignore",
     "test": "vitest run --config config/vite/vite.component.config.ts",
@@ -88,7 +88,7 @@
     "react-dom": ">= 18.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "6.4.2",
+    "@testing-library/jest-dom": "6.4.5",
     "@testing-library/react": "^15.0.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.12",
@@ -98,8 +98,8 @@
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^1.5.3",
-    "eslint": "^9.1.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "eslint": "^9.2.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "gh-pages": "^6.1.1",
@@ -109,7 +109,8 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0",
     "vite": "^5.2.11",
-    "vitest": "^1.5.3",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0",
     "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {

@@ -11,6 +11,11 @@ export default tseslint.config(
         project: true,
         tsconfigRootDir: dirname(dirname(import.meta.dirname))
       }
-    }
+    },
+    ignores: [
+      path => {
+        return path.includes("dist");
+      }
+    ]
   }
 );

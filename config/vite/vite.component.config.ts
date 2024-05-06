@@ -1,25 +1,38 @@
 import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
-import { splitVendorChunkPlugin } from "vite";
+import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
+
+const outputDirectory = resolve(__dirname, "..", "..", "dist", "component");
 
 // noinspection JSUnusedGlobalSymbols
 export default defineConfig({
-  plugins: [splitVendorChunkPlugin(), react()],
+  plugins: [
+    dts({
+      rollupTypes: true,
+      outDir: outputDirectory
+    }),
+    react()
+  ],
   build: {
     emptyOutDir: false,
     lib: {
       entry: resolve(__dirname, "..", "..", "src", "main.tsx"),
-      name: "ReactP5Wrapper"
+      name: "ReactP5Wrapper",
+      fileName: "ReactP5Wrapper",
+      formats: ["es", "cjs"]
     },
     rollupOptions: {
-      external: ["react", "react-dom", "p5"],
+      external: ["react", "react/jsx-runtime", "react-dom", "p5"],
       output: {
-        dir: resolve(__dirname, "..", "..", "dist", "component"),
+        assetFileNames: "assets/[name][extname]",
+        entryFileNames: "[name].js",
+        dir: outputDirectory,
         globals: {
+          p5: "p5",
           react: "React",
-          "react-dom": "ReactDom",
-          p5: "p5"
+          "react/jsx-runtime": "jsxRuntime",
+          "react-dom": "ReactDom"
         }
       }
     }

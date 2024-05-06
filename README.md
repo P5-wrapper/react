@@ -13,7 +13,7 @@ instead use
 To do get started, you can run:
 
 ```shell
-[npm|yarn|pnpm] [install|add] @p5-wrapper/next @p5-wrapper/react
+[npm|yarn|pnpm] [install|add] p5 @p5-wrapper/next @p5-wrapper/react
 ```
 
 Please continue reading these docs and also look at
@@ -50,7 +50,7 @@ To install, use the following command in the format appropriate to your chosen
 package manager:
 
 ```shell
-[npm|yarn|pnpm] [install|add] @p5-wrapper/react
+[npm|yarn|pnpm] [install|add] p5 @p5-wrapper/react
 ```
 
 ## Usage

@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { type CanvasInstanceRef } from "../../src/contracts/CanvasInstanceRef";
 import { type WrapperRef } from "../../src/contracts/WrapperRef";
+import { SketchProps } from "../../src/main";
 import { createCanvasInstance } from "../../src/utils/createCanvasInstance";
 import { updateCanvasInstance } from "../../src/utils/updateCanvasInstance";
 
@@ -12,7 +13,7 @@ describe("updateCanvasInstance", () => {
     const sketch = vi.fn();
     const wrapper = document.createElement("div");
     const wrapperRef: WrapperRef = createRef();
-    const canvasInstanceRef: CanvasInstanceRef = createRef();
+    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
     const instance = createCanvasInstance(sketch, wrapper);
 
     wrapperRef.current = wrapper;
@@ -33,7 +34,7 @@ describe("updateCanvasInstance", () => {
     const sketch = vi.fn();
     const wrapper = document.createElement("div");
     const wrapperRef: WrapperRef = createRef();
-    const canvasInstanceRef: CanvasInstanceRef = createRef();
+    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
     const instance = createCanvasInstance(sketch, wrapper);
 
     canvasInstanceRef.current = instance;
