@@ -24,7 +24,7 @@ devDependencies:
     version: 6.4.2(vitest@1.4.0)
   '@testing-library/react':
     specifier: ^15.0.2
-    version: 15.0.2(react-dom@18.2.0)(react@18.2.0)
+    version: 15.0.6(@types/react@18.3.1)(react-dom@18.2.0)(react@18.2.0)
   '@trivago/prettier-plugin-sort-imports':
     specifier: ^4.3.0
     version: 4.3.0(prettier@3.2.5)
@@ -879,15 +879,20 @@ packages:
       vitest: 1.4.0(@types/node@20.12.7)(jsdom@24.0.0)
     dev: true
 
-  /@testing-library/react@15.0.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5mzIpuytB1ctpyywvyaY2TAAUQVCZIGqwiqFQf6u9lvj/SJQepGUzNV18Xpk+NLCaCE2j7CWrZE0tEf9xLZYiQ==}
+  /@testing-library/react@15.0.6(@types/react@18.3.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-UlbazRtEpQClFOiYp+1BapMT+xyqWMnE+hh9tn5DQ6gmlE7AIZWcGpzZukmDZuFk3By01oiqOf8lRedLS4k6xQ==}
     engines: {node: '>=18'}
     peerDependencies:
+      '@types/react': ^18.0.0
       react: ^18.0.0
       react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 10.0.0
+      '@types/react': 18.3.1
       '@types/react-dom': 18.3.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
