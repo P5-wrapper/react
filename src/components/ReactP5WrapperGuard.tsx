@@ -15,9 +15,9 @@ const ErrorBoundary = React.lazy(() =>
   }))
 );
 
-export default function ReactP5WrapperGuard<
-  Props extends SketchProps = SketchProps
->(props: P5WrapperProps<Props>) {
+export default function ReactP5WrapperGuard<Props extends SketchProps>(
+  props: P5WrapperProps<Props>
+) {
   if (props.sketch === undefined) {
     console.error("[ReactP5Wrapper] The `sketch` prop is required.");
 
@@ -41,7 +41,7 @@ export default function ReactP5WrapperGuard<
         }
       >
         <ReactP5WrapperWithSketch
-          /** @see https://github.com/P5-wrapper/react/issues/207 */
+          /** @see https://github.com/P5-wrapper/react/discussions/360 */
           {...(props as unknown as P5WrapperPropsWithSketch<Props>)}
         />
       </React.Suspense>

@@ -5,7 +5,7 @@ import { type WrapperRef } from "../contracts/WrapperRef";
 import { createCanvasInstance } from "./createCanvasInstance";
 import { removeCanvasInstance } from "./removeCanvasInstance";
 
-export function updateCanvasInstance<Props extends SketchProps = SketchProps>(
+export function updateCanvasInstance<Props extends SketchProps>(
   canvasInstanceRef: CanvasInstanceRef<Props>,
   wrapperRef: WrapperRef,
   sketch: Sketch<Props>

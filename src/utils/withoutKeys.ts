@@ -8,12 +8,9 @@ export function withoutKeys(
 
   return Object.keys(record)
     .filter(key => !keysToIgnore.includes(key))
-    .reduce(
-      (accumulator, current) => {
-        accumulator[current] = record[current];
+    .reduce<Record<string, unknown>>((accumulator, current) => {
+      accumulator[current] = record[current];
 
-        return accumulator;
-      },
-      {} as Record<string, unknown>
-    );
+      return accumulator;
+    }, {});
 }

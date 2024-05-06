@@ -9,9 +9,9 @@ import { removeCanvasInstance } from "../utils/removeCanvasInstance";
 import { updateCanvasInstance } from "../utils/updateCanvasInstance";
 import { withoutKeys } from "../utils/withoutKeys";
 
-export default function ReactP5WrapperWithSketch<
-  Props extends SketchProps = SketchProps
->(props: P5WrapperPropsWithSketch<Props>) {
+export default function ReactP5WrapperWithSketch<Props extends SketchProps>(
+  props: P5WrapperPropsWithSketch<Props>
+) {
   const wrapperRef: WrapperRef = React.useRef(null);
   const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
   const userProvidedProps = React.useMemo(
@@ -35,7 +35,7 @@ export default function ReactP5WrapperWithSketch<
   }, [props.sketch]);
 
   React.useEffect(() => {
-    /** @see https://github.com/P5-wrapper/react/issues/207 */
+    /** @see https://github.com/P5-wrapper/react/discussions/360 */
     canvasInstanceRef.current?.updateWithProps?.(
       userProvidedProps as unknown as Props
     );
