@@ -26,7 +26,7 @@ export default defineConfig({
       external: ["react", "react/jsx-runtime", "react-dom", "p5"],
       output: {
         assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].js",
+        entryFileNames: "[name].[format].js",
         dir: outputDirectory,
         globals: {
           p5: "p5",

@@ -5,22 +5,17 @@
   "type": "module",
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
-  "types": "dist/component/main.d.ts",
   "files": [
     "dist/component/*"
   ],
-  "main": "./dist/component/main.js",
-  "module": "./dist/component/main.js",
+  "types": "./dist/component/main.d.ts",
+  "main": "./dist/component/main.cjs.js",
+  "module": "./dist/component/main.es.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/component/main.d.ts",
-        "default": "./dist/component/main.js"
-      },
-      "require": {
-        "types": "./dist/component/main.d.ts",
-        "default": "./dist/component/main.js"
-      }
+      "types": "./dist/component/main.d.ts",
+      "import": "./dist/component/main.es.js",
+      "require": "./dist/component/main.cjs.js"
     }
   },
   "scripts": {
