@@ -5,17 +5,23 @@ import { defineConfig } from "vitest/config";
 
 const outputDirectory = resolve(__dirname, "..", "..", "dist", "component");
 
-// noinspection JSUnusedGlobalSymbols
 export default defineConfig({
   plugins: [
     dts({
       rollupTypes: true,
       outDir: outputDirectory
     }),
-    react()
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", {}]]
+      }
+    })
   ],
+  esbuild: {
+    legalComments: "external"
+  },
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, "..", "..", "src", "main.tsx"),
       name: "ReactP5Wrapper",

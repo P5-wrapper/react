@@ -224,7 +224,7 @@ describe("ReactP5Wrapper", () => {
 
         await findByTestId("error");
 
-        expect(errorLoggerSpy).toHaveBeenCalledTimes(4);
+        expect(errorLoggerSpy).toHaveBeenCalledTimes(2);
         expect(errorLoggerSpy).toHaveBeenCalledWith(
           expect.stringContaining(
             "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
