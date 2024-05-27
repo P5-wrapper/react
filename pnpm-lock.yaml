@@ -24,7 +24,7 @@ devDependencies:
     version: 6.4.5(vitest@1.4.0)
   '@testing-library/react':
     specifier: ^15.0.2
-    version: 15.0.7(@types/react@18.3.2)(react-dom@18.2.0)(react@18.2.0)
+    version: 15.0.7(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)
   '@trivago/prettier-plugin-sort-imports':
     specifier: ^4.3.0
     version: 4.3.0(prettier@3.2.5)
@@ -36,7 +36,7 @@ devDependencies:
     version: 1.7.6
   '@types/react':
     specifier: ^18.2.74
-    version: 18.3.2
+    version: 18.3.3
   '@types/react-dom':
     specifier: ^18.2.24
     version: 18.3.0
@@ -879,7 +879,7 @@ packages:
       vitest: 1.4.0(@types/node@20.12.12)(jsdom@24.1.0)
     dev: true
 
-  /@testing-library/react@15.0.7(@types/react@18.3.2)(react-dom@18.2.0)(react@18.2.0):
+  /@testing-library/react@15.0.7(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-cg0RvEdD1TIhhkm1IeYMQxrzy0MtUNfa3minv4MjbgcYzJAZ7yD0i0lwoPOTPr+INtiXFezt2o8xMSnyHhEn2Q==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -892,7 +892,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 10.0.0
-      '@types/react': 18.3.2
+      '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -976,11 +976,11 @@ packages:
   /@types/react-dom@18.3.0:
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
     dependencies:
-      '@types/react': 18.3.2
+      '@types/react': 18.3.3
     dev: true
 
-  /@types/react@18.3.2:
-    resolution: {integrity: sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==}
+  /@types/react@18.3.3:
+    resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
     dependencies:
       '@types/prop-types': 15.7.11
       csstype: 3.1.2
