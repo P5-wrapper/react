@@ -10,7 +10,7 @@ dependencies:
     version: 1.4.0
   p5:
     specifier: '>=1.4.1 <2.0.0'
-    version: 1.9.3
+    version: 1.9.4
   react:
     specifier: '>= 18.2.0'
     version: 18.2.0
@@ -3155,8 +3155,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /p5@1.9.3:
-    resolution: {integrity: sha512-RnLMqejKJ9ZmBlUpCnVLYF1UnV/NnC13MfOSZdvJXTRH1eQkBQkUVCw5rkyRWE6chI4t5KvIJsZZnFzmGJEgag==}
+  /p5@1.9.4:
+    resolution: {integrity: sha512-dhiZ9mvXx5pm8eRwml34xbeUwce4uS9Q2za0YOHg2p97N9iNAb5hTIHAt77CHKHXAh6A16u/oalz5egRfTyFWw==}
     dev: false
 
   /parent-module@1.0.1:
