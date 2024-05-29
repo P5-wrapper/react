@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/component",
     "target": "ESNext",
+    "composite": true,
     "useDefineForClassFields": true,
     "types": ["vite/client"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -16,8 +16,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noImplicitAny": true
   },
-  "include": ["../../src"],
+  "include": ["../../"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

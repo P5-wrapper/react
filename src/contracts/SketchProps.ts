@@ -1,1 +1,1 @@
-export type SketchProps = { [key: string]: unknown };
+export type SketchProps = Record<string, unknown>;

@@ -1,6 +1,7 @@
-import { memo } from "react";
+import * as React from "react";
 
 import { propsAreEqual } from "../utils/propsAreEqual";
-import { ReactP5WrapperGuard } from "./ReactP5WrapperGuard";
 
-export const ReactP5Wrapper = memo(ReactP5WrapperGuard, propsAreEqual);
+const ReactP5WrapperGuard = React.lazy(() => import("./ReactP5WrapperGuard"));
+
+export const ReactP5Wrapper = React.memo(ReactP5WrapperGuard, propsAreEqual);
