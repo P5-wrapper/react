@@ -5,7 +5,9 @@
 A component to integrate [P5.js](https://p5js.org/) sketches into
 [React](https://reactjs.org/) apps.
 
-> Note: Version 5 is still in development, currently 5.0.0-rc.0 has been released for internal development testing ONLY. It is recommended to continue utilising version 4.4.0 until it is out of the `rc` versioning scheme.
+> Note: Version 5 is still in development, currently 5.0.0-rc.0 has been
+> released for internal development testing ONLY. It is recommended to continue
+> utilising version 4.4.0 until it is out of the `rc` versioning scheme.
 
 ## NextJS
 
