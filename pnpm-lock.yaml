@@ -13,7 +13,7 @@ dependencies:
     version: 1.9.4
   react-error-boundary:
     specifier: ^4.0.13
-    version: 4.0.13(react@19.0.0-rc-935180c7e0-20240524)
+    version: 4.0.13(react@19.0.0-rc.0)
 
 devDependencies:
   '@testing-library/jest-dom':
@@ -21,7 +21,7 @@ devDependencies:
     version: 6.4.5(@types/jest@29.5.12)(vitest@1.6.0)
   '@testing-library/react':
     specifier: ^16.0.0
-    version: 16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc-935180c7e0-20240524)(react@19.0.0-rc-935180c7e0-20240524)
+    version: 16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)
   '@trivago/prettier-plugin-sort-imports':
     specifier: ^4.3.0
     version: 4.3.0(prettier@3.3.1)
@@ -74,11 +74,11 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.1
   react:
-    specifier: 19.0.0-rc-935180c7e0-20240524
-    version: 19.0.0-rc-935180c7e0-20240524
+    specifier: 19.0.0-rc.0
+    version: 19.0.0-rc.0
   react-dom:
-    specifier: 19.0.0-rc-935180c7e0-20240524
-    version: 19.0.0-rc-935180c7e0-20240524(react@19.0.0-rc-935180c7e0-20240524)
+    specifier: 19.0.0-rc.0
+    version: 19.0.0-rc.0(react@19.0.0-rc.0)
   rimraf:
     specifier: ^5.0.7
     version: 5.0.7
@@ -1141,7 +1141,7 @@ packages:
       vitest: 1.6.0(@types/node@20.14.2)(jsdom@24.1.0)
     dev: true
 
-  /@testing-library/react@16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc-935180c7e0-20240524)(react@19.0.0-rc-935180c7e0-20240524):
+  /@testing-library/react@16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0):
     resolution: {integrity: sha512-guuxUKRWQ+FgNX0h0NS0FIq3Q3uLtWVpBzcLOggmfMoUpgBnzBzvLLd4fbm6yS8ydJd94cIfY4yP9qUQjM2KwQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -1160,8 +1160,8 @@ packages:
       '@testing-library/dom': 10.1.0
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
-      react: 19.0.0-rc-935180c7e0-20240524
-      react-dom: 19.0.0-rc-935180c7e0-20240524(react@19.0.0-rc-935180c7e0-20240524)
+      react: 19.0.0-rc.0
+      react-dom: 19.0.0-rc.0(react@19.0.0-rc.0)
     dev: true
 
   /@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.1):
@@ -3900,22 +3900,22 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-dom@19.0.0-rc-935180c7e0-20240524(react@19.0.0-rc-935180c7e0-20240524):
-    resolution: {integrity: sha512-17SL+9qxiLUZnaBWr+mO3hpz5ncP5NbJp6jnbA6cFbsWNdV3p4s8iMVALIcfZF1zPIiWQeYrZQK/Z8GY3xjihg==}
+  /react-dom@19.0.0-rc.0(react@19.0.0-rc.0):
+    resolution: {integrity: sha512-MhgN2RMYFUkZekkFbsXg9ycwEGaMBzATpTNvGGvWNA9BZZEkdzIL4pv7iDuZKn48YoGARk8ydu4S+Ehd8Yrc4g==}
     peerDependencies:
-      react: 19.0.0-rc-935180c7e0-20240524
+      react: 19.0.0-rc.0
     dependencies:
-      react: 19.0.0-rc-935180c7e0-20240524
-      scheduler: 0.25.0-rc-935180c7e0-20240524
+      react: 19.0.0-rc.0
+      scheduler: 0.25.0-rc.0
     dev: true
 
-  /react-error-boundary@4.0.13(react@19.0.0-rc-935180c7e0-20240524):
+  /react-error-boundary@4.0.13(react@19.0.0-rc.0):
     resolution: {integrity: sha512-b6PwbdSv8XeOSYvjt8LpgpKrZ0yGdtZokYwkwV2wlcZbxgopHX/hgPl5VgpnoVOWd868n1hktM8Qm4b+02MiLQ==}
     peerDependencies:
       react: '>=16.13.1'
     dependencies:
       '@babel/runtime': 7.24.7
-      react: 19.0.0-rc-935180c7e0-20240524
+      react: 19.0.0-rc.0
     dev: false
 
   /react-is@16.13.1:
@@ -3935,8 +3935,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react@19.0.0-rc-935180c7e0-20240524:
-    resolution: {integrity: sha512-UDaKY7FXO4A2tg4srdLTlkdj5WQCKS9JSrqs21qQvyD4s4qwm3sah5zhfnDHBumzZ3f+PVTcF9PrfDnmu/qKpA==}
+  /react@19.0.0-rc.0:
+    resolution: {integrity: sha512-8nrDCl5uE54FHeKqKrEO0TS+10bT4cxutJGb2okiJc0FHMQ6I3FeItaqly/1nbijlhSO3HmAVyPIexIQQWYAtQ==}
     engines: {node: '>=0.10.0'}
 
   /redent@3.0.0:
@@ -4090,8 +4090,8 @@ packages:
       xmlchars: 2.2.0
     dev: true
 
-  /scheduler@0.25.0-rc-935180c7e0-20240524:
-    resolution: {integrity: sha512-YfkorLQDTfVArSlFsSmTFMWW2CoUtNhkveeEzfbyqi5bShsEyQxAPLBGOUoBxaXEcQSJ2bXhkz3ZSTJCO/Th8A==}
+  /scheduler@0.25.0-rc.0:
+    resolution: {integrity: sha512-B3aSqMfoRkucM94MztZD1CyNyf68W9A3dL/TT453G6uNcxMBqGQ+rhFKyxNnWH/mfRHlGBr0tF0F472JCETH4g==}
     dev: true
 
   /semver@6.3.1:
