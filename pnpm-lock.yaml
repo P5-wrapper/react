@@ -59,8 +59,8 @@ devDependencies:
     specifier: ^7.34.2
     version: 7.34.2(eslint@9.4.0)
   eslint-plugin-react-compiler:
-    specifier: 0.0.0-experimental-c8b3f72-20240517
-    version: 0.0.0-experimental-c8b3f72-20240517(eslint@9.4.0)
+    specifier: 0.0.0-experimental-51a85ea-20240601
+    version: 0.0.0-experimental-51a85ea-20240601(eslint@9.4.0)
   eslint-plugin-react-hooks:
     specifier: ^4.6.2
     version: 4.6.2(eslint@9.4.0)
@@ -367,7 +367,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.24.7
     dev: true
 
   /@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.24.7):
@@ -2302,8 +2302,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-plugin-react-compiler@0.0.0-experimental-c8b3f72-20240517(eslint@9.4.0):
-    resolution: {integrity: sha512-cxUTFNMEKiLX6uFaRfrr2GHnB7KUHDMYLjEGzDec82ka6WyBCHg906nGSf3JvVnQKHaBDfUk7Mmv/JMvdgQB8Q==}
+  /eslint-plugin-react-compiler@0.0.0-experimental-51a85ea-20240601(eslint@9.4.0):
+    resolution: {integrity: sha512-ROiKTVu9pZsNHyJepZj/JULWnkw8+I8+9gOF/MkJ8Q22/9f9MkPQkD2f6FXzVH+iyWbp7DQ3RXKhB3hWhf8AIg==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
