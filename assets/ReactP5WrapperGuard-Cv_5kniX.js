@@ -1,4 +1,4 @@
-const __vite__fileDeps=["./ReactP5WrapperWithSketch-FjYUdrfR.js","./index-Dv-5O8A8.js","./index-CKZShZ7-.css","./react-error-boundary.esm-sFeNTLlQ.js"],__vite__mapDeps=i=>i.map(i=>__vite__fileDeps[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./ReactP5WrapperWithSketch-FjYUdrfR.js","./index-Dv-5O8A8.js","./index-CKZShZ7-.css","./react-error-boundary.esm-sFeNTLlQ.js"])))=>i.map(i=>d[i]);
 import{j as t,r as a,_ as i}from"./index-Dv-5O8A8.js";function d(r){return`
       [ReactP5Wrapper] The error boundary was triggered. The error message was:
       
