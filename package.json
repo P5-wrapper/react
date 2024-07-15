@@ -94,7 +94,7 @@
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^1.6.0",
-    "babel-plugin-react-compiler": "0.0.0-experimental-938cd9a-20240601",
+    "babel-plugin-react-compiler": "0.0.0",
     "eslint": "^9.4.0",
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-compiler": "0.0.0-experimental-0998c1e-20240625",
