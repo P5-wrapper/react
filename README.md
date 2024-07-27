@@ -17,7 +17,7 @@ instead use
 To do get started, you can run:
 
 ```shell
-[npm|yarn|pnpm] [install|add] p5 @p5-wrapper/next @p5-wrapper/react
+[npm|yarn|pnpm] [install|add] p5 @types/p5 @p5-wrapper/next @p5-wrapper/react 
 ```
 
 Please continue reading these docs and also look at
