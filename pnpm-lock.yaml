@@ -20,7 +20,7 @@ importers:
     devDependencies:
       '@testing-library/jest-dom':
         specifier: 6.4.6
-        version: 6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1))
+        version: 6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1))
       '@testing-library/react':
         specifier: ^16.0.0
         version: 16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc.0(react@19.0.0-rc.0))(react@19.0.0-rc.0)
@@ -31,8 +31,8 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/node':
-        specifier: ^20.14.1
-        version: 20.14.11
+        specifier: ^22.0.0
+        version: 22.0.0
       '@types/p5':
         specifier: ^1.7.6
         version: 1.7.6
@@ -47,10 +47,10 @@ importers:
         version: 7.16.1(@typescript-eslint/parser@7.16.0(eslint@9.8.0)(typescript@5.5.3))(eslint@9.8.0)(typescript@5.5.3)
       '@vitejs/plugin-react':
         specifier: ^4.3.0
-        version: 4.3.1(vite@5.3.5(@types/node@20.14.11))
+        version: 4.3.1(vite@5.3.5(@types/node@22.0.0))
       '@vitest/coverage-v8':
         specifier: ^1.6.0
-        version: 1.6.0(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1))
+        version: 1.6.0(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1))
       babel-plugin-react-compiler:
         specifier: 0.0.0-experimental-938cd9a-20240601
         version: 0.0.0-experimental-938cd9a-20240601
@@ -92,16 +92,16 @@ importers:
         version: 7.16.0(eslint@9.8.0)(typescript@5.5.3)
       vite:
         specifier: ^5.2.12
-        version: 5.3.5(@types/node@20.14.11)
+        version: 5.3.5(@types/node@22.0.0)
       vite-plugin-dts:
         specifier: ^3.9.1
-        version: 3.9.1(@types/node@20.14.11)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.5(@types/node@20.14.11))
+        version: 3.9.1(@types/node@22.0.0)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.5(@types/node@22.0.0))
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@20.14.11)(jsdom@24.1.1)
+        version: 1.6.0(@types/node@22.0.0)(jsdom@24.1.1)
       vitest-canvas-mock:
         specifier: ^0.3.3
-        version: 0.3.3(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1))
+        version: 0.3.3(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1))
 
 packages:
 
@@ -716,6 +716,9 @@ packages:
 
   '@types/node@20.14.11':
     resolution: {integrity: sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==}
+
+  '@types/node@22.0.0':
+    resolution: {integrity: sha512-VT7KSYudcPOzP5Q0wfbowyNLaVR8QWUdw+088uFWwfvpY6uCWaXpqV6ieLAu9WBcnTa7H4Z5RLK8I5t2FuOcqw==}
 
   '@types/p5@1.7.6':
     resolution: {integrity: sha512-6pLTOo0V3N5jZb5nTwjiv3lPHLK3Z/TjbhQUj8CTWXocUk1Z/f6OHTp3Pcwi1BhWnf5gqKUcyEb1gP0KIJuQgw==}
@@ -2488,6 +2491,9 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
+  undici-types@6.11.1:
+    resolution: {integrity: sha512-mIDEX2ek50x0OlRgxryxsenE5XaQD4on5U2inY7RApK3SOJpofyw7uW2AyfMKkhAxXIceo2DeWGVGwyvng1GNQ==}
+
   universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
     engines: {node: '>= 4.0.0'}
@@ -3116,23 +3122,23 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@microsoft/api-extractor-model@7.28.13(@types/node@20.14.11)':
+  '@microsoft/api-extractor-model@7.28.13(@types/node@22.0.0)':
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 4.0.2(@types/node@20.14.11)
+      '@rushstack/node-core-library': 4.0.2(@types/node@22.0.0)
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/api-extractor@7.43.0(@types/node@20.14.11)':
+  '@microsoft/api-extractor@7.43.0(@types/node@22.0.0)':
     dependencies:
-      '@microsoft/api-extractor-model': 7.28.13(@types/node@20.14.11)
+      '@microsoft/api-extractor-model': 7.28.13(@types/node@22.0.0)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 4.0.2(@types/node@20.14.11)
+      '@rushstack/node-core-library': 4.0.2(@types/node@22.0.0)
       '@rushstack/rig-package': 0.5.2
-      '@rushstack/terminal': 0.10.0(@types/node@20.14.11)
-      '@rushstack/ts-command-line': 4.19.1(@types/node@20.14.11)
+      '@rushstack/terminal': 0.10.0(@types/node@22.0.0)
+      '@rushstack/ts-command-line': 4.19.1(@types/node@22.0.0)
       lodash: 4.17.21
       minimatch: 3.0.8
       resolve: 1.22.8
@@ -3222,7 +3228,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
-  '@rushstack/node-core-library@4.0.2(@types/node@20.14.11)':
+  '@rushstack/node-core-library@4.0.2(@types/node@22.0.0)':
     dependencies:
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -3231,23 +3237,23 @@ snapshots:
       semver: 7.5.4
       z-schema: 5.0.5
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 22.0.0
 
   '@rushstack/rig-package@0.5.2':
     dependencies:
       resolve: 1.22.8
       strip-json-comments: 3.1.1
 
-  '@rushstack/terminal@0.10.0(@types/node@20.14.11)':
+  '@rushstack/terminal@0.10.0(@types/node@22.0.0)':
     dependencies:
-      '@rushstack/node-core-library': 4.0.2(@types/node@20.14.11)
+      '@rushstack/node-core-library': 4.0.2(@types/node@22.0.0)
       supports-color: 8.1.1
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 22.0.0
 
-  '@rushstack/ts-command-line@4.19.1(@types/node@20.14.11)':
+  '@rushstack/ts-command-line@4.19.1(@types/node@22.0.0)':
     dependencies:
-      '@rushstack/terminal': 0.10.0(@types/node@20.14.11)
+      '@rushstack/terminal': 0.10.0(@types/node@22.0.0)
       '@types/argparse': 1.0.38
       argparse: 1.0.10
       string-argv: 0.3.2
@@ -3267,7 +3273,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1))':
+  '@testing-library/jest-dom@6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1))':
     dependencies:
       '@adobe/css-tools': 4.4.0
       '@babel/runtime': 7.24.7
@@ -3279,7 +3285,7 @@ snapshots:
       redent: 3.0.0
     optionalDependencies:
       '@types/jest': 29.5.12
-      vitest: 1.6.0(@types/node@20.14.11)(jsdom@24.1.1)
+      vitest: 1.6.0(@types/node@22.0.0)(jsdom@24.1.1)
 
   '@testing-library/react@16.0.0(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc.0(react@19.0.0-rc.0))(react@19.0.0-rc.0)':
     dependencies:
@@ -3353,6 +3359,10 @@ snapshots:
   '@types/node@20.14.11':
     dependencies:
       undici-types: 5.26.5
+
+  '@types/node@22.0.0':
+    dependencies:
+      undici-types: 6.11.1
 
   '@types/p5@1.7.6': {}
 
@@ -3528,18 +3538,18 @@ snapshots:
       '@typescript-eslint/types': 7.16.1
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-react@4.3.1(vite@5.3.5(@types/node@20.14.11))':
+  '@vitejs/plugin-react@4.3.1(vite@5.3.5(@types/node@22.0.0))':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.24.7)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.24.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.3.5(@types/node@20.14.11)
+      vite: 5.3.5(@types/node@22.0.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1))':
+  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -3554,7 +3564,7 @@ snapshots:
       std-env: 3.7.0
       strip-literal: 2.1.0
       test-exclude: 6.0.0
-      vitest: 1.6.0(@types/node@20.14.11)(jsdom@24.1.1)
+      vitest: 1.6.0(@types/node@22.0.0)(jsdom@24.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5423,6 +5433,8 @@ snapshots:
 
   undici-types@5.26.5: {}
 
+  undici-types@6.11.1: {}
+
   universalify@0.1.2: {}
 
   universalify@0.2.0: {}
@@ -5446,13 +5458,13 @@ snapshots:
 
   validator@13.12.0: {}
 
-  vite-node@1.6.0(@types/node@20.14.11):
+  vite-node@1.6.0(@types/node@22.0.0):
     dependencies:
       cac: 6.7.14
       debug: 4.3.5
       pathe: 1.1.2
       picocolors: 1.0.1
-      vite: 5.3.5(@types/node@20.14.11)
+      vite: 5.3.5(@types/node@22.0.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5463,9 +5475,9 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@3.9.1(@types/node@20.14.11)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.5(@types/node@20.14.11)):
+  vite-plugin-dts@3.9.1(@types/node@22.0.0)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.5(@types/node@22.0.0)):
     dependencies:
-      '@microsoft/api-extractor': 7.43.0(@types/node@20.14.11)
+      '@microsoft/api-extractor': 7.43.0(@types/node@22.0.0)
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       '@vue/language-core': 1.8.27(typescript@5.5.3)
       debug: 4.3.5
@@ -5474,27 +5486,27 @@ snapshots:
       typescript: 5.5.3
       vue-tsc: 1.8.27(typescript@5.5.3)
     optionalDependencies:
-      vite: 5.3.5(@types/node@20.14.11)
+      vite: 5.3.5(@types/node@22.0.0)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
 
-  vite@5.3.5(@types/node@20.14.11):
+  vite@5.3.5(@types/node@22.0.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.39
       rollup: 4.18.0
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 22.0.0
       fsevents: 2.3.3
 
-  vitest-canvas-mock@0.3.3(vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1)):
+  vitest-canvas-mock@0.3.3(vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1)):
     dependencies:
       jest-canvas-mock: 2.5.2
-      vitest: 1.6.0(@types/node@20.14.11)(jsdom@24.1.1)
+      vitest: 1.6.0(@types/node@22.0.0)(jsdom@24.1.1)
 
-  vitest@1.6.0(@types/node@20.14.11)(jsdom@24.1.1):
+  vitest@1.6.0(@types/node@22.0.0)(jsdom@24.1.1):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -5513,11 +5525,11 @@ snapshots:
       strip-literal: 2.1.0
       tinybench: 2.8.0
       tinypool: 0.8.4
-      vite: 5.3.5(@types/node@20.14.11)
-      vite-node: 1.6.0(@types/node@20.14.11)
+      vite: 5.3.5(@types/node@22.0.0)
+      vite-node: 1.6.0(@types/node@22.0.0)
       why-is-node-running: 2.2.2
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 22.0.0
       jsdom: 24.1.1
     transitivePeerDependencies:
       - less
