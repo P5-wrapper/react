@@ -9,20 +9,51 @@ A component to integrate [P5.js](https://p5js.org/) sketches into
 > released for internal development testing ONLY. It is recommended to continue
 > utilising version 4.4.0 until it is out of the `rc` versioning scheme.
 
-## NextJS
+## Installation
 
-If you plan to use this component within a NextJS application, you should
+To install, use the following command in the format appropriate to your chosen
+package manager:
+
+```shell
+[npm|yarn|pnpm] [install|add] p5 @p5-wrapper/react
+```
+
+### Peer dependencies
+
+Please note that `p5`, `react` and `react-dom` are peer dependencies, meaning
+you should ensure they are installed before installing React P5 Wrapper.
+
+```js
+"peerDependencies": {
+  "p5": ">= 1.4.1",
+  "react": ">= 18.2.0",
+  "react-dom": ">= 18.2.0"
+},
+```
+
+### TypeScript
+
+If you would like to use Typescript, you should install `p5` types in the
+development environment:
+
+```shell
+[npm|yarn|pnpm] [install|add] -D @types/p5
+```
+
+### Next.js
+
+If you plan to use this component within a Next.js application, you should
 instead use
-[our NextJS dynamic implementation](https://github.com/P5-wrapper/next) instead.
-To do get started, you can run:
+[our Next.js dynamic implementation](https://github.com/P5-wrapper/next)
+instead. To do get started, you can run:
 
 ```shell
 [npm|yarn|pnpm] [install|add] p5 @p5-wrapper/next @p5-wrapper/react
 ```
 
 Please continue reading these docs and also look at
-[the NextJS dynamic implementation docs](https://github.com/P5-wrapper/next) for
-further supporting information.
+[the Next.js dynamic implementation docs](https://github.com/P5-wrapper/next)
+for further supporting information.
 
 ## Demo & Examples
 
@@ -47,15 +78,6 @@ pnpm preview
 ```
 
 Then just open `http://localhost:3001` in a browser.
-
-## Installation
-
-To install, use the following command in the format appropriate to your chosen
-package manager:
-
-```shell
-[npm|yarn|pnpm] [install|add] p5 @p5-wrapper/react
-```
 
 ## Usage
 
