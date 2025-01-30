@@ -1,6 +1,6 @@
 export function withoutKeys(
   record: Record<string, unknown>,
-  keysToIgnore: Array<string>
+  keysToIgnore: string[]
 ) {
   if (keysToIgnore.length === 0) {
     return record;

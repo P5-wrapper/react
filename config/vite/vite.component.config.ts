@@ -59,6 +59,9 @@ export default defineConfig({
     },
     onConsoleLog() {
       return false;
+    },
+    onStackTrace() {
+      return false;
     }
   }
 });
