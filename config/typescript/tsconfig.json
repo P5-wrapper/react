@@ -19,6 +19,6 @@
     "jsx": "react-jsx",
     "noImplicitAny": true
   },
-  "include": ["../../"],
+  "include": ["../../config", "../../src", "../../tests", "../../demo"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

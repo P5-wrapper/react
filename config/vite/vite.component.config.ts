@@ -3,12 +3,14 @@ import { resolve } from "node:path";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 
-const outputDirectory = resolve(__dirname, "..", "..", "dist", "component");
-
-export default defineConfig({
+const rootDir = resolve(__dirname, "..", "..");
+const outputDirectory = resolve(rootDir, "dist", "component");
+const tsConfigPath = resolve(rootDir, "tsconfig.json");
+const config = defineConfig({
   plugins: [
     dts({
       rollupTypes: true,
+      tsconfigPath: tsConfigPath,
       outDir: outputDirectory
     }),
     react({
@@ -23,7 +25,7 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      entry: resolve(__dirname, "..", "..", "src", "main.tsx"),
+      entry: resolve(rootDir, "src", "main.tsx"),
       name: "ReactP5Wrapper",
       fileName: "ReactP5Wrapper",
       formats: ["es", "cjs"]
@@ -49,19 +51,15 @@ export default defineConfig({
     coverage: {
       include: ["src"]
     },
-    setupFiles: resolve(__dirname, "..", "..", "tests", "setup.ts"),
+    setupFiles: resolve(rootDir, "tests", "setup.ts"),
     deps: {
       optimizer: {
         web: {
           include: ["vitest-canvas-mock"]
         }
       }
-    },
-    onConsoleLog() {
-      return false;
-    },
-    onStackTrace() {
-      return false;
     }
   }
 });
+
+export default config;
