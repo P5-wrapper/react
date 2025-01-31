@@ -14,7 +14,7 @@ export default function ReactP5WrapperWithSketch<Props extends SketchProps>(
 ) {
   const wrapperRef: WrapperRef = React.useRef(null);
   const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
-  const userProvidedProps = React.useMemo(
+  const userProvidedProps: SketchProps = React.useMemo(
     () =>
       withoutKeys(props, [
         "sketch",

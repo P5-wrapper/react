@@ -139,7 +139,7 @@ describe("ReactP5Wrapper", () => {
         expect(fallback).toBeInTheDocument();
       });
 
-      it.skip("Should show the loading UI when the `loading` prop is not set and the sketch is not yet loaded", async () => {
+      it.skip("Should show the default loading UI when the `loading` prop is not set and the sketch is not yet loaded", async () => {
         const sketch = createSketch();
         const { findByTestId } = render(<ReactP5Wrapper sketch={sketch} />);
         const loading = await waitForLoading(findByTestId);
@@ -148,7 +148,7 @@ describe("ReactP5Wrapper", () => {
         expect(loading.innerHTML).toBe("🚀 Loading...");
       });
 
-      it.skip("Should show the loading UI while the canvas has not yet rendered into the page", async () => {
+      it.skip("Should show the provided loading UI while the canvas has not yet rendered into the page", async () => {
         const sketch = createSketch();
         const LoadingView = vi.fn(() => (
           <p data-testid="loading">Loading test...</p>
