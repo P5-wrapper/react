@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "composite": true,
     "useDefineForClassFields": true,
     "types": ["vite/client"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
