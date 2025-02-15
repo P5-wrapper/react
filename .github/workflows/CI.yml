@@ -58,3 +58,18 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: P5-wrapper/setup-action@v1.0.6
+
+      - name: Build the component
+        run: pnpm build:component
+
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          access: "public"
+          tag: "next"
+          dry-run: true
+          token: ${{ secrets.NPM_TOKEN }}
