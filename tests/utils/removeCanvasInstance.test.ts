@@ -8,7 +8,9 @@ import { removeCanvasInstance } from "../../src/utils/removeCanvasInstance";
 
 describe("removeCanvasInstance", () => {
   it("Calls the remove method on the canvas if it exists", () => {
-    const instance = new p5(() => {});
+    const instance = new p5(() => {
+      return;
+    });
     const removeSpy = vi.spyOn(instance, "remove");
     const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
     canvasInstanceRef.current = instance;
@@ -19,7 +21,9 @@ describe("removeCanvasInstance", () => {
   });
 
   it("Sets the provided canvas instance ref to null", () => {
-    const instance = new p5(() => {});
+    const instance = new p5(() => {
+      return;
+    });
     const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
     canvasInstanceRef.current = instance;
 
