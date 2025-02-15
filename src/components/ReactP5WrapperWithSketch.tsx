@@ -48,6 +48,6 @@ const ReactP5WrapperWithSketch = <Props extends SketchProps>(
       {props.children}
     </div>
   );
-}
+};
 
 export default ReactP5WrapperWithSketch;

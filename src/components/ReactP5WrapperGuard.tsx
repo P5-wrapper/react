@@ -51,6 +51,6 @@ const ReactP5WrapperGuard = <Props extends SketchProps>(
       </React.Suspense>
     </ErrorBoundary>
   );
-}
+};
 
 export default ReactP5WrapperGuard;
