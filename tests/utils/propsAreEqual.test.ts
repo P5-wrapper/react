@@ -14,8 +14,16 @@ describe("propsAreEqual", () => {
   });
 
   it("Returns false when the current and next props are not the same", () => {
-    const current: P5WrapperProps = { sketch: () => {} };
-    const next: P5WrapperProps = { sketch: () => {} };
+    const current: P5WrapperProps = {
+      sketch: () => {
+        return;
+      }
+    };
+    const next: P5WrapperProps = {
+      sketch: () => {
+        return;
+      }
+    };
     const equal = propsAreEqual(current, next);
 
     expect(equal).toBe(false);

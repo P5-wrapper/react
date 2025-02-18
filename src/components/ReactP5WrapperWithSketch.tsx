@@ -9,12 +9,12 @@ import { removeCanvasInstance } from "../utils/removeCanvasInstance";
 import { updateCanvasInstance } from "../utils/updateCanvasInstance";
 import { withoutKeys } from "../utils/withoutKeys";
 
-export default function ReactP5WrapperWithSketch<Props extends SketchProps>(
+const ReactP5WrapperWithSketch = <Props extends SketchProps>(
   props: P5WrapperPropsWithSketch<Props>
-) {
+) => {
   const wrapperRef: WrapperRef = React.useRef(null);
   const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
-  const userProvidedProps = React.useMemo(
+  const userProvidedProps: SketchProps = React.useMemo(
     () =>
       withoutKeys(props, [
         "sketch",
@@ -48,4 +48,6 @@ export default function ReactP5WrapperWithSketch<Props extends SketchProps>(
       {props.children}
     </div>
   );
-}
+};
+
+export default ReactP5WrapperWithSketch;

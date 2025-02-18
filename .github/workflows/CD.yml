@@ -31,4 +31,5 @@ jobs:
       - uses: JS-DevTools/npm-publish@v3
         with:
           access: "public"
+          tag: "next"
           token: ${{ secrets.NPM_TOKEN }}

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { ReactNode } from "react";
+import { FallbackProps } from "react-error-boundary";
 
 import { type P5WrapperProps } from "../contracts/P5WrapperProps";
 import { type P5WrapperPropsWithSketch } from "../contracts/P5WrapperPropsWithSketch";
@@ -15,9 +17,9 @@ const ErrorBoundary = React.lazy(() =>
   }))
 );
 
-export default function ReactP5WrapperGuard<Props extends SketchProps>(
+const ReactP5WrapperGuard = <Props extends SketchProps>(
   props: P5WrapperProps<Props>
-) {
+) => {
   if (props.sketch === undefined) {
     console.error("[ReactP5Wrapper] The `sketch` prop is required.");
 
@@ -26,14 +28,16 @@ export default function ReactP5WrapperGuard<Props extends SketchProps>(
 
   return (
     <ErrorBoundary
-      fallbackRender={info => {
+      fallbackRender={(info: FallbackProps): ReactNode => {
         return (
           props.error?.(info.error) ?? (
             <p data-testid="error">❌ - Something went wrong</p>
           )
         );
       }}
-      onError={logErrorBoundaryError}
+      onError={(error: unknown) => {
+        logErrorBoundaryError(error);
+      }}
     >
       <React.Suspense
         fallback={
@@ -47,4 +51,6 @@ export default function ReactP5WrapperGuard<Props extends SketchProps>(
       </React.Suspense>
     </ErrorBoundary>
   );
-}
+};
+
+export default ReactP5WrapperGuard;

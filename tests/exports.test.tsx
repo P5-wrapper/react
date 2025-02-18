@@ -7,7 +7,7 @@ describe("Exports", () => {
   describe("P5WrapperClassName", () => {
     it("Exports the css class name used on the wrapper", () => {
       expect(P5WrapperClassName).not.toBeUndefined();
-      expect(P5WrapperClassName).toBe("p5-wrapper/react");
+      expect(P5WrapperClassName).toBe("p5-wrapper-react");
     });
 
     it("Exports the css class name used on the wrapper as a non-empty string", () => {
