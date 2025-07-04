@@ -1,22 +1,21 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 
-import * as box from "./sketches/box";
-import * as plane from "./sketches/plane";
-import * as torus from "./sketches/torus";
 import { ReactP5Wrapper } from "../src/main.tsx";
 import "./demo.css";
+import { sketch as box } from "./sketches/box";
+import { sketch as plane } from "./sketches/plane";
+import { sketch as torus } from "./sketches/torus";
 
 function App() {
-  const sketches = useMemo(
-    () => [box.sketch, torus.sketch, plane.sketch],
-    [box, torus, plane]
-  );
+  const sketches = useMemo(() => [box, torus, plane], [box, torus, plane]);
+
   const [state, setState] = useState({
     rotation: 160,
-    sketch: box.sketch,
+    sketch: box,
     unmount: false
   });
+
   const onChangeSketch = useCallback(() => {
     setState(state => {
       const currentSketchIndex = sketches.findIndex(sketch => {
@@ -32,9 +31,11 @@ function App() {
       return { ...state, sketch };
     });
   }, [sketches]);
+
   const onMountStateChange = useCallback(() => {
     setState(state => ({ ...state, unmount: !state.unmount }));
   }, []);
+
   const onRotationChange = useCallback(
     event => {
       setState(state => ({

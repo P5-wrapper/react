@@ -4,17 +4,11 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    reviewers:
-      - "jamesrweb"
     labels:
       - "npm"
       - "dependencies"
     groups:
+      production-dependencies:
+        dependency-type: "production"
       development-dependencies:
         dependency-type: "development"
-      react:
-        patterns:
-          - "react*"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]

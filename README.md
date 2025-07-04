@@ -5,9 +5,10 @@
 A component to integrate [P5.js](https://p5js.org/) sketches into
 [React](https://reactjs.org/) apps.
 
-> Note: Version 5 is still in development, currently the `5.0.0-rc.x` range has been
-> released for internal development or experimental testing ONLY. It is recommended to continue
-> utilising version `4.4.1` until version `5.0.0` is out of the `rc` versioning scheme.
+> Note: Version 5 is still in development, currently the `5.0.0-rc.x` range has
+> been released for internal development or experimental testing ONLY. It is
+> recommended to continue utilising version `4.4.1` until version `5.0.0` is out
+> of the `rc` versioning scheme.
 
 ## Installation
 
