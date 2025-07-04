@@ -1,0 +1,3 @@
+autoInstallPeers: true
+dedupePeerDependents: true
+strictPeerDependencies: true
