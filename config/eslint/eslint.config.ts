@@ -1,4 +1,3 @@
-// @ts-expect-error The react team don't expose types for the eslint plugin currently
 import * as reactCompiler from "eslint-plugin-react-compiler";
 import * as tseslint from "typescript-eslint";
 import { includeIgnoreFile } from "@eslint/compat";

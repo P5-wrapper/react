@@ -10,9 +10,9 @@ import { type Sketch } from "../../src/contracts/Sketch";
 function createSketch(
   updateFunction?: P5CanvasInstance["updateWithProps"]
 ): Sketch {
-  return vi.fn(p5 => {
-    p5.setup = () => p5.createCanvas(720, 400);
-    p5.updateWithProps = updateFunction;
+  return vi.fn(instance => {
+    instance.setup = () => instance.createCanvas(720, 400);
+    instance.updateWithProps = updateFunction;
   });
 }
 

@@ -3,15 +3,16 @@ import { resolve } from "node:path";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 
-const rootDir = resolve(__dirname, "..", "..");
-const outputDirectory = resolve(rootDir, "dist", "component");
-const tsConfigPath = resolve(rootDir, "tsconfig.json");
-const config = defineConfig({
+const root = resolve(__dirname, "..", "..");
+const dist = resolve(root, "dist", "component");
+const tsConfig = resolve(root, "tsconfig.json");
+
+export default defineConfig({
   plugins: [
     dts({
       rollupTypes: true,
-      tsconfigPath: tsConfigPath,
-      outDir: outputDirectory
+      tsconfigPath: tsConfig,
+      outDir: dist
     }),
     react({
       babel: {
@@ -25,7 +26,7 @@ const config = defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      entry: resolve(rootDir, "src", "main.tsx"),
+      entry: resolve(root, "src", "main.tsx"),
       name: "ReactP5Wrapper",
       fileName: "ReactP5Wrapper",
       formats: ["es", "cjs"]
@@ -35,7 +36,7 @@ const config = defineConfig({
       output: {
         assetFileNames: "assets/[name][extname]",
         entryFileNames: "[name].[format].js",
-        dir: outputDirectory,
+        dir: dist,
         globals: {
           p5: "p5",
           react: "React",
@@ -51,7 +52,7 @@ const config = defineConfig({
     coverage: {
       include: ["src"]
     },
-    setupFiles: resolve(rootDir, "tests", "setup.ts"),
+    setupFiles: resolve(root, "tests", "setup.ts"),
     deps: {
       optimizer: {
         web: {
@@ -61,5 +62,3 @@ const config = defineConfig({
     }
   }
 });
-
-export default config;
