@@ -23,7 +23,7 @@ updates:
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major"]
     commit-message:
-      prefix: "chore"
+      prefix: "🧹 chore"
       include: "scope"
       
   - package-ecosystem: "github-actions"
@@ -39,5 +39,5 @@ updates:
         patterns:
           - "*"
     commit-message:
-      prefix: "ci"
+      prefix: "🔧 ci"
       include: "scope"

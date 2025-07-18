@@ -77,7 +77,7 @@ jobs:
         if: ${{ failure() }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "style: apply automatic formatting fixes"
+          commit_message: "🧹 style: apply automatic formatting fixes"
           branch: ${{ github.head_ref }}
 
   lint:
@@ -122,7 +122,7 @@ jobs:
         if: ${{ failure() }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "fix: apply automatic linting fixes"
+          commit_message: "🐛 fix: apply automatic linting fixes"
           branch: ${{ github.head_ref }}
 
   test:

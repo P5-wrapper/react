@@ -60,7 +60,7 @@ jobs:
       - name: Commit formatting changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "style: apply formatting to dependabot PR"
+          commit_message: "🧹 style: apply formatting to dependabot PR"
           branch: ${{ github.head_ref }}
           
       - name: Enable auto-merge for Dependabot PRs
