@@ -159,6 +159,22 @@ jobs:
       - name: Run tests
         run: pnpm test:coverage
 
+      - name: Download previous coverage artifact
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: test-coverage
+          path: previous-coverage
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+
+      - name: Coverage Report as Comment (Clover)
+        uses: lucassabreu/comment-coverage-clover@main
+        with:
+          file: ./coverage/clover.xml
+          base-file: ./previous-coverage/clover.xml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload test coverage
         if: success()
         uses: actions/upload-artifact@v4
