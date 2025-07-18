@@ -163,29 +163,10 @@ jobs:
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
-          name: test-coverage
-          path: previous-coverage
+          name: test-coverage-{{ matrix.runs-on }}
+          path: previous-coverage/
           github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-
-      - name: Install tree
-        run: sudo apt-get update && sudo apt-get install -y tree
-
-      - name: Show full directory tree
-        run: tree
-
-      - name: List artifacts programmatically
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # List artifacts for current workflow run
-          artifacts=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "${{ github.api_url }}/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
-
-          echo "$artifacts" | jq '.'
 
       - name: Comment the new code coverage
         uses: lucassabreu/comment-coverage-clover@main
@@ -199,7 +180,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: test-coverage
+          name: test-coverage-{{ matrix.runs-on }}
           path: coverage/
           retention-days: 7
 
@@ -237,8 +218,9 @@ jobs:
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
+        continue-on-error: true
         with:
-          name: build-artifacts
+          name: build-artifacts-{{ matrix.runs-on }}
           path: dist/
           retention-days: 7
 
@@ -274,8 +256,9 @@ jobs:
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
-          name: build-artifacts
+          name: build-artifacts-{{ matrix.runs-on }}
           path: dist/
 
       - name: NPM publish dry run
