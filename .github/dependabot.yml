@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     open-pull-requests-limit: 10
     labels:
       - "npm"
@@ -25,11 +25,11 @@ updates:
     commit-message:
       prefix: "🧹 chore"
       include: "scope"
-      
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     open-pull-requests-limit: 5
     labels:
       - "github-actions"

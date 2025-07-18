@@ -1,13 +1,16 @@
-<!-- 
+<!--
 Thank you for contributing to @p5-wrapper/react!
 Please fill out this template to help us review your PR as quickly as possible.
 -->
 
 ## Related Issue
+
 <!-- Please link to the issue this PR resolves -->
+
 Fixes #
 
 ## PR Type
+
 <!-- Please check one or more that apply by replacing [ ] with [x] -->
 
 - [ ] 🐛 Bug Fix
@@ -20,16 +23,19 @@ Fixes #
 - [ ] ⏪ Revert
 
 ## Description
+
 <!-- Please provide a clear and concise description of the changes made in this PR -->
 
 ## Proposed Changes
+
 <!-- List the specific changes made in this PR -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## How Has This Been Tested?
+
 <!-- Please describe how you tested your changes -->
 
 - [ ] Unit Tests
@@ -37,15 +43,18 @@ Fixes #
 - [ ] Manual Testing (please describe)
 
 ## Screenshots/Recordings
+
 <!-- If applicable, add screenshots or recordings to demonstrate the changes -->
 
 ## Breaking Changes
+
 <!-- Does this PR introduce breaking changes? If yes, please describe -->
 
 - [ ] Yes (please describe)
 - [ ] No
 
 ## Checklist
+
 <!-- Please check all that apply by replacing [ ] with [x] -->
 
 - [ ] My code follows the code style of this project
@@ -55,4 +64,5 @@ Fixes #
 - [ ] My changes generate no new warnings
 
 ## Additional Notes
+
 <!-- Any additional information that might be helpful for reviewers -->
