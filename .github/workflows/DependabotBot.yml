@@ -29,7 +29,7 @@ jobs:
           node-version: 22
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 10
           run_install: false
@@ -58,7 +58,7 @@ jobs:
         continue-on-error: true
 
       - name: Commit formatting changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "🧹 style: apply formatting to dependabot PR"
           branch: ${{ github.head_ref }}
