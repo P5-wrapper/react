@@ -5,14 +5,18 @@ import { ReactP5Wrapper } from "../src/main.tsx";
 import "./demo.css";
 import { sketch as box } from "./sketches/box";
 import { sketch as plane } from "./sketches/plane";
+import { sketch as record } from "./sketches/record";
 import { sketch as torus } from "./sketches/torus";
 
 function App() {
-  const sketches = useMemo(() => [box, torus, plane], [box, torus, plane]);
+  const sketches = useMemo(
+    () => [box, torus, plane, record],
+    [box, torus, plane, record]
+  );
 
   const [state, setState] = useState({
     rotation: 160,
-    sketch: box,
+    sketch: record,
     unmount: false
   });
 
@@ -58,6 +62,14 @@ function App() {
   return (
     <>
       <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
+      {state.sketch === record && (
+        <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+          <button id="start-recording">Start Recording</button>
+          <button id="stop-recording">Stop Recording</button>
+          <button id="pause-recording">Pause Recording</button>
+          <button id="resume-recording">Resume Recording</button>
+        </div>
+      )}
       <input
         type="range"
         defaultValue={state.rotation}
