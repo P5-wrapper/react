@@ -1,8 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./ReactP5WrapperWithSketch-CD1pxXfm.js","./index-Bu0lh5N2.js","./index-BP8wgTeK.css","./react-error-boundary-i-gZTuRX.js"])))=>i.map(i=>d[i]);
-import{j as e,r,_ as i}from"./index-Bu0lh5N2.js";const o="[ReactP5Wrapper] The error boundary was triggered. The error message was:";function s(t){return t.trim().split(`
-`).map(n=>n.trim()).join(`
-`)}function c(t){return s(`
-      ${o}
-      
-      ${t}
-    `)}function u(t){return t instanceof Error?`${t.name}("${t.message}")`:typeof t=="symbol"||t instanceof Symbol?t.toString():typeof t=="string"||t instanceof String?`String("${t.toString()}")`:typeof t=="number"||t instanceof Number?`Number(${t.toString()})`:typeof t=="bigint"||t instanceof BigInt?`BigInt(${t.toString()})`:t instanceof Array?`Array(${JSON.stringify(t.values().toArray())})`:t instanceof Set?`Set(${JSON.stringify(t.values().toArray())})`:Object.getPrototypeOf(t)===Object.prototype?`Object(${JSON.stringify(t)})`:`Unknown(${typeof t})`}function f(t){const n=u(t),a=c(n);console.error(a)}const g=r.lazy(()=>i(()=>import("./ReactP5WrapperWithSketch-CD1pxXfm.js"),__vite__mapDeps([0,1,2]),import.meta.url)),l=r.lazy(()=>i(()=>import("./react-error-boundary-i-gZTuRX.js"),__vite__mapDeps([3,1,2]),import.meta.url).then(t=>({default:t.ErrorBoundary}))),m=t=>t.sketch===void 0?(console.error("[ReactP5Wrapper] The `sketch` prop is required."),t.fallback?.()??null):e.jsx(l,{fallbackRender:n=>t.error?.(n.error)??e.jsx("p",{"data-testid":"error",children:"❌ - Something went wrong"}),onError:n=>{f(n)},children:e.jsx(r.Suspense,{fallback:t.loading?.()??e.jsx("p",{"data-testid":"loading",children:"🚀 Loading..."}),children:e.jsx(g,{...t})})});export{m as default};
