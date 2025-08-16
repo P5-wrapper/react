@@ -16,7 +16,7 @@ function App() {
 
   const [state, setState] = useState({
     rotation: 160,
-    sketch: record,
+    sketch: box,
     unmount: false
   });
 

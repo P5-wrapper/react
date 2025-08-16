@@ -1,10 +1,10 @@
-import * as record from "p5.record.js";
-
 export function sketch(p5) {
   let recording;
 
-  p5.setup = () => {
+  p5.setup = async () => {
     const canvas = p5.createCanvas(400, 400);
+    const record = await import("p5.record.js");
+
     p5.background(200);
 
     recording = new record.Recorder({
