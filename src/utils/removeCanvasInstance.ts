@@ -1,5 +1,5 @@
-import { type CanvasInstanceRef } from "../contracts/CanvasInstanceRef";
-import { type SketchProps } from "../contracts/SketchProps";
+import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
+import { type SketchProps } from "@contracts/SketchProps";
 
 export function removeCanvasInstance<Props extends SketchProps>(
   canvasInstanceRef: CanvasInstanceRef<Props>

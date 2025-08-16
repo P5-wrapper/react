@@ -1,3 +1,4 @@
+import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
 import {
   afterEach,
   beforeEach,
@@ -7,8 +8,6 @@ import {
   MockInstance,
   vi
 } from "vitest";
-
-import { logErrorBoundaryError } from "../../src/utils/logErrorBoundaryError";
 
 describe("logErrorBoundaryError", () => {
   let errorLoggerSpy: MockInstance<typeof console.error>;

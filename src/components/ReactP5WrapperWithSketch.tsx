@@ -1,13 +1,12 @@
 import * as React from "react";
-
-import { P5WrapperClassName } from "../constants/P5WrapperClassName";
-import { type CanvasInstanceRef } from "../contracts/CanvasInstanceRef";
-import { type P5WrapperPropsWithSketch } from "../contracts/P5WrapperPropsWithSketch";
-import { type SketchProps } from "../contracts/SketchProps";
-import { type WrapperRef } from "../contracts/WrapperRef";
-import { removeCanvasInstance } from "../utils/removeCanvasInstance";
-import { updateCanvasInstance } from "../utils/updateCanvasInstance";
-import { withoutKeys } from "../utils/withoutKeys";
+import { P5WrapperClassName } from "@constants/P5WrapperClassName";
+import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
+import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
+import { type SketchProps } from "@contracts/SketchProps";
+import { type WrapperRef } from "@contracts/WrapperRef";
+import { removeCanvasInstance } from "@utils/removeCanvasInstance";
+import { updateCanvasInstance } from "@utils/updateCanvasInstance";
+import { withoutKeys } from "@utils/withoutKeys";
 
 const ReactP5WrapperWithSketch = <Props extends SketchProps>(
   props: P5WrapperPropsWithSketch<Props>

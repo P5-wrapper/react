@@ -1,11 +1,10 @@
 import * as React from "react";
+import { type P5WrapperProps } from "@contracts/P5WrapperProps";
+import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
+import { type SketchProps } from "@contracts/SketchProps";
+import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
 import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
-
-import { type P5WrapperProps } from "../contracts/P5WrapperProps";
-import { type P5WrapperPropsWithSketch } from "../contracts/P5WrapperPropsWithSketch";
-import { type SketchProps } from "../contracts/SketchProps";
-import { logErrorBoundaryError } from "../utils/logErrorBoundaryError";
 
 const ReactP5WrapperWithSketch = React.lazy(
   () => import("./ReactP5WrapperWithSketch")

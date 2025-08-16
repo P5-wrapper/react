@@ -1,7 +1,6 @@
+import { type P5WrapperProps } from "@contracts/P5WrapperProps";
+import { propsAreEqual } from "@utils/propsAreEqual";
 import { describe, expect, it, vi } from "vitest";
-
-import { type P5WrapperProps } from "../../src/contracts/P5WrapperProps";
-import { propsAreEqual } from "../../src/utils/propsAreEqual";
 
 describe("propsAreEqual", () => {
   it("Returns true when the current and next props are the same", () => {

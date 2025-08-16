@@ -1,7 +1,6 @@
-import { type MutableRefObject } from "react";
-
-import { type P5CanvasInstance } from "./P5CanvasInstance";
-import { type SketchProps } from "./SketchProps";
+import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
+import { type SketchProps } from "@contracts/SketchProps";
+import { type RefObject } from "react";
 
 export type CanvasInstanceRef<Props extends SketchProps> =
-  MutableRefObject<P5CanvasInstance<Props> | null>;
+  RefObject<P5CanvasInstance<Props> | null>;

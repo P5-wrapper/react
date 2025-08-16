@@ -1,5 +1,4 @@
-import { type MutableRefObject } from "react";
+import { type Wrapper } from "@contracts/Wrapper";
+import { type RefObject } from "react";
 
-import { type Wrapper } from "./Wrapper";
-
-export type WrapperRef = MutableRefObject<Wrapper | null>;
+export type WrapperRef = RefObject<Wrapper | null>;

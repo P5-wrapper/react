@@ -1,6 +1,5 @@
+import { withoutKeys } from "@utils/withoutKeys";
 import { describe, expect, it } from "vitest";
-
-import { withoutKeys } from "../../src/utils/withoutKeys";
 
 describe("withoutKeys", () => {
   it("Returns the original object if the keys to ignore list is empty", () => {
