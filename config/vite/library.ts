@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react";
-import { resolve } from "node:path";
+import { posix, resolve } from "node:path";
 import { UserConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -47,9 +47,10 @@ export function library(root: string): UserConfig {
     },
     test: {
       globals: true,
-      environment: "jsdom",
+      environment: "happy-dom",
       coverage: {
-        include: [resolve(root, "src")]
+        include: [posix.join("src", "**/*.{ts,tsx,js,jsx}")],
+        reporter: ["text-summary", "html", "clover"]
       },
       setupFiles: resolve(root, "tests", "setup.ts"),
       deps: {
