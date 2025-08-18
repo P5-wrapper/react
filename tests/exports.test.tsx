@@ -1,7 +1,7 @@
 import { createElement, isValidElement } from "react";
 import { assert, describe, expect, it, vi } from "vitest";
 
-import { P5WrapperClassName, ReactP5Wrapper } from "../src/main";
+import { P5WrapperClassName, ReactP5Wrapper } from "@/main";
 
 describe("Exports", () => {
   describe("P5WrapperClassName", () => {

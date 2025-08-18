@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
 
 const ReactP5WrapperWithSketch = React.lazy(
-  () => import("./ReactP5WrapperWithSketch")
+  () => import("@components/ReactP5WrapperWithSketch")
 );
 
 const ErrorBoundary = React.lazy(() =>

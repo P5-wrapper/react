@@ -4,7 +4,7 @@ import { removeCanvasInstance } from "@utils/removeCanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import { SketchProps } from "../../src/main";
+import { SketchProps } from "@/main";
 
 describe("removeCanvasInstance", () => {
   it("Calls the remove method on the canvas if it exists", () => {

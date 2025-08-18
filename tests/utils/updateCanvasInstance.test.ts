@@ -6,7 +6,7 @@ import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import { SketchProps } from "../../src/main";
+import { SketchProps } from "@/main";
 
 describe("updateCanvasInstance", () => {
   it("Should update a canvas instance to a new version", () => {
