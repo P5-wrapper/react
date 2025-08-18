@@ -1,7 +1,7 @@
+import { ReactP5Wrapper } from "@/main.tsx";
 import React, { useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 
-import { ReactP5Wrapper } from "@/main.tsx";
 import "./demo.css";
 import { sketch as box } from "./sketches/box";
 import { sketch as plane } from "./sketches/plane";

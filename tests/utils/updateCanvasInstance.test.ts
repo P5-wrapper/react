@@ -1,3 +1,4 @@
+import { SketchProps } from "@/main";
 import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
 import p5 from "@contracts/p5";
 import { type WrapperRef } from "@contracts/WrapperRef";
@@ -5,8 +6,6 @@ import { createCanvasInstance } from "@utils/createCanvasInstance";
 import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
-
-import { SketchProps } from "@/main";
 
 describe("updateCanvasInstance", () => {
   it("Should update a canvas instance to a new version", () => {
