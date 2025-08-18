@@ -1,7 +1,8 @@
-import { type CanvasInstanceRef } from "../contracts/CanvasInstanceRef";
-import { type Sketch } from "../contracts/Sketch";
-import { type SketchProps } from "../contracts/SketchProps";
-import { type WrapperRef } from "../contracts/WrapperRef";
+import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
+import { type Sketch } from "@contracts/Sketch";
+import { type SketchProps } from "@contracts/SketchProps";
+import { type WrapperRef } from "@contracts/WrapperRef";
+
 import { createCanvasInstance } from "./createCanvasInstance";
 import { removeCanvasInstance } from "./removeCanvasInstance";
 

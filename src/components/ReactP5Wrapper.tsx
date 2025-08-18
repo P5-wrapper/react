@@ -1,6 +1,5 @@
 import * as React from "react";
-
-import { propsAreEqual } from "../utils/propsAreEqual";
+import { propsAreEqual } from "@utils/propsAreEqual";
 
 const ReactP5WrapperGuard = React.lazy(() => import("./ReactP5WrapperGuard"));
 

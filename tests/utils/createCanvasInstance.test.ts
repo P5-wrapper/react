@@ -1,7 +1,6 @@
-import p5 from "p5";
+import p5 from "@contracts/p5";
+import { createCanvasInstance } from "@utils/createCanvasInstance";
 import { describe, expect, it, vi } from "vitest";
-
-import { createCanvasInstance } from "../../src/utils/createCanvasInstance";
 
 describe("createCanvasInstance", () => {
   it("Should construct a valid implementation of p5 in instance mode", () => {

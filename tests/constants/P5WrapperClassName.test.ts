@@ -1,6 +1,5 @@
+import { P5WrapperClassName } from "@constants/P5WrapperClassName";
 import { describe, expect, it } from "vitest";
-
-import { P5WrapperClassName } from "../../src/constants/P5WrapperClassName";
 
 describe("P5WrapperClassName", () => {
   it("Is exported as a non-empty string", () => {

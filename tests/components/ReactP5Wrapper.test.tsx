@@ -1,11 +1,10 @@
+import { ReactP5Wrapper } from "@components/ReactP5Wrapper";
+import { P5WrapperClassName } from "@constants/P5WrapperClassName";
+import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
+import { type Sketch } from "@contracts/Sketch";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
-
-import { ReactP5Wrapper } from "../../src/components/ReactP5Wrapper";
-import { P5WrapperClassName } from "../../src/constants/P5WrapperClassName";
-import { type P5CanvasInstance } from "../../src/contracts/P5CanvasInstance";
-import { type Sketch } from "../../src/contracts/Sketch";
 
 function createSketch(
   updateFunction?: P5CanvasInstance["updateWithProps"]

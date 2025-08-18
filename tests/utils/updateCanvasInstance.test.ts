@@ -1,12 +1,12 @@
-import p5 from "p5";
+import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
+import p5 from "@contracts/p5";
+import { type WrapperRef } from "@contracts/WrapperRef";
+import { createCanvasInstance } from "@utils/createCanvasInstance";
+import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import { type CanvasInstanceRef } from "../../src/contracts/CanvasInstanceRef";
-import { type WrapperRef } from "../../src/contracts/WrapperRef";
 import { SketchProps } from "../../src/main";
-import { createCanvasInstance } from "../../src/utils/createCanvasInstance";
-import { updateCanvasInstance } from "../../src/utils/updateCanvasInstance";
 
 describe("updateCanvasInstance", () => {
   it("Should update a canvas instance to a new version", () => {

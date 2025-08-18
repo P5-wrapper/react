@@ -1,7 +1,6 @@
+import { type P5WrapperProps } from "@contracts/P5WrapperProps";
+import { type SketchProps } from "@contracts/SketchProps";
 import diff from "microdiff";
-
-import { type P5WrapperProps } from "../contracts/P5WrapperProps";
-import { type SketchProps } from "../contracts/SketchProps";
 
 export function propsAreEqual<Props extends SketchProps>(
   previous: P5WrapperProps<Props>,
