@@ -6,6 +6,7 @@
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
   "files": [
+    "README.md",
     "dist/component/*"
   ],
   "types": "./dist/component/main.d.ts",
@@ -28,6 +29,8 @@
     "integrate": "pnpm format:check && pnpm lint && pnpm test && pnpm build",
     "lint": "eslint --config config/eslint/eslint.config.ts",
     "lint:fix": "pnpm lint --fix",
+    "prepublishOnly": "cp .github/README.md ./README.md",
+    "postpublish": "rm ./README.md",
     "prettier": "prettier --config config/prettier/prettier.json --ignore-path .gitignore",
     "test": "vitest run --silent --config config/vite/vite.config.ts",
     "test:coverage": "vitest run --silent --coverage --config config/vite/vite.config.ts",
