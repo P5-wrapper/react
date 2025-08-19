@@ -1,7 +1,7 @@
 import { SketchProps } from "@/main";
 import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
-import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
 import p5 from "@contracts/p5";
+import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { createCanvasInstance } from "@utils/createCanvasInstance";
 import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { createRef } from "react";
@@ -12,14 +12,14 @@ describe("updateCanvasInstance", () => {
     const sketch = vi.fn();
     const wrapper = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
-    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
+    const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
     const instance = createCanvasInstance(sketch, wrapper);
 
     canvasContainerRef.current = wrapper;
-    canvasInstanceRef.current = instance;
+    p5CanvasInstanceRef.current = instance;
 
     const updatedCanvasInstanceRef = updateCanvasInstance(
-      canvasInstanceRef,
+      p5CanvasInstanceRef,
       canvasContainerRef,
       sketch
     );
@@ -33,13 +33,13 @@ describe("updateCanvasInstance", () => {
     const sketch = vi.fn();
     const wrapper = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
-    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
+    const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
     const instance = createCanvasInstance(sketch, wrapper);
 
-    canvasInstanceRef.current = instance;
+    p5CanvasInstanceRef.current = instance;
 
     const updatedCanvasInstanceRef = updateCanvasInstance(
-      canvasInstanceRef,
+      p5CanvasInstanceRef,
       canvasContainerRef,
       sketch
     );

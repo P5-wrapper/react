@@ -1,7 +1,7 @@
 import * as React from "react";
 import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
 import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
-import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
+import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { removeCanvasInstance } from "@utils/removeCanvasInstance";
@@ -12,7 +12,7 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
   props: P5CanvasPropsWithSketch<Props>
 ) => {
   const canvasContainerRef: CanvasContainerRef = React.useRef(null);
-  const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
+  const p5CanvasInstanceRef: P5CanvasInstanceRef<Props> = React.useRef(null);
   const userProvidedProps: SketchProps = React.useMemo(
     () =>
       withoutKeys(props, [
@@ -26,8 +26,8 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
   );
 
   React.useEffect(() => {
-    canvasInstanceRef.current = updateCanvasInstance(
-      canvasInstanceRef,
+    p5CanvasInstanceRef.current = updateCanvasInstance(
+      p5CanvasInstanceRef,
       canvasContainerRef,
       props.sketch
     );
@@ -35,12 +35,12 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
 
   React.useEffect(() => {
     /** @see https://github.com/P5-wrapper/react/discussions/360 */
-    canvasInstanceRef.current?.updateWithProps?.(
+    p5CanvasInstanceRef.current?.updateWithProps?.(
       userProvidedProps as unknown as Props
     );
-  }, [userProvidedProps, canvasContainerRef, canvasInstanceRef]);
+  }, [userProvidedProps, canvasContainerRef, p5CanvasInstanceRef]);
 
-  React.useEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
+  React.useEffect(() => () => removeCanvasInstance(p5CanvasInstanceRef), []);
 
   return (
     <div

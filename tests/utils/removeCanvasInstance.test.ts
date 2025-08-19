@@ -1,6 +1,6 @@
 import { SketchProps } from "@/main";
-import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
 import p5 from "@contracts/p5";
+import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { removeCanvasInstance } from "@utils/removeCanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
@@ -11,10 +11,10 @@ describe("removeCanvasInstance", () => {
       return;
     });
     const removeSpy = vi.spyOn(instance, "remove");
-    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
-    canvasInstanceRef.current = instance;
+    const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
+    p5CanvasInstanceRef.current = instance;
 
-    removeCanvasInstance(canvasInstanceRef);
+    removeCanvasInstance(p5CanvasInstanceRef);
 
     expect(removeSpy).toHaveBeenCalledOnce();
   });
@@ -23,13 +23,13 @@ describe("removeCanvasInstance", () => {
     const instance = new p5(() => {
       return;
     });
-    const canvasInstanceRef: CanvasInstanceRef<SketchProps> = createRef();
-    canvasInstanceRef.current = instance;
+    const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
+    p5CanvasInstanceRef.current = instance;
 
-    expect(canvasInstanceRef.current).not.toBeNull();
+    expect(p5CanvasInstanceRef.current).not.toBeNull();
 
-    removeCanvasInstance(canvasInstanceRef);
+    removeCanvasInstance(p5CanvasInstanceRef);
 
-    expect(canvasInstanceRef.current).toBeNull();
+    expect(p5CanvasInstanceRef.current).toBeNull();
   });
 });
