@@ -16,7 +16,7 @@ const ErrorBoundary = React.lazy(() =>
   }))
 );
 
-const ReactP5WrapperGuard = <Props extends SketchProps>(
+const P5CanvasGuard = <Props extends SketchProps>(
   props: P5WrapperProps<Props>
 ) => {
   if (props.sketch === undefined) {
@@ -52,4 +52,4 @@ const ReactP5WrapperGuard = <Props extends SketchProps>(
   );
 };
 
-export default ReactP5WrapperGuard;
+export default P5CanvasGuard;
