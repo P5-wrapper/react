@@ -46,7 +46,7 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
     <div
       ref={wrapperRef}
       className={CanvasContainerClassName}
-      data-testid="wrapper"
+      data-testid="canvas-container"
     >
       {props.children}
     </div>

@@ -17,8 +17,8 @@ function createSketch(
 
 async function waitForCanvas(findByTestId: RenderResult["findByTestId"]) {
   return await waitFor(async () => {
-    const wrapper = await findByTestId("wrapper");
-    const canvas = wrapper.querySelector("canvas");
+    const canvasContainer = await findByTestId("canvas-container");
+    const canvas = canvasContainer.querySelector("canvas");
 
     assert(canvas instanceof HTMLCanvasElement);
 
@@ -61,10 +61,10 @@ describe("P5Canvas", () => {
         const sketch = createSketch();
         const { findByTestId } = render(<P5Canvas sketch={sketch} />);
 
-        const wrapper = await findByTestId("wrapper");
+        const canvasContainer = await findByTestId("canvas-container");
 
-        expect(wrapper).toBeInstanceOf(HTMLDivElement);
-        expect(wrapper.className).toBe(CanvasContainerClassName);
+        expect(canvasContainer).toBeInstanceOf(HTMLDivElement);
+        expect(canvasContainer.className).toBe(CanvasContainerClassName);
       });
 
       it("Unmounts the canvas when the element is removed from the DOM", async () => {
@@ -240,7 +240,7 @@ describe("P5Canvas", () => {
         const StringComponent = renderToString(<P5Canvas sketch={sketch} />);
 
         expect(StringComponent).toBe(
-          `<!--$--><div class="${CanvasContainerClassName}" data-testid="wrapper"></div><!--/$-->`
+          `<!--$--><div class="${CanvasContainerClassName}" data-testid="canvas-container"></div><!--/$-->`
         );
       });
 
@@ -251,7 +251,7 @@ describe("P5Canvas", () => {
         );
 
         expect(StaticComponent).toBe(
-          `<div class="${CanvasContainerClassName}" data-testid="wrapper"></div>`
+          `<div class="${CanvasContainerClassName}" data-testid="canvas-container"></div>`
         );
       });
     });
