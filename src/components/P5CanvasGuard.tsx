@@ -1,5 +1,5 @@
 import * as React from "react";
-import { type P5WrapperProps } from "@contracts/P5WrapperProps";
+import { type P5CanvasProps } from "@contracts/P5CanvasProps";
 import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
@@ -17,7 +17,7 @@ const ErrorBoundary = React.lazy(() =>
 );
 
 const P5CanvasGuard = <Props extends SketchProps>(
-  props: P5WrapperProps<Props>
+  props: P5CanvasProps<Props>
 ) => {
   if (props.sketch === undefined) {
     console.error("[P5Canvas] The `sketch` prop is required.");
