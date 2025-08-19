@@ -1,6 +1,6 @@
 import * as React from "react";
 import { type P5CanvasProps } from "@contracts/P5CanvasProps";
-import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
+import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
 import { ReactNode } from "react";
@@ -45,7 +45,7 @@ const P5CanvasGuard = <Props extends SketchProps>(
       >
         <P5CanvasWithSketch
           /** @see https://github.com/P5-wrapper/react/discussions/360 */
-          {...(props as unknown as P5WrapperPropsWithSketch<Props>)}
+          {...(props as unknown as P5CanvasPropsWithSketch<Props>)}
         />
       </React.Suspense>
     </ErrorBoundary>

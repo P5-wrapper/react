@@ -1,7 +1,7 @@
 import * as React from "react";
 import { P5WrapperClassName } from "@constants/P5WrapperClassName";
 import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
-import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
+import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { type WrapperRef } from "@contracts/WrapperRef";
 import { removeCanvasInstance } from "@utils/removeCanvasInstance";
@@ -9,7 +9,7 @@ import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { withoutKeys } from "@utils/withoutKeys";
 
 const P5CanvasWithSketch = <Props extends SketchProps>(
-  props: P5WrapperPropsWithSketch<Props>
+  props: P5CanvasPropsWithSketch<Props>
 ) => {
   const wrapperRef: WrapperRef = React.useRef(null);
   const canvasInstanceRef: CanvasInstanceRef<Props> = React.useRef(null);
