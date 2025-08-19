@@ -1,17 +1,17 @@
-import { P5Canvas, P5WrapperClassName } from "@/main";
+import { CanvasContainerClassName, P5Canvas } from "@/main";
 import { createElement, isValidElement } from "react";
 import { assert, describe, expect, it, vi } from "vitest";
 
 describe("Exports", () => {
-  describe("P5WrapperClassName", () => {
+  describe("CanvasContainerClassName", () => {
     it("Exports the css class name used on the wrapper", () => {
-      expect(P5WrapperClassName).not.toBeUndefined();
-      expect(P5WrapperClassName).toBe("p5-wrapper-react");
+      expect(CanvasContainerClassName).not.toBeUndefined();
+      expect(CanvasContainerClassName).toBe("canvas-container");
     });
 
     it("Exports the css class name used on the wrapper as a non-empty string", () => {
-      expect(typeof P5WrapperClassName).toBe("string");
-      expect(P5WrapperClassName.length).toBeGreaterThan(0);
+      expect(typeof CanvasContainerClassName).toBe("string");
+      expect(CanvasContainerClassName.length).toBeGreaterThan(0);
     });
 
     it("Exports the wrapper component", () => {

@@ -1,5 +1,5 @@
 import { P5Canvas } from "@components/P5Canvas";
-import { P5WrapperClassName } from "@constants/P5WrapperClassName";
+import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
 import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
 import { type Sketch } from "@contracts/Sketch";
 import { render, RenderResult, waitFor } from "@testing-library/react";
@@ -64,7 +64,7 @@ describe("P5Canvas", () => {
         const wrapper = await findByTestId("wrapper");
 
         expect(wrapper).toBeInstanceOf(HTMLDivElement);
-        expect(wrapper.className).toBe(P5WrapperClassName);
+        expect(wrapper.className).toBe(CanvasContainerClassName);
       });
 
       it("Unmounts the canvas when the element is removed from the DOM", async () => {
@@ -240,7 +240,7 @@ describe("P5Canvas", () => {
         const StringComponent = renderToString(<P5Canvas sketch={sketch} />);
 
         expect(StringComponent).toBe(
-          `<!--$--><div class="${P5WrapperClassName}" data-testid="wrapper"></div><!--/$-->`
+          `<!--$--><div class="${CanvasContainerClassName}" data-testid="wrapper"></div><!--/$-->`
         );
       });
 
@@ -251,7 +251,7 @@ describe("P5Canvas", () => {
         );
 
         expect(StaticComponent).toBe(
-          `<div class="${P5WrapperClassName}" data-testid="wrapper"></div>`
+          `<div class="${CanvasContainerClassName}" data-testid="wrapper"></div>`
         );
       });
     });

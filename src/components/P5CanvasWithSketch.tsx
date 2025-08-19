@@ -1,5 +1,5 @@
 import * as React from "react";
-import { P5WrapperClassName } from "@constants/P5WrapperClassName";
+import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
 import { type CanvasInstanceRef } from "@contracts/CanvasInstanceRef";
 import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
@@ -43,7 +43,11 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
   React.useEffect(() => () => removeCanvasInstance(canvasInstanceRef), []);
 
   return (
-    <div ref={wrapperRef} className={P5WrapperClassName} data-testid="wrapper">
+    <div
+      ref={wrapperRef}
+      className={CanvasContainerClassName}
+      data-testid="wrapper"
+    >
       {props.children}
     </div>
   );
