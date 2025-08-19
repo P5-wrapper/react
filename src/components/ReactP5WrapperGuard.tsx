@@ -20,7 +20,7 @@ const ReactP5WrapperGuard = <Props extends SketchProps>(
   props: P5WrapperProps<Props>
 ) => {
   if (props.sketch === undefined) {
-    console.error("[ReactP5Wrapper] The `sketch` prop is required.");
+    console.error("[P5Canvas] The `sketch` prop is required.");
 
     return props.fallback?.() ?? null;
   }

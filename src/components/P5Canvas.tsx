@@ -5,4 +5,4 @@ const ReactP5WrapperGuard = React.lazy(
   () => import("@components/ReactP5WrapperGuard")
 );
 
-export const ReactP5Wrapper = React.memo(ReactP5WrapperGuard, propsAreEqual);
+export const P5Canvas = React.memo(ReactP5WrapperGuard, propsAreEqual);

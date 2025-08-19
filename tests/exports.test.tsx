@@ -1,4 +1,4 @@
-import { P5WrapperClassName, ReactP5Wrapper } from "@/main";
+import { P5Canvas, P5WrapperClassName } from "@/main";
 import { createElement, isValidElement } from "react";
 import { assert, describe, expect, it, vi } from "vitest";
 
@@ -15,13 +15,13 @@ describe("Exports", () => {
     });
 
     it("Exports the wrapper component", () => {
-      expect(ReactP5Wrapper).not.toBeUndefined();
+      expect(P5Canvas).not.toBeUndefined();
     });
   });
 
-  describe("ReactP5Wrapper", () => {
+  describe("P5Canvas", () => {
     it("Exports the wrapper component as a react element", () => {
-      const component = createElement(ReactP5Wrapper, {
+      const component = createElement(P5Canvas, {
         sketch: vi.fn()
       });
 

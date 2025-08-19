@@ -26,8 +26,8 @@ export function library(root: string): UserConfig {
       emptyOutDir: true,
       lib: {
         entry: resolve(root, "src", "main.tsx"),
-        name: "ReactP5Wrapper",
-        fileName: "ReactP5Wrapper",
+        name: "P5Canvas",
+        fileName: "P5Canvas",
         formats: ["es", "cjs"]
       },
       rollupOptions: {
