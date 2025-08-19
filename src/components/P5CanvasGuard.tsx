@@ -6,8 +6,8 @@ import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
 import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
 
-const ReactP5WrapperWithSketch = React.lazy(
-  () => import("@components/ReactP5WrapperWithSketch")
+const P5CanvasWithSketch = React.lazy(
+  () => import("@components/P5CanvasWithSketch")
 );
 
 const ErrorBoundary = React.lazy(() =>
@@ -43,7 +43,7 @@ const P5CanvasGuard = <Props extends SketchProps>(
           props.loading?.() ?? <p data-testid="loading">🚀 Loading...</p>
         }
       >
-        <ReactP5WrapperWithSketch
+        <P5CanvasWithSketch
           /** @see https://github.com/P5-wrapper/react/discussions/360 */
           {...(props as unknown as P5WrapperPropsWithSketch<Props>)}
         />

@@ -8,7 +8,7 @@ import { removeCanvasInstance } from "@utils/removeCanvasInstance";
 import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { withoutKeys } from "@utils/withoutKeys";
 
-const ReactP5WrapperWithSketch = <Props extends SketchProps>(
+const P5CanvasWithSketch = <Props extends SketchProps>(
   props: P5WrapperPropsWithSketch<Props>
 ) => {
   const wrapperRef: WrapperRef = React.useRef(null);
@@ -49,4 +49,4 @@ const ReactP5WrapperWithSketch = <Props extends SketchProps>(
   );
 };
 
-export default ReactP5WrapperWithSketch;
+export default P5CanvasWithSketch;
