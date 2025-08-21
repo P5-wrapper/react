@@ -5,7 +5,7 @@ import { type SketchProps } from "@contracts/SketchProps";
 import { createCanvasInstance } from "@utils/createCanvasInstance";
 import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
 
-export function updateCanvasInstance<Props extends SketchProps>(
+export function updateP5CanvasInstance<Props extends SketchProps>(
   p5CanvasInstanceRef: P5CanvasInstanceRef<Props>,
   canvasContainerRef: CanvasContainerRef,
   sketch: Sketch<Props>
