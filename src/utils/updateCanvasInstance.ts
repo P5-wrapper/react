@@ -3,7 +3,7 @@ import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { type Sketch } from "@contracts/Sketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { createCanvasInstance } from "@utils/createCanvasInstance";
-import { removeCanvasInstance } from "@utils/removeCanvasInstance";
+import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
 
 export function updateCanvasInstance<Props extends SketchProps>(
   p5CanvasInstanceRef: P5CanvasInstanceRef<Props>,
@@ -14,7 +14,7 @@ export function updateCanvasInstance<Props extends SketchProps>(
     return null;
   }
 
-  removeCanvasInstance(p5CanvasInstanceRef);
+  removeP5CanvasInstance(p5CanvasInstanceRef);
 
   return createCanvasInstance(sketch, canvasContainerRef.current);
 }

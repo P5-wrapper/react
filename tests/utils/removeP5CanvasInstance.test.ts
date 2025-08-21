@@ -1,11 +1,11 @@
 import { SketchProps } from "@/main";
 import p5 from "@contracts/p5";
 import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
-import { removeCanvasInstance } from "@utils/removeCanvasInstance";
+import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
-describe("removeCanvasInstance", () => {
+describe("removeP5CanvasInstance", () => {
   it("Calls the remove method on the canvas if it exists", () => {
     const instance = new p5(() => {
       return;
@@ -14,7 +14,7 @@ describe("removeCanvasInstance", () => {
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
     p5CanvasInstanceRef.current = instance;
 
-    removeCanvasInstance(p5CanvasInstanceRef);
+    removeP5CanvasInstance(p5CanvasInstanceRef);
 
     expect(removeSpy).toHaveBeenCalledOnce();
   });
@@ -28,7 +28,7 @@ describe("removeCanvasInstance", () => {
 
     expect(p5CanvasInstanceRef.current).not.toBeNull();
 
-    removeCanvasInstance(p5CanvasInstanceRef);
+    removeP5CanvasInstance(p5CanvasInstanceRef);
 
     expect(p5CanvasInstanceRef.current).toBeNull();
   });

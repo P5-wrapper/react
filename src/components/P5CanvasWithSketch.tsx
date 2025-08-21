@@ -4,7 +4,7 @@ import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
 import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
-import { removeCanvasInstance } from "@utils/removeCanvasInstance";
+import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
 import { updateCanvasInstance } from "@utils/updateCanvasInstance";
 import { withoutKeys } from "@utils/withoutKeys";
 
@@ -40,7 +40,7 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
     );
   }, [sketchProps, canvasContainerRef, p5CanvasInstanceRef]);
 
-  React.useEffect(() => () => removeCanvasInstance(p5CanvasInstanceRef), []);
+  React.useEffect(() => () => removeP5CanvasInstance(p5CanvasInstanceRef), []);
 
   return (
     <div
