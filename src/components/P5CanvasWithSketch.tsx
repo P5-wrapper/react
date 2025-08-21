@@ -13,7 +13,7 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
 ) => {
   const canvasContainerRef: CanvasContainerRef = React.useRef(null);
   const p5CanvasInstanceRef: P5CanvasInstanceRef<Props> = React.useRef(null);
-  const userProvidedProps: SketchProps = React.useMemo(
+  const sketchProps: SketchProps = React.useMemo(
     () =>
       withoutKeys(props, [
         "sketch",
@@ -36,9 +36,9 @@ const P5CanvasWithSketch = <Props extends SketchProps>(
   React.useEffect(() => {
     /** @see https://github.com/P5-wrapper/react/discussions/360 */
     p5CanvasInstanceRef.current?.updateWithProps?.(
-      userProvidedProps as unknown as Props
+      sketchProps as unknown as Props
     );
-  }, [userProvidedProps, canvasContainerRef, p5CanvasInstanceRef]);
+  }, [sketchProps, canvasContainerRef, p5CanvasInstanceRef]);
 
   React.useEffect(() => () => removeCanvasInstance(p5CanvasInstanceRef), []);
 
