@@ -10,12 +10,12 @@ import { describe, expect, it, vi } from "vitest";
 describe("updateP5CanvasInstance", () => {
   it("Should update a P5 canvas instance to a new version", () => {
     const sketch = vi.fn();
-    const wrapper = document.createElement("div");
+    const canvasContainer = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
-    const instance = createP5CanvasInstance(sketch, wrapper);
+    const instance = createP5CanvasInstance(sketch, canvasContainer);
 
-    canvasContainerRef.current = wrapper;
+    canvasContainerRef.current = canvasContainer;
     p5CanvasInstanceRef.current = instance;
 
     const updatedP5CanvasInstanceRef = updateP5CanvasInstance(
@@ -31,10 +31,10 @@ describe("updateP5CanvasInstance", () => {
 
   it("Should return undefined if the canvasContainerRef value is null", () => {
     const sketch = vi.fn();
-    const wrapper = document.createElement("div");
+    const canvasContainer = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
-    const instance = createP5CanvasInstance(sketch, wrapper);
+    const instance = createP5CanvasInstance(sketch, canvasContainer);
 
     p5CanvasInstanceRef.current = instance;
 

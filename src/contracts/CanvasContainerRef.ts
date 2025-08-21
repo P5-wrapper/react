@@ -1,4 +1,4 @@
-import { type Wrapper } from "@contracts/Wrapper";
+import { type CanvasContainer } from "@contracts/CanvasContainer";
 import { type RefObject } from "react";
 
-export type CanvasContainerRef = RefObject<Wrapper | null>;
+export type CanvasContainerRef = RefObject<CanvasContainer | null>;
