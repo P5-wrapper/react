@@ -6,7 +6,7 @@ import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 describe("removeP5CanvasInstance", () => {
-  it("Calls the remove method on the canvas if it exists", () => {
+  it("Calls the remove method on the P5 canvas instance if it exists", () => {
     const instance = new p5(() => {
       return;
     });
@@ -19,7 +19,7 @@ describe("removeP5CanvasInstance", () => {
     expect(removeSpy).toHaveBeenCalledOnce();
   });
 
-  it("Sets the provided canvas instance ref to null", () => {
+  it("Sets the provided P5 canvas instance ref to null", () => {
     const instance = new p5(() => {
       return;
     });

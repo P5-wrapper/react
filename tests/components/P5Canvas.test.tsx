@@ -39,7 +39,7 @@ async function waitForLoading(findByTestId: RenderResult["findByTestId"]) {
 describe("P5Canvas", () => {
   describe("Rendering", () => {
     describe("Client", () => {
-      it("Renders the canvas into the wrapping element", async () => {
+      it("Renders the P5 canvas into the container element", async () => {
         const sketch = createSketch();
         const { findByTestId } = render(<P5Canvas sketch={sketch} />);
         const canvas = await waitForCanvas(findByTestId);
@@ -57,7 +57,7 @@ describe("P5Canvas", () => {
         expect(canvas).toBeInstanceOf(HTMLCanvasElement);
       });
 
-      it("Adds a utility css class to the wrapping element", async () => {
+      it("Adds a utility css class to the container element", async () => {
         const sketch = createSketch();
         const { findByTestId } = render(<P5Canvas sketch={sketch} />);
 
@@ -158,7 +158,7 @@ describe("P5Canvas", () => {
         expect(loading.innerHTML).toBe("Loading test...");
       });
 
-      it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the wrapper", async () => {
+      it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorChild = () => {
           throw new Error("oops");
@@ -176,7 +176,7 @@ describe("P5Canvas", () => {
         expect(error.textContent).toBe("❌ - Something went wrong");
       });
 
-      it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the wrapper", async () => {
+      it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorView = vi.fn(error => {
           assert(error instanceof Error);
@@ -200,7 +200,7 @@ describe("P5Canvas", () => {
         expect(error.innerHTML).toBe("Error: oops");
       });
 
-      it("Should log the error when an error is thrown within the subtree of the wrapper", async () => {
+      it("Should log the error when an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorView = vi.fn(() => <div data-testid="error" />);
         const errorLogger = vi.fn();
