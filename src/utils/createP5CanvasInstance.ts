@@ -4,7 +4,7 @@ import { type Sketch } from "@contracts/Sketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { type Wrapper } from "@contracts/Wrapper";
 
-export function createCanvasInstance<Props extends SketchProps>(
+export function createP5CanvasInstance<Props extends SketchProps>(
   sketch: Sketch<Props>,
   wrapper: Wrapper
 ): P5CanvasInstance<Props> {

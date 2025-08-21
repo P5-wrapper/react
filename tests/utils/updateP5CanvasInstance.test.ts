@@ -2,7 +2,7 @@ import { SketchProps } from "@/main";
 import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
 import p5 from "@contracts/p5";
 import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
-import { createCanvasInstance } from "@utils/createCanvasInstance";
+import { createP5CanvasInstance } from "@utils/createP5CanvasInstance";
 import { updateP5CanvasInstance } from "@utils/updateP5CanvasInstance";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
@@ -13,7 +13,7 @@ describe("updateP5CanvasInstance", () => {
     const wrapper = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
-    const instance = createCanvasInstance(sketch, wrapper);
+    const instance = createP5CanvasInstance(sketch, wrapper);
 
     canvasContainerRef.current = wrapper;
     p5CanvasInstanceRef.current = instance;
@@ -34,7 +34,7 @@ describe("updateP5CanvasInstance", () => {
     const wrapper = document.createElement("div");
     const canvasContainerRef: CanvasContainerRef = createRef();
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
-    const instance = createCanvasInstance(sketch, wrapper);
+    const instance = createP5CanvasInstance(sketch, wrapper);
 
     p5CanvasInstanceRef.current = instance;
 
