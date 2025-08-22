@@ -31,7 +31,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -45,7 +45,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -59,7 +59,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -73,7 +73,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -87,7 +87,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -101,7 +101,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -115,7 +115,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -129,7 +129,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -143,7 +143,7 @@ describe("logErrorBoundaryError", () => {
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
     expect(errorLoggerSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+        "[P5Canvas] The error boundary was triggered. The error message was:"
       )
     );
     expect(errorLoggerSpy).toHaveBeenCalledWith(

@@ -1,4 +1,4 @@
-import { ReactP5Wrapper } from "@/main.tsx";
+import { P5Canvas } from "@/main.tsx";
 import React, { useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -61,7 +61,7 @@ function App() {
 
   return (
     <>
-      <ReactP5Wrapper sketch={state.sketch} rotation={state.rotation} />
+      <P5Canvas sketch={state.sketch} rotation={state.rotation} />
       {state.sketch === record && (
         <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <button id="start-recording">Start Recording</button>

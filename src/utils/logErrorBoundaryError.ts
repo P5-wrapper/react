@@ -1,5 +1,5 @@
 const errorIntroduction =
-  "[ReactP5Wrapper] The error boundary was triggered. The error message was:";
+  "[P5Canvas] The error boundary was triggered. The error message was:";
 
 function tidyErrorLogText(text: string): string {
   return text

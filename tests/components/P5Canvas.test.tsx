@@ -1,5 +1,5 @@
-import { ReactP5Wrapper } from "@components/ReactP5Wrapper";
-import { P5WrapperClassName } from "@constants/P5WrapperClassName";
+import { P5Canvas } from "@components/P5Canvas";
+import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
 import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
 import { type Sketch } from "@contracts/Sketch";
 import { render, RenderResult, waitFor } from "@testing-library/react";
@@ -17,8 +17,8 @@ function createSketch(
 
 async function waitForCanvas(findByTestId: RenderResult["findByTestId"]) {
   return await waitFor(async () => {
-    const wrapper = await findByTestId("wrapper");
-    const canvas = wrapper.querySelector("canvas");
+    const canvasContainer = await findByTestId("canvas-container");
+    const canvas = canvasContainer.querySelector("canvas");
 
     assert(canvas instanceof HTMLCanvasElement);
 
@@ -36,12 +36,12 @@ async function waitForLoading(findByTestId: RenderResult["findByTestId"]) {
   });
 }
 
-describe("ReactP5Wrapper", () => {
+describe("P5Canvas", () => {
   describe("Rendering", () => {
     describe("Client", () => {
-      it("Renders the canvas into the wrapping element", async () => {
+      it("Renders the P5 canvas into the container element", async () => {
         const sketch = createSketch();
-        const { findByTestId } = render(<ReactP5Wrapper sketch={sketch} />);
+        const { findByTestId } = render(<P5Canvas sketch={sketch} />);
         const canvas = await waitForCanvas(findByTestId);
 
         expect(canvas).toBeInstanceOf(HTMLCanvasElement);
@@ -49,30 +49,28 @@ describe("ReactP5Wrapper", () => {
 
       it("Recreates the P5 instance when the sketch is changed", async () => {
         const sketch = createSketch();
-        const { rerender, findByTestId } = render(
-          <ReactP5Wrapper sketch={sketch} />
-        );
+        const { rerender, findByTestId } = render(<P5Canvas sketch={sketch} />);
 
-        rerender(<ReactP5Wrapper sketch={sketch} />);
+        rerender(<P5Canvas sketch={sketch} />);
         const canvas = await waitForCanvas(findByTestId);
 
         expect(canvas).toBeInstanceOf(HTMLCanvasElement);
       });
 
-      it("Adds a utility css class to the wrapping element", async () => {
+      it("Adds a utility css class to the container element", async () => {
         const sketch = createSketch();
-        const { findByTestId } = render(<ReactP5Wrapper sketch={sketch} />);
+        const { findByTestId } = render(<P5Canvas sketch={sketch} />);
 
-        const wrapper = await findByTestId("wrapper");
+        const canvasContainer = await findByTestId("canvas-container");
 
-        expect(wrapper).toBeInstanceOf(HTMLDivElement);
-        expect(wrapper.className).toBe(P5WrapperClassName);
+        expect(canvasContainer).toBeInstanceOf(HTMLDivElement);
+        expect(canvasContainer.className).toBe(CanvasContainerClassName);
       });
 
       it("Unmounts the canvas when the element is removed from the DOM", async () => {
         const sketch = createSketch();
         const { container, unmount, findByTestId } = render(
-          <ReactP5Wrapper sketch={sketch} />
+          <P5Canvas sketch={sketch} />
         );
 
         await waitForCanvas(findByTestId);
@@ -85,7 +83,7 @@ describe("ReactP5Wrapper", () => {
       });
 
       it("Should not render anything when the `sketch` and `fallback` props are not provided", () => {
-        const { container } = render(<ReactP5Wrapper />);
+        const { container } = render(<P5Canvas />);
 
         expect(container.innerHTML).toBe("");
       });
@@ -96,12 +94,12 @@ describe("ReactP5Wrapper", () => {
           .spyOn(console, "error")
           .mockImplementation(errorLogger);
 
-        render(<ReactP5Wrapper />);
+        render(<P5Canvas />);
 
         await waitFor(() => {
           expect(errorLoggerSpy).toHaveBeenCalledOnce();
           expect(errorLoggerSpy).toHaveBeenCalledWith(
-            "[ReactP5Wrapper] The `sketch` prop is required."
+            "[P5Canvas] The `sketch` prop is required."
           );
 
           errorLoggerSpy.mockReset();
@@ -111,9 +109,7 @@ describe("ReactP5Wrapper", () => {
 
       it("Should use the fallback UI if the sketch is undefined on initial render", async () => {
         const fallbackView = vi.fn(() => <div data-testid="fallback" />);
-        const { findByTestId } = render(
-          <ReactP5Wrapper fallback={fallbackView} />
-        );
+        const { findByTestId } = render(<P5Canvas fallback={fallbackView} />);
 
         const fallback = await findByTestId("fallback");
 
@@ -125,12 +121,12 @@ describe("ReactP5Wrapper", () => {
         const sketch = createSketch();
         const fallbackView = vi.fn(() => <div data-testid="fallback" />);
         const { rerender, findByTestId } = render(
-          <ReactP5Wrapper fallback={() => <h1>Oh no</h1>} sketch={sketch} />
+          <P5Canvas fallback={() => <h1>Oh no</h1>} sketch={sketch} />
         );
 
         await waitForCanvas(findByTestId);
 
-        rerender(<ReactP5Wrapper fallback={fallbackView} sketch={undefined} />);
+        rerender(<P5Canvas fallback={fallbackView} sketch={undefined} />);
 
         const fallback = await findByTestId("fallback");
 
@@ -140,7 +136,7 @@ describe("ReactP5Wrapper", () => {
 
       it.skip("Should show the default loading UI when the `loading` prop is not set and the sketch is not yet loaded", async () => {
         const sketch = createSketch();
-        const { findByTestId } = render(<ReactP5Wrapper sketch={sketch} />);
+        const { findByTestId } = render(<P5Canvas sketch={sketch} />);
         const loading = await waitForLoading(findByTestId);
 
         expect(loading).toBeInstanceOf(HTMLParagraphElement);
@@ -153,7 +149,7 @@ describe("ReactP5Wrapper", () => {
           <p data-testid="loading">Loading test...</p>
         ));
         const { findByTestId } = render(
-          <ReactP5Wrapper loading={LoadingView} sketch={sketch} />
+          <P5Canvas loading={LoadingView} sketch={sketch} />
         );
         const loading = await waitForLoading(findByTestId);
 
@@ -162,16 +158,16 @@ describe("ReactP5Wrapper", () => {
         expect(loading.innerHTML).toBe("Loading test...");
       });
 
-      it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the wrapper", async () => {
+      it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorChild = () => {
           throw new Error("oops");
         };
 
         const { findByTestId } = render(
-          <ReactP5Wrapper sketch={sketch}>
+          <P5Canvas sketch={sketch}>
             <ErrorChild />
-          </ReactP5Wrapper>
+          </P5Canvas>
         );
 
         const error = await findByTestId("error");
@@ -180,7 +176,7 @@ describe("ReactP5Wrapper", () => {
         expect(error.textContent).toBe("❌ - Something went wrong");
       });
 
-      it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the wrapper", async () => {
+      it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorView = vi.fn(error => {
           assert(error instanceof Error);
@@ -192,9 +188,9 @@ describe("ReactP5Wrapper", () => {
         };
 
         const { findByTestId } = render(
-          <ReactP5Wrapper error={ErrorView} sketch={sketch}>
+          <P5Canvas error={ErrorView} sketch={sketch}>
             <ErrorChild />
-          </ReactP5Wrapper>
+          </P5Canvas>
         );
 
         const error = await findByTestId("error");
@@ -204,7 +200,7 @@ describe("ReactP5Wrapper", () => {
         expect(error.innerHTML).toBe("Error: oops");
       });
 
-      it("Should log the error when an error is thrown within the subtree of the wrapper", async () => {
+      it("Should log the error when an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
         const ErrorView = vi.fn(() => <div data-testid="error" />);
         const errorLogger = vi.fn();
@@ -216,9 +212,9 @@ describe("ReactP5Wrapper", () => {
         };
 
         const { findByTestId } = render(
-          <ReactP5Wrapper error={ErrorView} sketch={sketch}>
+          <P5Canvas error={ErrorView} sketch={sketch}>
             <ErrorChild />
-          </ReactP5Wrapper>
+          </P5Canvas>
         );
 
         await findByTestId("error");
@@ -226,7 +222,7 @@ describe("ReactP5Wrapper", () => {
         expect(errorLoggerSpy).toHaveBeenCalledTimes(2);
         expect(errorLoggerSpy).toHaveBeenCalledWith(
           expect.stringContaining(
-            "[ReactP5Wrapper] The error boundary was triggered. The error message was:"
+            "[P5Canvas] The error boundary was triggered. The error message was:"
           )
         );
         expect(errorLoggerSpy).toHaveBeenCalledWith(
@@ -241,23 +237,21 @@ describe("ReactP5Wrapper", () => {
     describe("Server", () => {
       it("Renders as expected when using `renderToString`", () => {
         const sketch = createSketch();
-        const StringComponent = renderToString(
-          <ReactP5Wrapper sketch={sketch} />
-        );
+        const StringComponent = renderToString(<P5Canvas sketch={sketch} />);
 
         expect(StringComponent).toBe(
-          `<!--$--><div class="${P5WrapperClassName}" data-testid="wrapper"></div><!--/$-->`
+          `<!--$--><div class="${CanvasContainerClassName}" data-testid="canvas-container"></div><!--/$-->`
         );
       });
 
       it("Renders as expected when using `renderToStaticMarkup`", () => {
         const sketch = createSketch();
         const StaticComponent = renderToStaticMarkup(
-          <ReactP5Wrapper sketch={sketch} />
+          <P5Canvas sketch={sketch} />
         );
 
         expect(StaticComponent).toBe(
-          `<div class="${P5WrapperClassName}" data-testid="wrapper"></div>`
+          `<div class="${CanvasContainerClassName}" data-testid="canvas-container"></div>`
         );
       });
     });
@@ -268,9 +262,7 @@ describe("ReactP5Wrapper", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
 
-      const { findByTestId } = render(
-        <ReactP5Wrapper sketch={sketch} x={100} />
-      );
+      const { findByTestId } = render(<P5Canvas sketch={sketch} x={100} />);
 
       await waitForCanvas(findByTestId);
 
@@ -283,12 +275,12 @@ describe("ReactP5Wrapper", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <ReactP5Wrapper sketch={sketch} x={100} />
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
 
-      rerender(<ReactP5Wrapper sketch={sketch} x={200} />);
+      rerender(<P5Canvas sketch={sketch} x={200} />);
 
       expect(sketch).toHaveBeenCalledOnce();
       expect(updateFunction).toHaveBeenCalledTimes(2);
@@ -299,12 +291,12 @@ describe("ReactP5Wrapper", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <ReactP5Wrapper sketch={sketch} x={100} />
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
 
-      rerender(<ReactP5Wrapper sketch={sketch} />);
+      rerender(<P5Canvas sketch={sketch} />);
 
       expect(sketch).toHaveBeenCalledOnce();
       expect(updateFunction).toHaveBeenCalledTimes(2);
@@ -315,12 +307,12 @@ describe("ReactP5Wrapper", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <ReactP5Wrapper sketch={sketch} x={100} />
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
 
-      rerender(<ReactP5Wrapper sketch={sketch} x={200} y={50} />);
+      rerender(<P5Canvas sketch={sketch} x={200} y={50} />);
 
       expect(sketch).toHaveBeenCalledOnce();
       expect(updateFunction).toHaveBeenCalledTimes(2);
@@ -331,12 +323,12 @@ describe("ReactP5Wrapper", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <ReactP5Wrapper sketch={sketch} x={100} />
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
 
-      rerender(<ReactP5Wrapper sketch={sketch} y={100} />);
+      rerender(<P5Canvas sketch={sketch} y={100} />);
 
       expect(sketch).toHaveBeenCalledOnce();
       expect(updateFunction).toHaveBeenCalledTimes(2);

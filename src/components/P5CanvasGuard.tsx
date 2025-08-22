@@ -1,13 +1,13 @@
 import * as React from "react";
-import { type P5WrapperProps } from "@contracts/P5WrapperProps";
-import { type P5WrapperPropsWithSketch } from "@contracts/P5WrapperPropsWithSketch";
+import { type P5CanvasProps } from "@contracts/P5CanvasProps";
+import { type P5CanvasPropsWithSketch } from "@contracts/P5CanvasPropsWithSketch";
 import { type SketchProps } from "@contracts/SketchProps";
 import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
 import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
 
-const ReactP5WrapperWithSketch = React.lazy(
-  () => import("@components/ReactP5WrapperWithSketch")
+const P5CanvasWithSketch = React.lazy(
+  () => import("@components/P5CanvasWithSketch")
 );
 
 const ErrorBoundary = React.lazy(() =>
@@ -16,11 +16,11 @@ const ErrorBoundary = React.lazy(() =>
   }))
 );
 
-const ReactP5WrapperGuard = <Props extends SketchProps>(
-  props: P5WrapperProps<Props>
+const P5CanvasGuard = <Props extends SketchProps>(
+  props: P5CanvasProps<Props>
 ) => {
   if (props.sketch === undefined) {
-    console.error("[ReactP5Wrapper] The `sketch` prop is required.");
+    console.error("[P5Canvas] The `sketch` prop is required.");
 
     return props.fallback?.() ?? null;
   }
@@ -43,13 +43,13 @@ const ReactP5WrapperGuard = <Props extends SketchProps>(
           props.loading?.() ?? <p data-testid="loading">🚀 Loading...</p>
         }
       >
-        <ReactP5WrapperWithSketch
+        <P5CanvasWithSketch
           /** @see https://github.com/P5-wrapper/react/discussions/360 */
-          {...(props as unknown as P5WrapperPropsWithSketch<Props>)}
+          {...(props as unknown as P5CanvasPropsWithSketch<Props>)}
         />
       </React.Suspense>
     </ErrorBoundary>
   );
 };
 
-export default ReactP5WrapperGuard;
+export default P5CanvasGuard;
