@@ -16,6 +16,24 @@ A component to integrate [P5.js](https://p5js.org/) sketches into
 > in your sketches and much more besides, you can read more on the upcoming
 > version of the [P5 docs](https://beta.p5js.org/).
 
+## ⚠️ Migration Notes
+
+The main component for rendering p5 sketches in React depends on your version:
+
+- Version 4 and earlier: use `ReactP5Wrapper`.
+- Version 5 and later: use `P5Canvas`.
+
+Both components work in the same way.
+
+Breaking changes in v5:
+
+1. Component rename
+   - `ReactP5Wrapper` → `P5Canvas`
+
+2. Types
+   - `P5WrapperProps` → `P5CanvasProps`
+   - `P5WrapperClassName` → `CanvasContainerClassName`
+
 ## Installation
 
 To install, use the following command in the format appropriate to your chosen
