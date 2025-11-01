@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -77,7 +77,7 @@ jobs:
 
       - name: Commit fixed formatting issues
         if: ${{ failure() }}
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🧹 style: apply automatic formatting fixes"
           branch: ${{ github.head_ref }}
@@ -92,7 +92,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -122,7 +122,7 @@ jobs:
 
       - name: Commit fixed linting issues
         if: ${{ failure() }}
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🐛 fix: apply automatic linting fixes"
           branch: ${{ github.head_ref }}
@@ -135,7 +135,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -160,7 +160,7 @@ jobs:
         run: pnpm test:coverage
 
       - name: Download previous coverage artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         continue-on-error: true
         with:
           name: test-coverage-{{ matrix.runs-on }}
@@ -178,7 +178,7 @@ jobs:
 
       - name: Upload test coverage
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: test-coverage-{{ matrix.runs-on }}
           path: coverage/
@@ -192,7 +192,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -217,7 +217,7 @@ jobs:
         run: pnpm build
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         continue-on-error: true
         with:
           name: build-artifacts-{{ matrix.runs-on }}
@@ -232,7 +232,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           registry-url: "https://registry.npmjs.org"
@@ -255,7 +255,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         continue-on-error: true
         with:
           name: build-artifacts-{{ matrix.runs-on }}

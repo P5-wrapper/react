@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -58,7 +58,7 @@ jobs:
         continue-on-error: true
 
       - name: Commit formatting changes
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🧹 style: apply formatting to dependabot PR"
           branch: ${{ github.head_ref }}
