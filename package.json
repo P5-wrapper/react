@@ -73,7 +73,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/P5-wrapper/react.git"
+    "url": "git+https://github.com/P5-wrapper/react.git"
   },
   "bugs": {
     "url": "https://github.com/P5-wrapper/react/issues"
