@@ -100,8 +100,6 @@ jobs:
         run: pnpm test
 
       - name: Publish to NPM
-        run:
-          pnpm publish --tag "next" --access "public" --provenance
-          --ignore-scripts
+        run: pnpm publish --access "public" --provenance --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
