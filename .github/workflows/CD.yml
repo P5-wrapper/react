@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 25
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
@@ -58,6 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: gh-pages
     permissions:
+      id-token: write
       contents: read
       packages: write
     steps:
@@ -67,7 +68,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 25
           registry-url: "https://registry.npmjs.org"
 
       - name: Setup PNPM
@@ -99,8 +100,8 @@ jobs:
         run: pnpm test
 
       - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          access: "public"
-          tag: "next"
-          token: ${{ secrets.NPM_TOKEN }}
+        run:
+          pnpm publish --tag "next" --access "public" --provenance
+          --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
