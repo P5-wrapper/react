@@ -1,6 +1,6 @@
 import { SketchProps } from "@/main";
 import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
-import p5 from "@contracts/p5";
+import { p5 } from "@contracts/p5";
 import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { createP5CanvasInstance } from "@utils/createP5CanvasInstance";
 import { updateP5CanvasInstance } from "@utils/updateP5CanvasInstance";

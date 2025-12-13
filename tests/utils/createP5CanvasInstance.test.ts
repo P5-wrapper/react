@@ -1,4 +1,4 @@
-import p5 from "@contracts/p5";
+import { p5 } from "@contracts/p5";
 import { createP5CanvasInstance } from "@utils/createP5CanvasInstance";
 import { describe, expect, it, vi } from "vitest";
 

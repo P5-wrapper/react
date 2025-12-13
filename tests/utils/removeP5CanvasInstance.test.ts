@@ -1,5 +1,5 @@
 import { SketchProps } from "@/main";
-import p5 from "@contracts/p5";
+import { p5 } from "@contracts/p5";
 import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
 import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
 import { createRef } from "react";
@@ -12,6 +12,9 @@ describe("removeP5CanvasInstance", () => {
     });
     const removeSpy = vi.spyOn(instance, "remove");
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
+
+    // @see https://github.com/processing/p5.js/pull/7863
+    // @ts-expect-error The p5 library changes from the above PR caused some issues with the inferred types.
     p5CanvasInstanceRef.current = instance;
 
     removeP5CanvasInstance(p5CanvasInstanceRef);
@@ -24,6 +27,9 @@ describe("removeP5CanvasInstance", () => {
       return;
     });
     const p5CanvasInstanceRef: P5CanvasInstanceRef<SketchProps> = createRef();
+
+    // @see https://github.com/processing/p5.js/pull/7863
+    // @ts-expect-error The p5 library changes from the above PR caused some issues with the inferred types.
     p5CanvasInstanceRef.current = instance;
 
     expect(p5CanvasInstanceRef.current).not.toBeNull();
