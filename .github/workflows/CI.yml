@@ -58,7 +58,7 @@ jobs:
           run_install: false
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ needs.setup.outputs.store-path }}
           key: ${{ needs.setup.outputs.cache-key }}
@@ -103,7 +103,7 @@ jobs:
           run_install: false
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ needs.setup.outputs.store-path }}
           key: ${{ needs.setup.outputs.cache-key }}
@@ -146,7 +146,7 @@ jobs:
           run_install: false
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ needs.setup.outputs.store-path }}
           key: ${{ needs.setup.outputs.cache-key }}
@@ -160,7 +160,7 @@ jobs:
         run: pnpm test:coverage
 
       - name: Download previous coverage artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         continue-on-error: true
         with:
           name: test-coverage-{{ matrix.runs-on }}
@@ -178,7 +178,7 @@ jobs:
 
       - name: Upload test coverage
         if: success()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-coverage-{{ matrix.runs-on }}
           path: coverage/
@@ -203,7 +203,7 @@ jobs:
           run_install: false
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ needs.setup.outputs.store-path }}
           key: ${{ needs.setup.outputs.cache-key }}
@@ -217,7 +217,7 @@ jobs:
         run: pnpm build
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         continue-on-error: true
         with:
           name: build-artifacts-{{ matrix.runs-on }}
@@ -244,7 +244,7 @@ jobs:
           run_install: false
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ needs.setup.outputs.store-path }}
           key: ${{ needs.setup.outputs.cache-key }}
@@ -255,7 +255,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         continue-on-error: true
         with:
           name: build-artifacts-{{ matrix.runs-on }}
