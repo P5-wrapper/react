@@ -10,4 +10,12 @@ overrides:
   diff@>=6.0.0 <8.0.3: ">=8.0.3"
   lodash@>=4.0.0 <=4.17.22: ">=4.17.23"
 
+peerDependencyRules:
+  allowedVersions:
+    "@babel/eslint-parser>eslint": "10"
+    "@babel/eslint-plugin>eslint": "10"
+    "eslint-plugin-react>eslint": "10"
+    "eslint-plugin-react-hooks>eslint": "10"
+    "@vitejs/plugin-react>babel-plugin-react-compiler": ">=19.0.0"
+
 strictPeerDependencies: true
