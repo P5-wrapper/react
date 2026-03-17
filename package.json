@@ -3,6 +3,10 @@
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
   "version": "5.0.2",
   "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=24.14.0"
+  },
   "homepage": "https://github.com/P5-wrapper/react",
   "license": "MIT",
   "files": [
