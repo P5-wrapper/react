@@ -8,14 +8,15 @@ concurrency:
   group: dependabot-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 jobs:
   dependabot-auto-format:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -23,49 +24,38 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 25
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run format
-        run: pnpm format
-
-      - name: Run lint fix
-        run: pnpm lint:fix
+      - name: Check formatting
+        id: format-check
+        run: pnpm format:check
         continue-on-error: true
 
-      - name: Commit formatting changes
+      - name: Fix formatting
+        if: steps.format-check.outcome == 'failure'
+        run: pnpm format
+
+      - name: Check linting
+        id: lint-check
+        run: pnpm lint
+        continue-on-error: true
+
+      - name: Fix linting
+        if: steps.lint-check.outcome == 'failure'
+        run: pnpm lint:fix
+
+      - name: Commit fixes
+        if:
+          steps.format-check.outcome == 'failure' || steps.lint-check.outcome ==
+          'failure'
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🧹 style: apply formatting to dependabot PR"
           branch: ${{ github.head_ref }}
 
       - name: Enable auto-merge for Dependabot PRs
-        run: |
-          PR_URL="${{ github.event.pull_request.html_url }}"
-          gh pr merge --auto --merge "$PR_URL"
+        run:
+          gh pr merge --auto --merge "${{ github.event.pull_request.html_url }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

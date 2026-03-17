@@ -9,167 +9,74 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      cache-key: ${{ steps.cache-key.outputs.key }}
-      store-path: ${{ steps.pnpm-cache.outputs.store-path }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "store-path=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-
-      - name: Generate cache key
-        id: cache-key
-        run:
-          echo "key=${{ runner.os }}-pnpm-store-${{
-          hashFiles('**/pnpm-lock.yaml') }}" >> $GITHUB_OUTPUT
-
   format:
-    needs: setup
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 25
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ needs.setup.outputs.store-path }}
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Check formatting
         run: pnpm format:check
 
-      - name: Formatting issues detected (attempting fix...)
-        if: ${{ failure() }}
-        run: pnpm format
-
-      - name: Commit fixed formatting issues
-        if: ${{ failure() }}
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "🧹 style: apply automatic formatting fixes"
-          branch: ${{ github.head_ref }}
-
   lint:
-    needs: setup
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 25
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ needs.setup.outputs.store-path }}
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Lint
         run: pnpm lint
 
-      - name: Linting issues detected (attempting fix...)
-        if: ${{ failure() }}
-        run: pnpm lint:fix
-
-      - name: Commit fixed linting issues
-        if: ${{ failure() }}
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "🐛 fix: apply automatic linting fixes"
-          branch: ${{ github.head_ref }}
-
   test:
-    needs: [setup, lint, format]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 25
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ needs.setup.outputs.store-path }}
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Run tests
         run: pnpm test:coverage
 
+      - name: Find previous successful run
+        id: previous-run
+        run: |
+          RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/CI.yml/runs?status=success&per_page=1" \
+            --jq '.workflow_runs[0].id // empty')
+          echo "run-id=$RUN_ID" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
       - name: Download previous coverage artifact
+        if: steps.previous-run.outputs.run-id != ''
         uses: actions/download-artifact@v8
         continue-on-error: true
         with:
-          name: test-coverage-{{ matrix.runs-on }}
+          name: test-coverage
           path: previous-coverage/
+          run-id: ${{ steps.previous-run.outputs.run-id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
 
       - name: Comment the new code coverage
-        uses: lucassabreu/comment-coverage-clover@main
+        uses: lucassabreu/comment-coverage-clover@v0.16.0
         continue-on-error: true
         with:
           file: ./coverage/clover.xml
@@ -177,88 +84,51 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload test coverage
-        if: success()
         uses: actions/upload-artifact@v7
         with:
-          name: test-coverage-{{ matrix.runs-on }}
+          name: test-coverage
           path: coverage/
           retention-days: 7
 
   build:
-    needs: [setup, test]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 25
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ needs.setup.outputs.store-path }}
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Build
         run: pnpm build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
-        continue-on-error: true
         with:
-          name: build-artifacts-{{ matrix.runs-on }}
+          name: build-artifacts
           path: dist/
           retention-days: 7
 
   npm-dry-run:
-    needs: [setup, build]
+    needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Setup environment
+        uses: ./.github/actions/setup
         with:
-          node-version: 25
           registry-url: "https://registry.npmjs.org"
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
-        with:
-          path: ${{ needs.setup.outputs.store-path }}
-          key: ${{ needs.setup.outputs.cache-key }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Download build artifacts
         uses: actions/download-artifact@v8
-        continue-on-error: true
         with:
-          name: build-artifacts-{{ matrix.runs-on }}
+          name: build-artifacts
           path: dist/
 
       - name: NPM publish dry run
