@@ -13,11 +13,7 @@ export function library(root: string): UserConfig {
         tsconfigPath: resolve(root, "tsconfig.json"),
         outDir: dist
       }),
-      react({
-        babel: {
-          plugins: [["babel-plugin-react-compiler", {}]]
-        }
-      })
+      react()
     ],
     esbuild: {
       legalComments: "external"
