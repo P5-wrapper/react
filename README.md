@@ -41,25 +41,11 @@ they are installed in your project before installing this package.
 
 ```js
 "peerDependencies": {
-  "p5": ">= 1.4.1",
-  "react": ">= 18.2.0",
-  "react-dom": ">= 18.2.0"
-},
-```
-
-<details><summary>Version 5</summary>
-<p>
-
-```js
-"peerDependencies": {
   "p5": ">= 2.0.0",
   "react": ">= 19.0.0",
   "react-dom": ">= 19.0.0"
 },
 ```
-
-</p>
-</details>
 
 ### TypeScript
 
