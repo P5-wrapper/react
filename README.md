@@ -22,6 +22,9 @@ Breaking changes in v5:
    - `react` >= 19.0.0
    - `react-dom` >= 19.0.0
 
+If you are still using version 4, you can find the documentation
+[here](https://github.com/P5-wrapper/react/tree/v4.4.1#readme).
+
 </p>
 </details>
 
@@ -648,7 +651,6 @@ export function App() {
 
 In the initial period between the sketch render starting and it's lazy loading
 ending, the `LoadingUI` will be shown!
-
 
 ## P5 plugins and constructors
 
