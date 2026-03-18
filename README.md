@@ -561,7 +561,7 @@ custom UIs for error and loading states.
 
 #### Error UIs
 
-To show a custom UI when an error occurs within the sketch or the wrapper, you
+To show a custom UI when an error occurs within the sketch or the component, you
 can pass a function to the `error` prop.
 
 ```tsx
@@ -613,9 +613,6 @@ the `error instanceof Error` check to be sure the value we got was actually an
 `Error` instance and not some other value like a `number`, `string`, `object` or
 anything else that could be thrown by JS / TS.
 
-As mentioned above, the `error` state will trigger if the sketch or the wrapper
-encounter an issue, otherwise a default error view will be shown.
-
 #### Loading UIs
 
 To show a custom UI while the sketch UI is being lazy loaded, you can pass a
@@ -652,8 +649,6 @@ export function App() {
 In the initial period between the sketch render starting and it's lazy loading
 ending, the `LoadingUI` will be shown!
 
-As mentioned above, the `loading` state will trigger while the wrapper is being
-lazy loaded, otherwise a default loading view will be shown.
 
 ## P5 plugins and constructors
 
