@@ -5,25 +5,8 @@
 A component to integrate [P5.js](https://p5js.org/) sketches into
 [React](https://reactjs.org/) apps.
 
-> Note: Version 5 is still in development, currently the `5.0.0-rc.x` range has
-> been released for internal development or experimental testing ONLY. It is
-> recommended to continue utilising version `4.4.1` until version `5.0.0` is out
-> of the `rc` versioning scheme.
->
-> One other thing to note about the coming release of the version `5.x.x` range
-> is that it will support the `p5` version `2.x.x` range which means
-> [support for `async` and `await`](https://beta.p5js.org/reference/p5/async_await/)
-> in your sketches and much more besides, you can read more on the upcoming
-> version of the [P5 docs](https://beta.p5js.org/).
-
-## ⚠️ Migration Notes
-
-The main component for rendering p5 sketches in React depends on your version:
-
-- Version 4 and earlier: use `ReactP5Wrapper`.
-- Version 5 and later: use `P5Canvas`.
-
-Both components work in the same way.
+<details><summary>Migrating from version 4?</summary>
+<p>
 
 Breaking changes in v5:
 
@@ -33,6 +16,14 @@ Breaking changes in v5:
 2. Types
    - `P5WrapperProps` → `P5CanvasProps`
    - `P5WrapperClassName` → `CanvasContainerClassName`
+
+3. Peer dependencies
+   - `p5` >= 2.0.0
+   - `react` >= 19.0.0
+   - `react-dom` >= 19.0.0
+
+</p>
+</details>
 
 ## Installation
 
