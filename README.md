@@ -3,27 +3,10 @@
 # @P5-wrapper/react
 
 A component to integrate [P5.js](https://p5js.org/) sketches into
-[React](https://reactjs.org/) apps.
+[React](https://react.dev/) apps.
 
-> Note: Version 5 is still in development, currently the `5.0.0-rc.x` range has
-> been released for internal development or experimental testing ONLY. It is
-> recommended to continue utilising version `4.4.1` until version `5.0.0` is out
-> of the `rc` versioning scheme.
->
-> One other thing to note about the coming release of the version `5.x.x` range
-> is that it will support the `p5` version `2.x.x` range which means
-> [support for `async` and `await`](https://beta.p5js.org/reference/p5/async_await/)
-> in your sketches and much more besides, you can read more on the upcoming
-> version of the [P5 docs](https://beta.p5js.org/).
-
-## ⚠️ Migration Notes
-
-The main component for rendering p5 sketches in React depends on your version:
-
-- Version 4 and earlier: use `ReactP5Wrapper`.
-- Version 5 and later: use `P5Canvas`.
-
-Both components work in the same way.
+<details><summary>Migrating from version 4?</summary>
+<p>
 
 Breaking changes in v5:
 
@@ -33,6 +16,17 @@ Breaking changes in v5:
 2. Types
    - `P5WrapperProps` → `P5CanvasProps`
    - `P5WrapperClassName` → `CanvasContainerClassName`
+
+3. Peer dependencies
+   - `p5` >= 2.0.0
+   - `react` >= 19.0.0
+   - `react-dom` >= 19.0.0
+
+If you are still using version 4, you can find the documentation
+[here](https://github.com/P5-wrapper/react/tree/v4.4.1#readme).
+
+</p>
+</details>
 
 ## Installation
 
@@ -50,25 +44,11 @@ they are installed in your project before installing this package.
 
 ```js
 "peerDependencies": {
-  "p5": ">= 1.4.1",
-  "react": ">= 18.2.0",
-  "react-dom": ">= 18.2.0"
-},
-```
-
-<details><summary>Version 5</summary>
-<p>
-
-```js
-"peerDependencies": {
   "p5": ">= 2.0.0",
   "react": ">= 19.0.0",
   "react-dom": ">= 19.0.0"
 },
 ```
-
-</p>
-</details>
 
 ### TypeScript
 
@@ -124,33 +104,6 @@ Then just open `http://localhost:3001` in a browser.
 
 ```jsx
 import * as React from "react";
-import { ReactP5Wrapper } from "@p5-wrapper/react";
-
-function sketch(p5) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  return <ReactP5Wrapper sketch={sketch} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
-
-```jsx
-import * as React from "react";
 import { P5Canvas } from "@p5-wrapper/react";
 
 function sketch(p5) {
@@ -173,9 +126,6 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 ### TypeScript
 
 TypeScript sketches can be declared in two different ways, below you will find
@@ -186,33 +136,6 @@ In short though, the component requires you to pass a `sketch` prop. The
 only argument.
 
 #### Option 1: Declaring a sketch using the `P5CanvasInstance` type
-
-```tsx
-import * as React from "react";
-import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
-
-function sketch(p5: P5CanvasInstance) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  return <ReactP5Wrapper sketch={sketch} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```tsx
 import * as React from "react";
@@ -238,9 +161,6 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 #### Option 2: Declaring a sketch using the `Sketch` type
 
 Using the `Sketch` type has one nice benefit over using `P5CanvasInstance` and
@@ -252,33 +172,6 @@ that is that the `p5` argument passed to the sketch function is auto-typed as a
 > In general, it comes down to personal preference as to how you declare your
 > sketches and there is nothing wrong with using the `P5CanvasInstance` manually
 > in a regular `function` declaration.
-
-```tsx
-import * as React from "react";
-import { ReactP5Wrapper, Sketch } from "@p5-wrapper/react";
-
-const sketch: Sketch = p5 => {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-};
-
-export function App() {
-  return <ReactP5Wrapper sketch={sketch} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```tsx
 import * as React from "react";
@@ -303,9 +196,6 @@ export function App() {
   return <P5Canvas sketch={sketch} />;
 }
 ```
-
-</p>
-</details>
 
 #### TypeScript Generics
 
@@ -334,61 +224,6 @@ part of the `props` passed to the `updateWithProps` function, it will be
 correctly typed as a `number`.
 
 ##### Usage with the `P5CanvasInstance` type
-
-```tsx
-import {
-  P5CanvasInstance,
-  ReactP5Wrapper,
-  SketchProps
-} from "@p5-wrapper/react";
-import React, { useEffect, useState } from "react";
-
-type MySketchProps = SketchProps & {
-  rotation: number;
-};
-
-function sketch(p5: P5CanvasInstance<MySketchProps>) {
-  let rotation = 0;
-
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.updateWithProps = props => {
-    if (props.rotation) {
-      rotation = (props.rotation * Math.PI) / 180;
-    }
-  };
-
-  p5.draw = () => {
-    p5.background(100);
-    p5.normalMaterial();
-    p5.noStroke();
-    p5.push();
-    p5.rotateY(rotation);
-    p5.box(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```tsx
 import { P5Canvas, P5CanvasInstance, SketchProps } from "@p5-wrapper/react";
@@ -438,61 +273,7 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 ##### Usage with the `Sketch` type
-
-```tsx
-import { ReactP5Wrapper, Sketch, SketchProps } from "@p5-wrapper/react";
-import React, { useEffect, useState } from "react";
-
-type MySketchProps = SketchProps & {
-  rotation: number;
-};
-
-const sketch: Sketch<MySketchProps> = p5 => {
-  let rotation = 0;
-
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.updateWithProps = props => {
-    if (props.rotation) {
-      rotation = (props.rotation * Math.PI) / 180;
-    }
-  };
-
-  p5.draw = () => {
-    p5.background(100);
-    p5.normalMaterial();
-    p5.noStroke();
-    p5.push();
-    p5.rotateY(rotation);
-    p5.box(100);
-    p5.pop();
-  };
-};
-
-export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```tsx
 import { P5Canvas, Sketch, SketchProps } from "@p5-wrapper/react";
@@ -542,46 +323,7 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 ### Using abstracted setup and draw functions
-
-```jsx
-import * as React from "react";
-import { ReactP5Wrapper } from "@p5-wrapper/react";
-
-function setup(p5) {
-  return () => {
-    p5.createCanvas(600, 400, p5.WEBGL);
-  };
-}
-
-function draw(p5) {
-  return () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-function sketch(p5) {
-  p5.setup = setup(p5);
-  p5.draw = draw(p5);
-}
-
-export function App() {
-  return <ReactP5Wrapper sketch={sketch} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```jsx
 import * as React from "react";
@@ -616,9 +358,6 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 ### Props
 
 The only required property is the sketch prop. The sketch prop is a function
@@ -632,56 +371,9 @@ updateWithProps method if you have defined it within your sketch.
 
 In the below example you see the `updateWithProps` method being used. This is
 called when the component initially renders and when the props passed to the
-wrapper are changed, if it is set within your sketch. This way we can render our
-component (`ReactP5Wrapper` in v4, or `P5Canvas` in v5) and react to component
-prop changes directly within our sketches!
-
-```jsx
-import { ReactP5Wrapper } from "@p5-wrapper/react";
-import React, { useEffect, useState } from "react";
-
-function sketch(p5) {
-  let rotation = 0;
-
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.updateWithProps = props => {
-    if (props.rotation) {
-      rotation = (props.rotation * Math.PI) / 180;
-    }
-  };
-
-  p5.draw = () => {
-    p5.background(100);
-    p5.normalMaterial();
-    p5.noStroke();
-    p5.push();
-    p5.rotateY(rotation);
-    p5.box(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <ReactP5Wrapper sketch={sketch} rotation={rotation} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
+`P5Canvas` component are changed, if it is set within your sketch. This way we
+can render our component and react to component prop changes directly within our
+sketches!
 
 ```jsx
 import { P5Canvas } from "@p5-wrapper/react";
@@ -727,70 +419,15 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-
 ### Children
 
 To render a component on top of the sketch, you can add it as a child of the
-component (`ReactP5Wrapper` in v4, or `P5Canvas` in v5) and then use the
-exported constant (`P5WrapperClassName` in v4, or `CanvasContainerClassName` in
-v5) in your css-in-js library of choice to style one element above the other via
-css.
+`P5Canvas` component and then use the exported constant
+`CanvasContainerClassName` in your css-in-js library of choice to style one
+element above the other via css.
 
 For instance, using [styled components](https://styled-components.com), we could
 center some text on top of our sketch like so:
-
-```jsx
-import { P5WrapperClassName, ReactP5Wrapper } from "@p5-wrapper/react";
-import styled, { createGlobalStyle } from "styled-components";
-
-const GlobalWrapperStyles = createGlobalStyle`
-  .${P5WrapperClassName} {
-    position: relative;
-  }
-`;
-
-const StyledCentredText = styled.span`
-  .${P5WrapperClassName} & {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 2rem;
-    margin: 0;
-    text-align: center;
-  }
-`;
-
-export function App() {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return (
-    <Fragment>
-      <GlobalWrapperStyles />
-      <ReactP5Wrapper sketch={sketch} rotation={rotation}>
-        <StyledCentredText>Hello world!</StyledCentredText>
-      </ReactP5Wrapper>
-    </Fragment>
-  );
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```jsx
 import { CanvasContainerClassName, P5Canvas } from "@p5-wrapper/react";
@@ -840,10 +477,6 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-<br />
-
 Of course, you can also use any other css-in-js library or by just using simple
 css to achieve almost anything you can imagine just by using the wrapper class
 as your root selector.
@@ -854,71 +487,6 @@ Lets say you want to have a fallback UI in case the `sketch` ever falls out of
 sync or is undefined for some reason. If this is a use case for you then you
 call use the `fallback` prop to provide the necessary UI to show in the case
 that the `sketch` becomes undefined. An example could be as follows:
-
-```jsx
-import * as React from "react";
-import { ReactP5Wrapper } from "@p5-wrapper/react";
-
-function sketchOne(p5) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-function sketchTwo(p5) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(500);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  const [sketch, setSketch] = React.useState(undefined);
-  const chooseNothing = () => setSketch(undefined);
-  const chooseSketchOne = () => setSketch(sketchOne);
-  const chooseSketchTwo = () => setSketch(sketchTwo);
-
-  return (
-    <>
-      <ul>
-        <li>
-          <button onClick={chooseNothing}>Choose nothing</button>
-        </li>
-        <li>
-          <button onClick={chooseSketchOne}>Choose sketch 1</button>
-        </li>
-        <li>
-          <button onClick={chooseSketchTwo}>Choose sketch 2</button>
-        </li>
-      </ul>
-      <ReactP5Wrapper
-        fallback={<h1>No sketch selected yet.</h1>}
-        sketch={sketch}
-      />
-    </>
-  );
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```jsx
 import * as React from "react";
@@ -979,10 +547,6 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-<br />
-
 In this case, by default the fallback UI containing
 `<h1>No sketch selected yet.</h1>` will be rendered, then if you select a
 sketch, it will be rendered until you choose to once again "show nothing" which
@@ -990,11 +554,8 @@ falls back to the fallback UI.
 
 ### Error and Loading UIs
 
-Since version 4.4.0, it was possible to add a `fallback` prop, see the section
-on fallbacks.
-
-Since version 5 it is now possible to pass an `error` and `loading` prop to the
-wrapper which allow the user to pass different UIs for error and loading states.
+You can pass `error` and `loading` props to the `P5Canvas` component to provide
+custom UIs for error and loading states.
 
 - The `error` state will trigger if the sketch or the wrapper encounter an
   issue, otherwise a default error view will be shown.
@@ -1003,53 +564,8 @@ wrapper which allow the user to pass different UIs for error and loading states.
 
 #### Error UIs
 
-To show a custom UI when an error occurs within the sketch or the wrapper, you
-can pass a lazy function to the `error` prop.
-
-```tsx
-import * as React from "react";
-import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
-
-// This child will throw an error, oh no!
-function ErrorChild() {
-  throw new Error("oops");
-}
-
-// This view will catch the thrown error and give you access to what exactly was thrown.
-function ErrorUI(error: any) {
-  if (error instanceof Error) {
-    return <p>An error occured: {error.message}</p>;
-  }
-
-  return <p>An unknown error occured: {error.toString()}</p>;
-}
-
-function sketch(p5: P5CanvasInstance) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  return (
-    <ReactP5Wrapper sketch={sketch} error={ErrorUI}>
-      <ErrorChild />
-    </ReactP5Wrapper>
-  );
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
+To show a custom UI when an error occurs within the sketch or the component, you
+can pass a function to the `error` prop.
 
 ```tsx
 import * as React from "react";
@@ -1093,10 +609,6 @@ export function App() {
 }
 ```
 
-</details>
-</p>
-<br />
-
 Instead of the sketch, this will render `<p>An error occured: oops</p>`. Note
 that in truth, the `ErrorView` will **always** receive `any` values since JS /
 TS allow you to `throw` whatever values you want to, this is why we have to add
@@ -1104,44 +616,10 @@ the `error instanceof Error` check to be sure the value we got was actually an
 `Error` instance and not some other value like a `number`, `string`, `object` or
 anything else that could be thrown by JS / TS.
 
-As mentioned above, the `error` state will trigger if the sketch or the wrapper
-encounter an issue, otherwise a default error view will be shown.
-
 #### Loading UIs
 
 To show a custom UI while the sketch UI is being lazy loaded, you can pass a
-lazy function to the `loading` prop.
-
-```tsx
-import * as React from "react";
-import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
-
-function LoadingUI() {
-  return <p>The sketch is being loaded.</p>;
-}
-
-function sketch(p5: P5CanvasInstance) {
-  p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-}
-
-export function App() {
-  return <ReactP5Wrapper sketch={sketch} loading={LoadingUI} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
+function to the `loading` prop.
 
 ```tsx
 import * as React from "react";
@@ -1171,15 +649,8 @@ export function App() {
 }
 ```
 
-</p>
-</details>
-<br />
-
 In the initial period between the sketch render starting and it's lazy loading
 ending, the `LoadingUI` will be shown!
-
-As mentioned above, the `loading` state will trigger while the wrapper is being
-lazy loaded, otherwise a default loading view will be shown.
 
 ## P5 plugins and constructors
 
@@ -1201,70 +672,6 @@ usually might in global mode.
 Let's say we want to use the
 [P5 sound plugin](https://p5js.org/reference/#/libraries/p5.sound) in our
 component, we could do the following:
-
-```tsx
-import * as p5 from "p5";
-import { ReactP5Wrapper, Sketch } from "@p5-wrapper/react";
-import React, { useEffect, useState } from "react";
-
-(window as any).p5 = p5;
-
-await import("p5/lib/addons/p5.sound");
-
-const sketch: Sketch = p5 => {
-  let song: p5.SoundFile;
-  let button: p5.Element;
-
-  p5.setup = () => {
-    p5.createCanvas(600, 400, p5.WEBGL);
-    p5.background(255, 0, 0);
-    button = p5.createButton("Toggle audio");
-
-    button.mousePressed(() => {
-      if (!song) {
-        const songPath = "/piano.mp3";
-        song = p5.loadSound(
-          songPath,
-          () => {
-            song.play();
-          },
-          () => {
-            console.error(
-              `Could not load the requested sound file ${songPath}`
-            );
-          }
-        );
-        return;
-      }
-
-      if (!song.isPlaying()) {
-        song.play();
-        return;
-      }
-
-      song.pause();
-    });
-  };
-
-  p5.draw = () => {
-    p5.background(250);
-    p5.normalMaterial();
-    p5.push();
-    p5.rotateZ(p5.frameCount * 0.01);
-    p5.rotateX(p5.frameCount * 0.01);
-    p5.rotateY(p5.frameCount * 0.01);
-    p5.plane(100);
-    p5.pop();
-  };
-};
-
-export default function App() {
-  return <ReactP5Wrapper sketch={sketch} />;
-}
-```
-
-<details><summary>Version 5</summary>
-<p>
 
 ```tsx
 import * as p5 from "p5";
@@ -1326,10 +733,6 @@ export default function App() {
   return <P5Canvas sketch={sketch} />;
 }
 ```
-
-</p>
-</details>
-<br />
 
 In this Typescript + React example, we can see a few key things.
 
