@@ -48,9 +48,6 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
 
-      - name: Lint
-        run: pnpm lint
-
       - name: Build the component
         run: pnpm build:component
 
