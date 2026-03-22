@@ -1,0 +1,27 @@
+name: Setup
+description: Install pnpm and Node.js, and install dependencies with caching
+
+inputs:
+  registry-url:
+    description: npm registry URL for authentication
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Setup PNPM
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: package.json
+        cache: pnpm
+        registry-url: ${{ inputs.registry-url }}
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

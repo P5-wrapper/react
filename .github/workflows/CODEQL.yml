@@ -7,31 +7,26 @@ on:
     branches: [master]
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 30
     permissions:
       actions: read
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript", "typescript"]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
-          languages: ${{ matrix.language }}
+          languages: javascript-typescript
           queries: security-extended,security-and-quality
 
       - name: CodeQL Autobuild
@@ -39,3 +34,5 @@ jobs:
 
       - name: CodeQL Analysis
         uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:javascript-typescript
