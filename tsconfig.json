@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"],
-      "@constants/*": ["src/constants/*"],
-      "@contracts/*": ["src/contracts/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@contracts/*": ["./src/contracts/*"]
     },
     "types": ["vite/client"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -18,7 +17,6 @@
     "noImplicitAny": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   }
