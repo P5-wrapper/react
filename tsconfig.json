@@ -17,7 +17,6 @@
     "noImplicitAny": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   }
