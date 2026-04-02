@@ -43,7 +43,7 @@ jobs:
           # trigger_phrase: "/claude"
 
           # Trigger when "claude" is assigned to an issue or PR
-          assignee_trigger: "claude"
+          assignee_trigger: "claude[bot]"
 
           # Optional: Configure Claude's behavior with CLI arguments
           # claude_args: |
