@@ -7,7 +7,7 @@ on:
     types: [created]
   issues:
     types: [opened, assigned]
-  pull_request:
+  pull_request_target:
     types: [assigned]
   pull_request_review:
     types: [submitted]
@@ -19,7 +19,7 @@ jobs:
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))) ||
-      (github.event_name == 'pull_request')
+      (github.event_name == 'pull_request_target')
     runs-on: ubuntu-latest
     permissions:
       contents: write
