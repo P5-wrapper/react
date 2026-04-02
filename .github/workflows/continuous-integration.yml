@@ -77,7 +77,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment the new code coverage
-        uses: lucassabreu/comment-coverage-clover@v0.16.0
+        uses: lucassabreu/comment-coverage-clover@v0.17.0
         continue-on-error: true
         with:
           file: ./coverage/clover.xml
