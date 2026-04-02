@@ -18,9 +18,7 @@ updates:
         patterns:
           - "*"
     ignore:
-      - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react-dom"
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "🧹 chore"
@@ -38,6 +36,9 @@ updates:
       github-actions:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "🔧 ci"
       include: "scope"
