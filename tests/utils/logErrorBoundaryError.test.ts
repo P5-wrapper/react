@@ -39,7 +39,7 @@ describe("logErrorBoundaryError", () => {
     );
   });
 
-  it("Logs the error correctly when provided a `String` instance", () => {
+  it("Logs the error correctly when provided a string", () => {
     logErrorBoundaryError("A string message");
 
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
@@ -53,7 +53,7 @@ describe("logErrorBoundaryError", () => {
     );
   });
 
-  it("Logs the error correctly when provided a `Number` instance", () => {
+  it("Logs the error correctly when provided a number", () => {
     logErrorBoundaryError(123);
 
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
@@ -67,7 +67,7 @@ describe("logErrorBoundaryError", () => {
     );
   });
 
-  it("Logs the error correctly when provided a `BigInt` instance", () => {
+  it("Logs the error correctly when provided a bigint", () => {
     logErrorBoundaryError(BigInt(123));
 
     expect(errorLoggerSpy).toHaveBeenCalledOnce();
@@ -123,7 +123,7 @@ describe("logErrorBoundaryError", () => {
     );
   });
 
-  it("Logs the error correctly when provided a `Symbol` instance", () => {
+  it("Logs the error correctly when provided a symbol", () => {
     logErrorBoundaryError(Symbol("test"));
 
     expect(errorLoggerSpy).toHaveBeenCalledOnce();

@@ -15,9 +15,6 @@ export function library(root: string): UserConfig {
       }),
       react()
     ],
-    esbuild: {
-      legalComments: "external"
-    },
     build: {
       emptyOutDir: true,
       lib: {

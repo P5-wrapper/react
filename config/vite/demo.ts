@@ -9,10 +9,16 @@ export function demo(root: string): UserConfig {
     plugins: [react()],
     preview: { open: true },
     build: {
+      chunkSizeWarningLimit: 1200,
       emptyOutDir: false,
       rollupOptions: {
         output: {
-          dir: resolve(root, "dist", "demo")
+          dir: resolve(root, "dist", "demo"),
+          manualChunks: moduleId => {
+            if (moduleId.includes("node_modules/p5")) {
+              return "p5";
+            }
+          }
         }
       }
     }
