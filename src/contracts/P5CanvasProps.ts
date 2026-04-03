@@ -1,6 +1,5 @@
-import { type InputProps } from "@contracts/InputProps";
+import { type P5CanvasInternalProps } from "@contracts/P5CanvasInternalProps";
 import { type SketchProps } from "@contracts/SketchProps";
-import { type WithChildren } from "@contracts/WithChildren";
 
 export type P5CanvasProps<Props extends SketchProps = SketchProps> =
-  WithChildren<InputProps<Props>>;
+  P5CanvasInternalProps<Props> & Props;

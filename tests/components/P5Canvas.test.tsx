@@ -2,6 +2,7 @@ import { P5Canvas } from "@components/P5Canvas";
 import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
 import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
 import { type Sketch } from "@contracts/Sketch";
+import { type Updater } from "@contracts/Updater";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
@@ -333,6 +334,80 @@ describe("P5Canvas", () => {
       expect(sketch).toHaveBeenCalledOnce();
       expect(updateFunction).toHaveBeenCalledTimes(2);
       expect(updateFunction).toHaveBeenCalledWith({ y: 100 });
+    });
+  });
+
+  describe("Updater", () => {
+    it("Calls the `updater` with the p5 instance and sketch props when the component is mounted", async () => {
+      const updater = vi.fn<Updater>();
+      const sketch = createSketch();
+
+      const { findByTestId } = render(
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
+      );
+
+      await waitForCanvas(findByTestId);
+
+      expect(updater).toHaveBeenCalledOnce();
+
+      const [instance, props] = updater.mock.calls[0];
+
+      expect(instance).toHaveProperty("setup");
+      expect(props).toEqual({ x: 100 });
+    });
+
+    it("Calls the `updater` with updated props when a prop value changes", async () => {
+      const updater = vi.fn<Updater>();
+      const sketch = createSketch();
+      const { rerender, findByTestId } = render(
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
+      );
+
+      await waitForCanvas(findByTestId);
+
+      rerender(<P5Canvas sketch={sketch} updater={updater} x={200} />);
+
+      expect(updater).toHaveBeenCalledTimes(2);
+
+      const [instance, props] = updater.mock.calls[1];
+
+      expect(instance).toHaveProperty("setup");
+      expect(props).toEqual({ x: 200 });
+    });
+
+    it("Calls the new `updater` when the updater reference changes", async () => {
+      const firstUpdater = vi.fn<Updater>();
+      const secondUpdater = vi.fn<Updater>();
+      const sketch = createSketch();
+      const { rerender, findByTestId } = render(
+        <P5Canvas sketch={sketch} updater={firstUpdater} x={100} />
+      );
+
+      await waitForCanvas(findByTestId);
+
+      expect(firstUpdater).toHaveBeenCalledOnce();
+
+      rerender(<P5Canvas sketch={sketch} updater={secondUpdater} x={100} />);
+
+      expect(secondUpdater).toHaveBeenCalledOnce();
+
+      const [, props] = secondUpdater.mock.calls[0];
+
+      expect(props).toEqual({ x: 100 });
+    });
+
+    it("Does not pass the `updater` to `updateWithProps`", async () => {
+      const updateFunction = vi.fn();
+      const updater = vi.fn<Updater>();
+      const sketch = createSketch(updateFunction);
+
+      const { findByTestId } = render(
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
+      );
+
+      await waitForCanvas(findByTestId);
+
+      expect(updateFunction).toHaveBeenCalledWith({ x: 100 });
     });
   });
 });

@@ -1,11 +1,15 @@
 import { type Sketch } from "@contracts/Sketch";
 import { type SketchProps } from "@contracts/SketchProps";
+import { type Updater } from "@contracts/Updater";
 import { type ReactNode } from "react";
-import { type FallbackProps } from "react-error-boundary";
 
-export type InputProps<Props extends SketchProps> = Props & {
+export interface P5CanvasInternalProps<
+  Props extends SketchProps = SketchProps
+> {
   sketch?: Sketch<Props>;
+  updater?: Updater<Props>;
   fallback?: () => ReactNode;
   loading?: () => ReactNode;
-  error?: (error: FallbackProps["error"]) => ReactNode;
-};
+  error?: (error: unknown) => ReactNode;
+  children?: ReactNode;
+}

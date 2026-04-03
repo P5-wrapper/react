@@ -4,3 +4,4 @@ export { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
 export { type P5CanvasProps } from "@contracts/P5CanvasProps";
 export { type Sketch } from "@contracts/Sketch";
 export { type SketchProps } from "@contracts/SketchProps";
+export { type Updater } from "@contracts/Updater";

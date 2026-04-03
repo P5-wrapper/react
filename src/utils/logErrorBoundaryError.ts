@@ -22,28 +22,28 @@ function createErrorMessage(error: unknown): string {
     return `${error.name}("${error.message}")`;
   }
 
-  if (typeof error === "symbol" || error instanceof Symbol) {
+  if (typeof error === "symbol") {
     return error.toString();
   }
 
-  if (typeof error === "string" || error instanceof String) {
-    return `String("${error.toString()}")`;
+  if (typeof error === "string") {
+    return `String("${error}")`;
   }
 
-  if (typeof error === "number" || error instanceof Number) {
-    return `Number(${error.toString()})`;
+  if (typeof error === "number") {
+    return `Number(${error})`;
   }
 
-  if (typeof error === "bigint" || error instanceof BigInt) {
-    return `BigInt(${error.toString()})`;
+  if (typeof error === "bigint") {
+    return `BigInt(${error})`;
   }
 
   if (error instanceof Array) {
-    return `Array(${JSON.stringify(error.values().toArray())})`;
+    return `Array(${JSON.stringify([...error])})`;
   }
 
   if (error instanceof Set) {
-    return `Set(${JSON.stringify(error.values().toArray())})`;
+    return `Set(${JSON.stringify([...error])})`;
   }
 
   if (Object.getPrototypeOf(error) === Object.prototype) {
