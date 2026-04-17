@@ -1,7 +1,7 @@
 {
   "name": "@p5-wrapper/react",
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "type": "module",
   "packageManager": "pnpm@10.33.0",
   "engines": {
@@ -15,11 +15,11 @@
   ],
   "types": "./dist/component/main.d.ts",
   "main": "./dist/component/main.cjs.js",
-  "module": "./dist/component/main.es.js",
+  "module": "./dist/component/main.esm.js",
   "exports": {
     ".": {
       "types": "./dist/component/main.d.ts",
-      "import": "./dist/component/main.es.js",
+      "import": "./dist/component/main.esm.js",
       "require": "./dist/component/main.cjs.js"
     }
   },
