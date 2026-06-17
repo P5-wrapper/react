@@ -1,7 +1,7 @@
 {
   "name": "@p5-wrapper/react",
   "description": "A wrapper component that allows you to utilise P5 sketches within React apps.",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "engines": {
