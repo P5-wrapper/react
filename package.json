@@ -92,6 +92,7 @@
     "react-dom": ">= 19.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.0",
     "@babel/eslint-plugin": "^8.0.1",
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "^10.0.1",

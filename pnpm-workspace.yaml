@@ -5,6 +5,11 @@ autoInstallPeers: true
 
 dedupePeerDependents: true
 
+minimumReleaseAgeExclude:
+  - "@babel/eslint-parser@8.0.1"
+  - "@babel/eslint-plugin@8.0.1"
+  - happy-dom@20.10.5
+
 onlyBuiltDependencies:
   - esbuild
 
