@@ -48,5 +48,5 @@ check:
 ## Code of Conduct
 
 Please note that this project adheres to a
-[Code of Conduct](https://github.com/p5-wrapper/react/blob/master/CODE_OF_CONDUCT.md).
+[Code of Conduct](https://github.com/p5-wrapper/react/blob/main/.github/CODE_OF_CONDUCT.md).
 By participating in this project, you agree to abide by its terms.

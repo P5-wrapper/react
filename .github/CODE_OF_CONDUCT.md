@@ -59,8 +59,11 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at [INSERT CONTACT
-METHOD]. All complaints will be reviewed and investigated promptly and fairly.
+reported to the community leaders responsible for enforcement by tagging
+[James Robb](https://github.com/jamesrweb) or
+[Eugene Dyko](https://github.com/yevdyko) directly, or via GitHub's built-in
+report feature for sensitive cases. All complaints will be reviewed and
+investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
