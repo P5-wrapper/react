@@ -39,11 +39,8 @@ your project.
 
 <details><summary>TypeScript setup</summary>
 
-Install the p5 type definitions as a dev dependency:
-
-```shell
-[npm|yarn|pnpm] [install|add] -D @types/p5
-```
+`p5` ships its own type definitions, so no extra `@types` package is needed —
+TypeScript picks the types up from the `p5` package automatically.
 
 </details>
 
@@ -75,10 +72,10 @@ To run the examples locally:
 git clone git@github.com:<your username>/react.git
 cd react
 pnpm install
-pnpm preview
+pnpm dev
 ```
 
-Then open `http://localhost:3001` in a browser.
+Then open `http://localhost:5173` in a browser.
 
 ## Usage
 
@@ -497,10 +494,10 @@ function ErrorChild() {
 
 function ErrorUI(error: unknown) {
   if (error instanceof Error) {
-    return <p>An error occured: {error.message}</p>;
+    return <p>An error occurred: {error.message}</p>;
   }
 
-  return <p>An unknown error occured: {String(error)}</p>;
+  return <p>An unknown error occurred: {String(error)}</p>;
 }
 
 function sketch(p5: P5CanvasInstance) {
@@ -663,11 +660,56 @@ instead of `p5.Vector.random2D()`.
 
 ## Development
 
-The source code for the component is in the `src` directory.
+The source code for the component is in the `src` directory and the demo
+application is in the `demo` directory. You will need
+[Node.js](https://nodejs.org) and [pnpm](https://pnpm.io) — the exact versions
+are pinned in [`package.json`](package.json).
 
 To build, watch and serve the examples (which also watches the component
 source):
 
 ```sh
-pnpm preview
+pnpm dev
 ```
+
+### Contributing
+
+Before opening a pull request, make sure your changes pass every quality gate:
+
+```sh
+pnpm integrate
+```
+
+This runs the same checks as CI — formatting, linting, tests, and builds. Pull
+requests are reviewed against the
+[pull request template](.github/PULL_REQUEST_TEMPLATE.md) and must keep the
+public API in `src/main.tsx` backwards compatible. Commits follow the
+[conventional commit](https://www.conventionalcommits.org) style (`feat:`,
+`fix:`, `chore:`, etc.) — emoji prefixes are only used by automated pull
+requests.
+
+The `typescript` dependency is pinned to `6.0.3` on purpose:
+[typescript-eslint](https://typescript-eslint.io) does not support TypeScript 7
+yet — the Go-based v7 is not feature compatible with the v6 API it builds on,
+and upstream support cannot land before TypeScript 7.1.x. It is tracked in
+[typescript-eslint#10940](https://github.com/typescript-eslint/typescript-eslint/issues/10940).
+Please do not widen the pin in pull requests — we wait for full feature parity
+before migrating to v7, no half measures.
+
+#### AI-assisted contributions
+
+Contributions developed with the assistance of an AI agent are welcome, but you
+— the developer — are always the ultimately responsible individual for your
+contributions. AI agents cannot author or certify them. When AI assistance is
+used:
+
+- Commit with `--signoff` (`git commit -s`) so that you certify the
+  [Developer Certificate of Origin](https://developercertificate.org/) for the
+  work yourself
+- Optionally credit the agent with an `Assisted-by: LLM` trailer in the commit
+  message, as
+  [recommended by the Linux kernel team](https://docs.kernel.org/process/coding-assistants.html)
+- Ensure all work adheres to the [MIT licence](LICENSE)
+
+See [`AGENTS.md`](AGENTS.md) for the full set of rules agents follow in this
+repository.

@@ -9,7 +9,7 @@ export function demo(root: string): UserConfig {
     plugins: [react()],
     preview: { open: true },
     build: {
-      chunkSizeWarningLimit: 1200,
+      chunkSizeWarningLimit: 1250,
       emptyOutDir: false,
       rollupOptions: {
         output: {

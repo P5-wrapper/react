@@ -19,14 +19,13 @@ export function library(root: string): UserConfig {
       lib: {
         entry: resolve(root, "src", "main.tsx"),
         name: "P5Canvas",
-        fileName: "P5Canvas",
+        fileName: format => (format === "es" ? "main.mjs" : "main.cjs"),
         formats: ["es", "cjs"]
       },
       rollupOptions: {
         external: ["react", "react/jsx-runtime", "react-dom", "p5"],
         output: {
           assetFileNames: "assets/[name][extname]",
-          entryFileNames: "[name].[format].js",
           dir: dist,
           globals: {
             p5: "p5",
