@@ -9,9 +9,8 @@ export function library(root: string): UserConfig {
   return {
     plugins: [
       dts({
-        rollupTypes: true,
-        tsconfigPath: resolve(root, "tsconfig.json"),
-        outDir: dist
+        bundleTypes: true,
+        tsconfigPath: resolve(root, "tsconfig.json")
       }),
       react()
     ],
