@@ -58,7 +58,7 @@ jobs:
       - name: Find previous successful run
         id: previous-run
         run: |
-          RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/CI.yml/runs?status=success&per_page=1" \
+          RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/continuous-integration.yml/runs?status=success&per_page=1" \
             --jq '.workflow_runs[0].id // empty')
           echo "run-id=$RUN_ID" >> $GITHUB_OUTPUT
         env:

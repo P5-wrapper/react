@@ -12,7 +12,7 @@ Please fill out this template to help us address your issue as quickly as possib
 - [ ] 📝 Documentation Issue
 - [ ] 🤔 Question
 - [ ] 🧹 Chore
-- [ ] ❓Other
+- [ ] ❓ Other
 
 ## Description
 
