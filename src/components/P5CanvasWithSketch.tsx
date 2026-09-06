@@ -1,12 +1,14 @@
 import * as React from "react";
-import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
-import { type CanvasContainerRef } from "@contracts/CanvasContainerRef";
-import { type P5CanvasInstanceRef } from "@contracts/P5CanvasInstanceRef";
-import { type Sketch } from "@contracts/Sketch";
-import { type SketchProps } from "@contracts/SketchProps";
-import { type Updater } from "@contracts/Updater";
-import { removeP5CanvasInstance } from "@utils/removeP5CanvasInstance";
-import { updateP5CanvasInstance } from "@utils/updateP5CanvasInstance";
+import {
+  CanvasContainerClassName,
+  type CanvasContainerRef,
+  type P5CanvasInstanceRef,
+  removeP5CanvasInstance,
+  type Sketch,
+  type SketchProps,
+  updateP5CanvasInstance,
+  type Updater
+} from "@p5-wrapper/common";
 import { type ReactNode } from "react";
 
 interface P5CanvasWithSketchProps {

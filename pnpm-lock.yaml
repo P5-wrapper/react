@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      microdiff:
-        specifier: ^1.6.0
-        version: 1.6.0
+      '@p5-wrapper/common':
+        specifier: ^0.1.0
+        version: 0.1.0(p5@2.3.2)
       p5:
         specifier: '>= 2.0.0'
         version: 2.3.2
@@ -458,6 +458,12 @@ packages:
 
   '@oxc-project/types@0.147.0':
     resolution: {integrity: sha512-IJ3s6ltHLp45S0bh7phkX+gJO7A1Wuz2EaqpAhb8WjqDwbzMiWKHhyyT42tskaWjEYXtHtVCPpnBJVT9+dcRLg==}
+
+  '@p5-wrapper/common@0.1.0':
+    resolution: {integrity: sha512-a81qDRfnSOQZ0bRZQ+4u9QK63v2c0pKE/NReurbeIe4yI4oo7NJrqdSa6BOfDkXrt9vbqJ2sYeQ9X/ekcZaVtQ==}
+    engines: {node: '>=24.20.0'}
+    peerDependencies:
+      p5: '>= 2.0.0'
 
   '@rolldown/binding-android-arm-eabi@1.2.6':
     resolution: {integrity: sha512-b+jTcARdTiFLI6jB4a5XjTm0RWd6KcRfQj/I2356fxUZemiho9zQLxo0RtCuMDAyKcLo6cEltkgbQp6d1+sjjQ==}
@@ -3006,6 +3012,11 @@ snapshots:
       fastq: 1.20.3
 
   '@oxc-project/types@0.147.0': {}
+
+  '@p5-wrapper/common@0.1.0(p5@2.3.2)':
+    dependencies:
+      microdiff: 1.6.0
+      p5: 2.3.2
 
   '@rolldown/binding-android-arm-eabi@1.2.6':
     optional: true

@@ -65,7 +65,7 @@ not `behavior`, `licence` not `license`, `centre` not `center`).
   `minimumReleaseAgeExclude` require a justification comment in the PR
 - **Peer dependencies are a contract:** `p5`, `react`, and `react-dom` are peer
   dependencies. The library code must never import anything beyond these at
-  runtime — `microdiff` and `react-error-boundary` are the only runtime
+  runtime — `@p5-wrapper/common` and `react-error-boundary` are the only runtime
   dependencies
 
 ### Formatting and Linting
@@ -86,9 +86,8 @@ not `behavior`, `licence` not `license`, `centre` not `center`).
 - **No comments:** Do not add comments to source files. The code should be
   self-documenting. The only permitted exceptions are `@ts-expect-error` /
   `@ts-ignore` suppressions with a `@see` reference (see
-  `src/utils/createP5CanvasInstance.ts` for the existing pattern) and JSDoc on
-  exported contracts where a URL reference adds value (see
-  `src/contracts/P5CanvasInstanceRef.ts`)
+  `src/components/P5CanvasWithSketch.tsx` for the existing pattern) and JSDoc on
+  exported contracts where a URL reference adds value
 - **No comments rule does not apply to:** this file, `README.md`, workflow
   files, and config files with existing comments
 
@@ -102,10 +101,9 @@ not `behavior`, `licence` not `license`, `centre` not `center`).
 - **Import style:** Use `import { type Foo }` inline type imports, matching the
   existing code. Imports of contracts across the alias boundaries follow the
   sorted import order enforced by Prettier
-- **Type assertions:** Avoid `as` casts in library code. The one existing
-  `@ts-expect-error` in `createP5CanvasInstance.ts` documents a known p5
-  upstream type inference issue — do not remove it without verifying against the
-  referenced p5 PR
+- **Type assertions:** Avoid `as` casts in library code. No `@ts-expect-error`
+  or `@ts-ignore` suppressions currently exist; if one is ever needed, it must
+  carry a `@see` reference and be verified against upstream issue or PR links
 - **Version pinned to 6.0.3:** `typescript` is an exact pin
   (`"typescript": "6.0.3"`, no caret), deliberately held back from v7.
   typescript-eslint does not currently support TypeScript 7 — its
@@ -183,24 +181,29 @@ project changes. Do not begin implementation until the plan is approved.
   design. Components are function components; utilities are pure functions that
   take arguments and return values — they never reach for globals or hidden
   state. Keep it this way
-- **Types as the public contract:** The `src/contracts/` directory is the type
-  contract between the library and its consumers. Every exported type is public
-  API via `src/main.tsx`. Generic defaults flow through `SketchProps` —
+- **Types as the public contract:** Shared p5 contracts (`Sketch`,
+  `P5CanvasInstance`, `Updater`, `SketchProps`, refs, and the generic
+  `P5CanvasProps<Props, OutputNode>`) come from `@p5-wrapper/common` — this
+  repository's own contracts are the React bindings on top. The only local
+  contract file is `src/contracts/P5CanvasProps.ts`, which binds common's
+  `OutputNode` to `ReactNode`. Generic defaults flow through `SketchProps` —
   understand the generic chain (`Sketch<Props>` → `P5CanvasInstance<Props>` →
-  `Updater<Props>` → `P5CanvasProps<Props>`) before touching any of them
-- **One contract per file, one export per file:** Contracts live in
-  `src/contracts/`, one file per contract, named after the export. Utilities
-  live in `src/utils/`, one file per function, named after the function. Follow
-  this pattern for anything new
+  `Updater<Props>` → `P5CanvasProps<Props, ReactNode>`) before touching any of
+  them
+- **One contract per file, one export per file:** React-specific contracts live
+  in `src/contracts/`, one file per contract, named after the export. React
+  utilities live in `src/utils/`, one file per function, named after the
+  function. Anything shared across frameworks belongs in `@p5-wrapper/common`,
+  not here
 - **No hidden dependencies:** The component tree is deliberately layered —
   `P5Canvas` (memoisation) → `P5CanvasGuard` (validation + error boundary +
   suspense) → `P5CanvasWithSketch` (lifecycle). Responsibilities stay in their
   layer; utils never import components; contracts never import utils
 - **Imperative p5, declarative React:** p5 instances are imperative and mutable
-  by nature. The bridge is contained entirely in `P5CanvasWithSketch` and the
-  `src/utils/` lifecycle functions (`createP5CanvasInstance`,
-  `updateP5CanvasInstance`, `removeP5CanvasInstance`). Do not leak imperative p5
-  patterns into the React layer above
+  by nature. The bridge is contained entirely in `P5CanvasWithSketch`, which
+  calls the lifecycle utilities (`createP5CanvasInstance`,
+  `updateP5CanvasInstance`, `removeP5CanvasInstance`) from `@p5-wrapper/common`.
+  Do not leak imperative p5 patterns into the React layer above
 - **Lazy boundaries:** `P5CanvasGuard` and `react-error-boundary` are lazily
   imported so consumers who never trigger them never pay the bundle cost. Any
   new heavy dependency must follow the same `React.lazy` pattern
@@ -208,9 +211,10 @@ project changes. Do not begin implementation until the plan is approved.
 ### Testing
 
 - **Test first:** Tests for new behaviour are written before or alongside the
-  implementation, never as an afterthought. Every utility in `src/utils/` has a
-  corresponding test file in `tests/utils/`; every component in
-  `src/components/` has one in `tests/components/`. Keep this 1:1 mapping
+  implementation, never as an afterthought. Every component in `src/components/`
+  has one in `tests/components/`. Utility functions and shared
+  contracts/constants are owned and tested by `@p5-wrapper/common`, not here.
+  Keep the 1:1 component mapping
 - **Black-box testing:** Test the rendered output and observable behaviour
   (`data-testid` hooks: `canvas-container`, `loading`, `error`), not internal
   implementation details
@@ -218,10 +222,8 @@ project changes. Do not begin implementation until the plan is approved.
   API, and `@testing-library/react`. `p5.disableFriendlyErrors = true` is set in
   `tests/setup.ts` to stop p5's DOM scanning from causing unhandled rejections —
   do not remove it. `afterEach` cleanup is also mandatory
-- **Structure:** Tests mirror the `src/` directory structure
-  (`tests/components/`, `tests/constants/`, `tests/utils/`, plus
-  `tests/exports.test.tsx` guarding the public API surface). New `src/` files
-  must add the matching test file
+- **Structure:** Tests live in `tests/components/`, mirroring `src/components/`.
+  New `src/` component files must add the matching test file
 - **Coverage:** CI runs `pnpm test:coverage` and comments coverage deltas on
   PRs. Do not reduce coverage of existing code
 - **Skipped tests:** Two loading-UI tests are currently `it.skip`-ped due to
@@ -303,7 +305,7 @@ sibling `@p5-wrapper/next` package.
 
 ```
 P5Canvas (src/components/P5Canvas.tsx)
-  React.memo + propsAreEqual (microdiff deep comparison)
+  React.memo + propsAreEqual (from @p5-wrapper/common, microdiff deep comparison)
   └─ P5CanvasGuard (lazy)
        sketch validation → fallback UI or:
        ErrorBoundary (lazy react-error-boundary) + Suspense
@@ -317,13 +319,13 @@ P5Canvas (src/components/P5Canvas.tsx)
 
 Why the layers exist:
 
-- `P5Canvas` only handles memoisation — a deep `microdiff` comparison so p5 is
-  not needlessly recreated
+- `P5Canvas` only handles memoisation — a deep comparison (common's
+  `propsAreEqual`, powered by `microdiff`) so p5 is not needlessly recreated
 - `P5CanvasGuard` handles absence (missing `sketch` → `fallback`), errors
   (`error` render prop → error boundary), and async loading (`loading` →
   suspense)
 - `P5CanvasWithSketch` is the only place that touches the p5 instance lifecycle
-  via the utils
+  via common's utilities
 
 ### Public API
 
@@ -350,14 +352,10 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
 │   │   ├── P5Canvas.tsx
 │   │   ├── P5CanvasGuard.tsx
 │   │   └── P5CanvasWithSketch.tsx
-│   ├── constants/             # Exported constants
-│   ├── contracts/             # Public-facing types (one contract per file)
-│   └── utils/                 # Pure functions (one function per file)
-├── tests/                     # Vitest tests mirroring src/ structure
+│   └── contracts/             # React-specific contracts (common bindings)
+│       └── P5CanvasProps.ts   # Binds common's OutputNode to ReactNode
+├── tests/                     # Vitest tests for component behaviour
 │   ├── components/
-│   ├── constants/
-│   ├── utils/
-│   ├── exports.test.tsx       # Guards the public API surface
 │   └── setup.ts               # Test bootstrap (canvas mock, cleanup)
 ├── config/
 │   ├── eslint/eslint.config.ts
@@ -392,9 +390,9 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
   Vite's `[format]` placeholder also changed from `esm` to `es` in Vite 8, so
   the names must never come from the placeholder again. If you change one side,
   change both in the same commit
-- The library externals are `react`, `react/jsx-runtime`, `react-dom`, `p5` —
-  keep Rollup externals, TypeScript expectations, and peer dependencies in
-  agreement
+- The library externals are `react`, `react/jsx-runtime`, `react-dom`, `p5`, and
+  `@p5-wrapper/common` — keep Rollup externals, TypeScript expectations, and
+  peer/runtime dependencies in agreement
 
 ## Commands
 
@@ -440,7 +438,7 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
   secret and runs only in CD
 - **Never weaken the build contract:** the `exports` map, `files` field, ESM +
   CJS dual output, and bundled types are what downstream consumers depend on
-- **Never introduce a runtime dependency** beyond `microdiff` and
+- **Never introduce a runtime dependency** beyond `@p5-wrapper/common` and
   `react-error-boundary` without discussion — bundle size is a feature of this
   library
 - **Never disable or skip tests, lint rules, or type checks** to make a change
@@ -453,6 +451,10 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
 
 ## Future Topics
 
+- **@p5-wrapper/common adoption:** The shared contracts, utilities, and
+  constants now come from `@p5-wrapper/common` (adopted on the
+  `adopt-common-package` branch, pending merge). The only React-specific
+  contract that remains is `src/contracts/P5CanvasProps.ts`
 - **Skipped loading-UI tests:** The two `it.skip` suspense tests in
   `tests/components/P5Canvas.test.tsx` need a reliable strategy before being
   re-enabled
