@@ -1,7 +1,7 @@
 import * as React from "react";
 import P5CanvasWithSketch from "@components/P5CanvasWithSketch";
 import { type P5CanvasProps } from "@contracts/P5CanvasProps";
-import { logErrorBoundaryError } from "@utils/logErrorBoundaryError";
+import { logErrorBoundaryError } from "@p5-wrapper/common";
 import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
 

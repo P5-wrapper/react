@@ -12,3 +12,4 @@ peerDependencyRules:
 
 minimumReleaseAgeExclude:
   - happy-dom@20.13.2
+  - "@p5-wrapper/common@0.1.0"

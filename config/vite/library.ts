@@ -23,7 +23,13 @@ export function library(root: string): UserConfig {
         formats: ["es", "cjs"]
       },
       rollupOptions: {
-        external: ["react", "react/jsx-runtime", "react-dom", "p5"],
+        external: [
+          "react",
+          "react/jsx-runtime",
+          "react-dom",
+          "p5",
+          "@p5-wrapper/common"
+        ],
         output: {
           assetFileNames: "assets/[name][extname]",
           dir: dist,
@@ -31,7 +37,8 @@ export function library(root: string): UserConfig {
             p5: "p5",
             react: "React",
             "react/jsx-runtime": "jsxRuntime",
-            "react-dom": "ReactDom"
+            "react-dom": "ReactDom",
+            "@p5-wrapper/common": "P5WrapperCommon"
           }
         }
       }

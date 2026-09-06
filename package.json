@@ -83,7 +83,7 @@
     "url": "https://github.com/P5-wrapper/react/issues"
   },
   "dependencies": {
-    "microdiff": "^1.6.0",
+    "@p5-wrapper/common": "^0.1.0",
     "react-error-boundary": "^6.1.4"
   },
   "peerDependencies": {

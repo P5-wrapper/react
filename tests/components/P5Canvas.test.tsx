@@ -1,8 +1,10 @@
 import { P5Canvas } from "@components/P5Canvas";
-import { CanvasContainerClassName } from "@constants/CanvasContainerClassName";
-import { type P5CanvasInstance } from "@contracts/P5CanvasInstance";
-import { type Sketch } from "@contracts/Sketch";
-import { type Updater } from "@contracts/Updater";
+import {
+  CanvasContainerClassName,
+  type P5CanvasInstance,
+  type Sketch,
+  type Updater
+} from "@p5-wrapper/common";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
