@@ -105,16 +105,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@babel/plugin-proposal-private-methods': npm:@babel/plugin-transform-private-methods@^7.29.7
+
 importers:
 
   .:
     dependencies:
       '@p5-wrapper/common':
         specifier: ^0.1.0
-        version: 0.1.0(p5@2.3.3)
-      p5:
-        specifier: '>= 2.0.0'
-        version: 2.3.3
+        version: 0.1.0(p5@2.3.2)
       react-error-boundary:
         specifier: ^6.1.5
         version: 6.1.5(@types/react@19.2.18)(react@19.2.8)
@@ -188,6 +188,9 @@ importers:
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
+      p5:
+        specifier: 2.3.2
+        version: 2.3.2
       p5.capture:
         specifier: ^1.6.1
         version: 1.6.1
@@ -377,10 +380,9 @@ packages:
     engines: {node: ^22.18.0 || >=24.11.0}
     hasBin: true
 
-  '@babel/plugin-proposal-private-methods@7.18.6':
-    resolution: {integrity: sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA==}
+  '@babel/plugin-transform-private-methods@7.29.7':
+    resolution: {integrity: sha512-/6Rz4DK1ETDEM/bWHsPHcaEe7ZaT1EqSXjtSP/L0DijOYuaUhiRiOKcwpZ8P7zR4xXEHc2ITdiCgBm9Tpyv9ug==}
     engines: {node: '>=6.9.0'}
-    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -2107,8 +2109,8 @@ packages:
   p5.record.js@0.3.0:
     resolution: {integrity: sha512-4YMu3DfA79mcxO3uc+ZxD2tN5Lti4x1tsGamSfHe9biWU1w1Fecm5zeiYcYrhoSAlnZgQ41t4T8fw+Ol2kIsEg==}
 
-  p5@2.3.3:
-    resolution: {integrity: sha512-+zVz5JFp3sCLpLscTMOLoA0UEHV0dsHxngKVfMmeW1J2/IXvfFqCjNYZeIOtG4Lhfnpm7cu6446P6Ho64ihXfA==}
+  p5@2.3.2:
+    resolution: {integrity: sha512-DlX4rVQb9R2Z16XtTTNN/1zf7FZWy55ApA6ZS0GNJBDraymJcd9kbxmpIDKYnVxiXrchgb2YckWsmm+TSEJVPg==}
 
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
@@ -2930,7 +2932,7 @@ snapshots:
     dependencies:
       '@babel/types': 8.0.4
 
-  '@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@babel/plugin-transform-private-methods@7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/helper-create-class-features-plugin': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
@@ -3161,10 +3163,10 @@ snapshots:
 
   '@oxc-project/types@0.148.0': {}
 
-  '@p5-wrapper/common@0.1.0(p5@2.3.3)':
+  '@p5-wrapper/common@0.1.0(p5@2.3.2)':
     dependencies:
       microdiff: 1.6.0
-      p5: 2.3.3
+      p5: 2.3.2
 
   '@rolldown/binding-android-arm-eabi@1.2.7':
     optional: true
@@ -3982,7 +3984,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/parser': 7.29.8
-      '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/plugin-proposal-private-methods': '@babel/plugin-transform-private-methods@7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)'
       eslint: 10.10.0(jiti@2.7.0)(supports-color@8.1.1)
       hermes-parser: 0.25.1
       zod: 3.25.76
@@ -4833,7 +4835,7 @@ snapshots:
 
   p5.record.js@0.3.0: {}
 
-  p5@2.3.3:
+  p5@2.3.2:
     dependencies:
       '@davepagurek/bezier-path': 0.0.7
       '@japont/unicode-range': 1.0.0

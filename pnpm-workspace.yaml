@@ -9,3 +9,6 @@ onlyBuiltDependencies:
 peerDependencyRules:
   allowedVersions:
     "eslint-plugin-react>eslint": "10"
+
+overrides:
+  "@babel/plugin-proposal-private-methods": npm:@babel/plugin-transform-private-methods@^7.29.7
