@@ -63,6 +63,18 @@ not `behavior`, `licence` not `license`, `centre` not `center`).
   (`esbuild` only). Do not add `postinstall`-executing packages to the allowlist
   or widen these settings without explicit permission — new exclusions under
   `minimumReleaseAgeExclude` require a justification comment in the PR
+- **Babel plugin override:** `pnpm-workspace.yaml` redirects
+  `@babel/plugin-proposal-private-methods` (deprecated upstream) to
+  `npm:@babel/plugin-transform-private-methods@^7.29.7`. The 7.x line is the
+  correct target while `eslint-plugin-react-compiler@19.1.0-rc.2` resolves
+  `@babel/core` 7.29.x — the v8 plugin requires `@babel/core ^8.0.0` and fails
+  the strict peer gate. Revisit when the react-compiler plugin migrates to Babel
+  8
+- **p5 dev resolution pinned:** the devDependency `p5` is pinned to exactly
+  `2.3.2` because upstream `2.3.3` was published without its `types/` files
+  (despite the manifest declaring them), breaking type checking. The
+  `p5 >= 2.0.0` peer dependency contract is unchanged. Revisit when p5.js
+  republishes a complete 2.3.3+
 - **Peer dependencies are a contract:** `p5`, `react`, and `react-dom` are peer
   dependencies. The library code must never import anything beyond these at
   runtime — `@p5-wrapper/common` and `react-error-boundary` are the only runtime
