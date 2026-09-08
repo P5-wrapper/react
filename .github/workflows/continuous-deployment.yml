@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
       packages: write
     environment: production
     steps:
@@ -48,15 +48,27 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
 
-      - name: Build the component
+      - name: Build the library
         run: pnpm build:component
 
       - name: Run tests
         run: pnpm test
 
       - name: Publish to NPM
+        id: publish
         uses: JS-DevTools/npm-publish@v4
         with:
           access: "public"
           provenance: true
           token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create the GitHub release
+        if: steps.publish.outputs.type != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.publish.outputs.version }}" \
+            --target "$GITHUB_SHA" \
+            --title "v${{ steps.publish.outputs.version }}" \
+            --generate-notes \
+            --notes-start-tag "v${{ steps.publish.outputs.old-version }}"

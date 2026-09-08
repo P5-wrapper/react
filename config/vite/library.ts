@@ -45,6 +45,7 @@ export function library(root: string): UserConfig {
     },
     test: {
       globals: true,
+      silent: true,
       environment: "happy-dom",
       coverage: {
         include: [posix.join("src", "**/*.{ts,tsx,js,jsx}")],

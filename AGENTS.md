@@ -53,7 +53,7 @@ not `behavior`, `licence` not `license`, `centre` not `center`).
 
 ### Package Management
 
-- **Package manager:** pnpm (`pnpm@11.25.0` via the `packageManager` field —
+- **Package manager:** pnpm (`pnpm@12.3.4` via the `packageManager` field —
   Corepack manages the exact version, never install pnpm globally)
 - **Node.js engine:** `>=24.20.0` (declared in `package.json` `engines`)
 - **Lock file:** `pnpm-lock.yaml` is committed. NEVER delete or regenerate it
@@ -124,7 +124,7 @@ Every change must pass before being considered complete:
 - `pnpm format:check` — formatting
 - `pnpm lint` — linting
 - `pnpm test` — testing
-- `pnpm build` — type checking (`tsc --noEmit`) plus component and demo builds
+- `pnpm build` — type checking (`tsc`) plus component and demo builds
 
 `pnpm integrate` runs format check → lint → test → build in one command and is
 the closest local mirror of CI.
@@ -377,7 +377,7 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
 
 ### Build Pipeline
 
-- `pnpm build` = clean `dist` → `tsc --noEmit` (type check) → library build
+- `pnpm build` = clean `dist` → `tsc` (type check) → library build
   (`dist/component`, ESM + CJS via Vite library mode, types bundled by
   `vite-plugin-dts` with `bundleTypes`) → demo build (`dist/demo`)
 - `package.json` `exports` maps `types` → `main.d.ts`, `import` → ESM, `require`
@@ -422,13 +422,15 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
   `pnpm install --frozen-lockfile`
 - **CD** (`continuous-deployment.yml`): Runs on push to `main` and
   `workflow_dispatch`. Jobs: `gh-pages` (builds and deploys the demo to GitHub
-  Pages) and `npm` (builds, tests, and publishes the package with provenance).
-  CD concurrency does NOT cancel in-progress runs — never interrupt an in-flight
-  publish
+  Pages) and `npm` (builds, tests, and publishes the package with provenance,
+  then creates the matching `vx.y.z` GitHub release with auto-generated notes
+  anchored at the previous version tag). CD concurrency does NOT cancel
+  in-progress runs — never interrupt an in-flight publish
 - **CodeQL** (`CODEQL.yml`): Security analysis on PRs and pushes to `main`
-- **Dependabot:** Monthly for npm (production and development groups) and GitHub
-  Actions. Semver-major updates are ignored by config — they are handled
-  manually on dedicated branches (e.g. the pnpm 11 / Vite 8 migration)
+- **Dependabot:** Monthly for npm (one grouped update across all dependencies)
+  and GitHub Actions, each limited to a single open pull request. Semver-major
+  updates are ignored by config — they are handled manually on dedicated
+  branches (e.g. the pnpm 11 / Vite 8 migration)
 - **Permissions:** Workflows declare `permissions: {}` at the top and grant
   minimal per-job permissions. Keep it this way
 
