@@ -183,8 +183,8 @@ importers:
         specifier: ^6.3.0
         version: 6.3.0
       happy-dom:
-        specifier: ^20.14.0
-        version: 20.14.0
+        specifier: ^21.0.4
+        version: 21.0.4
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
@@ -223,7 +223,7 @@ importers:
         version: 5.1.0(@microsoft/api-extractor@7.59.0(@types/node@26.5.0))(rolldown@1.2.7)(supports-color@8.1.1)(typescript@6.0.3)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
+        version: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@21.0.4)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
       vitest-canvas-mock:
         specifier: ^1.2.0
         version: 1.2.0(vitest@4.1.11)
@@ -1571,8 +1571,8 @@ packages:
   h264-mp4-encoder@1.0.12:
     resolution: {integrity: sha512-xih3J+Go0o1RqGjhOt6TwXLWWGqLONRPyS8yoMu/RoS/S8WyEv4HuHp1KBsDDl8srZQ3gw9f95JYkCSjCuZbHQ==}
 
-  happy-dom@20.14.0:
-    resolution: {integrity: sha512-4bRh1KzRvKDnFNTlLhzT1RZTpkKhQbQDl9j+7GXszWsvuspYdo29k6OHRf4PwiM6oLb8r/pMWeYiJjkfod5AvQ==}
+  happy-dom@21.0.4:
+    resolution: {integrity: sha512-tFm+GaLBgo6o0awHnvHaNoraVo27qJ+2tZEtZ+cIa08hXbeitrxAJajLI05hsUy/2/YTKcUjQYzHe5mCcraLBw==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -3285,7 +3285,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
+      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@21.0.4)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
@@ -3483,7 +3483,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
+      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@21.0.4)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
 
   '@vitest/expect@4.1.11':
     dependencies:
@@ -4293,7 +4293,7 @@ snapshots:
 
   h264-mp4-encoder@1.0.12: {}
 
-  happy-dom@20.14.0:
+  happy-dom@21.0.4:
     dependencies:
       '@types/node': 26.5.0
       '@types/whatwg-mimetype': 3.0.2
@@ -5363,9 +5363,9 @@ snapshots:
     dependencies:
       cssfontparser: 1.2.1
       moo-color: 1.0.3
-      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
+      vitest: 4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@21.0.4)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
 
-  vitest@4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0)):
+  vitest@4.1.11(@types/node@26.5.0)(@vitest/coverage-v8@4.1.11)(happy-dom@21.0.4)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0))
@@ -5390,7 +5390,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.5.0
       '@vitest/coverage-v8': 4.1.11(vitest@4.1.11)
-      happy-dom: 20.14.0
+      happy-dom: 21.0.4
     transitivePeerDependencies:
       - msw
 
