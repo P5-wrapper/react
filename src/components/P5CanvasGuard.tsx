@@ -1,14 +1,14 @@
-import * as React from "react";
 import P5CanvasWithSketch from "@components/P5CanvasWithSketch";
 import { type P5CanvasProps } from "@contracts/P5CanvasProps";
 import { logErrorBoundaryError } from "@p5-wrapper/common";
+import * as React from "react";
 import { ReactNode } from "react";
 import { FallbackProps } from "react-error-boundary";
 
 const ErrorBoundary = React.lazy(() =>
-  import("react-error-boundary").then(m => ({
-    default: m.ErrorBoundary
-  }))
+  import("react-error-boundary").then((m) => ({
+    default: m.ErrorBoundary,
+  })),
 );
 
 const P5CanvasGuard = (props: P5CanvasProps) => {

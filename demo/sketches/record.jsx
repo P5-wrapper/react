@@ -9,7 +9,7 @@ export function sketch(p5) {
 
     recording = new record.Recorder({
       frameRate: 60,
-      source: canvas.elt
+      source: canvas.elt,
     });
 
     const startBtn = p5.select("#start-recording");

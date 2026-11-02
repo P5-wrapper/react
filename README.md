@@ -114,7 +114,7 @@ using either the `Sketch` type or the `P5CanvasInstance` type:
 import * as React from "react";
 import { P5Canvas, Sketch } from "@p5-wrapper/react";
 
-const sketch: Sketch = p5 => {
+const sketch: Sketch = (p5) => {
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
   p5.draw = () => {
@@ -200,7 +200,7 @@ function sketch(p5) {
 
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-  p5.updateWithProps = props => {
+  p5.updateWithProps = (props) => {
     rotation = (props.rotation * Math.PI) / 180;
   };
 
@@ -220,8 +220,8 @@ export function App() {
 
   useEffect(() => {
     const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
+      () => setRotation((rotation) => rotation + 100),
+      100,
     );
 
     return () => {
@@ -245,12 +245,12 @@ type MySketchProps = SketchProps & {
   rotation: number;
 };
 
-const sketch: Sketch<MySketchProps> = p5 => {
+const sketch: Sketch<MySketchProps> = (p5) => {
   let rotation = 0;
 
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-  p5.updateWithProps = props => {
+  p5.updateWithProps = (props) => {
     rotation = (props.rotation * Math.PI) / 180;
   };
 
@@ -270,8 +270,8 @@ export function App() {
 
   useEffect(() => {
     const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
+      () => setRotation((rotation) => rotation + 100),
+      100,
     );
 
     return () => {
@@ -313,12 +313,12 @@ import React, { useCallback, useState } from "react";
 
 type MySketchProps = SketchProps & { rotation: number };
 
-const sketch: Sketch<MySketchProps> = p5 => {
+const sketch: Sketch<MySketchProps> = (p5) => {
   let rotation = 0;
 
   p5.setup = () => p5.createCanvas(600, 400, p5.WEBGL);
 
-  p5.updateWithProps = props => {
+  p5.updateWithProps = (props) => {
     rotation = (props.rotation * Math.PI) / 180;
   };
 
@@ -385,8 +385,8 @@ export function App() {
 
   useEffect(() => {
     const interval = setInterval(
-      () => setRotation(rotation => rotation + 100),
-      100
+      () => setRotation((rotation) => rotation + 100),
+      100,
     );
 
     return () => {
@@ -576,7 +576,7 @@ import React, { useEffect, useState } from "react";
 
 await import("p5/lib/addons/p5.sound");
 
-const sketch: Sketch = p5 => {
+const sketch: Sketch = (p5) => {
   let song: p5.SoundFile;
   let button: p5.Element;
 
@@ -595,9 +595,9 @@ const sketch: Sketch = p5 => {
           },
           () => {
             console.error(
-              `Could not load the requested sound file ${songPath}`
+              `Could not load the requested sound file ${songPath}`,
             );
-          }
+          },
         );
         return;
       }
@@ -688,13 +688,11 @@ public API in `src/main.tsx` backwards compatible. Commits follow the
 `fix:`, `chore:`, etc.) — emoji prefixes are only used by automated pull
 requests.
 
-The `typescript` dependency is pinned to `6.0.3` on purpose:
-[typescript-eslint](https://typescript-eslint.io) does not support TypeScript 7
-yet — the Go-based v7 is not feature compatible with the v6 API it builds on,
-and upstream support cannot land before TypeScript 7.1.x. It is tracked in
-[typescript-eslint#10940](https://github.com/typescript-eslint/typescript-eslint/issues/10940).
-Please do not widen the pin in pull requests — we wait for full feature parity
-before migrating to v7, no half measures.
+The `typescript` dependency is pinned to the latest `6.x.x` release on purpose:
+TypeScript 7 (Go-based) is not yet feature compatible with the JavaScript-based
+v6 API that the build toolchain builds on. Please do not bump past `6.x.x` or
+widen the pin in pull requests — we wait for full feature parity before
+migrating to v7, no half measures.
 
 #### AI-assisted contributions
 
