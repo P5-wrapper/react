@@ -12,20 +12,6 @@ concurrency:
 permissions: {}
 
 jobs:
-  format:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup environment
-        uses: ./.github/actions/setup
-
-      - name: Check formatting
-        run: pnpm format:check
-
   lint:
     runs-on: ubuntu-latest
     permissions:

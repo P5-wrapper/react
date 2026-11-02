@@ -5,18 +5,22 @@ import {
   type Sketch,
   type Updater
 } from "@p5-wrapper/common";
-import { render, RenderResult, waitFor } from "@testing-library/react";
+import { RenderResult, render, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
 
 function createSketch(
   updateFunction?: P5CanvasInstance["updateWithProps"]
 ): Sketch {
-  return vi.fn(instance => {
+  return vi.fn((instance) => {
     instance.setup = () => instance.createCanvas(720, 400);
     instance.updateWithProps = updateFunction;
   });
 }
+
+const ErrorChild = () => {
+  throw new Error("oops");
+};
 
 async function waitForCanvas(findByTestId: RenderResult["findByTestId"]) {
   return await waitFor(async () => {
@@ -163,9 +167,6 @@ describe("P5Canvas", () => {
 
       it("Should show the default error UI when the `error` prop is not set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
-        const ErrorChild = () => {
-          throw new Error("oops");
-        };
 
         const { findByTestId } = render(
           <P5Canvas sketch={sketch}>
@@ -181,14 +182,11 @@ describe("P5Canvas", () => {
 
       it("Should show the error UI when the `error` prop is set an error is thrown within the subtree of the canvas container", async () => {
         const sketch = createSketch();
-        const ErrorView = vi.fn(error => {
+        const ErrorView = vi.fn((error) => {
           assert(error instanceof Error);
 
           return <div data-testid="error">Error: {error.message}</div>;
         });
-        const ErrorChild = () => {
-          throw new Error("oops");
-        };
 
         const { findByTestId } = render(
           <P5Canvas error={ErrorView} sketch={sketch}>
@@ -210,9 +208,6 @@ describe("P5Canvas", () => {
         const errorLoggerSpy = vi
           .spyOn(console, "error")
           .mockImplementation(errorLogger);
-        const ErrorChild = () => {
-          throw new Error("oops");
-        };
 
         const { findByTestId } = render(
           <P5Canvas error={ErrorView} sketch={sketch}>

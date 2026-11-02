@@ -1,5 +1,5 @@
-import * as React from "react";
 import { propsAreEqual } from "@p5-wrapper/common";
+import * as React from "react";
 
 const P5CanvasGuard = React.lazy(() => import("@components/P5CanvasGuard"));
 

@@ -1,5 +1,5 @@
-import react from "@vitejs/plugin-react";
 import { posix, resolve } from "node:path";
+import react from "@vitejs/plugin-react";
 import { UserConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -19,7 +19,7 @@ export function library(root: string): UserConfig {
       lib: {
         entry: resolve(root, "src", "main.tsx"),
         name: "P5Canvas",
-        fileName: format => (format === "es" ? "main.mjs" : "main.cjs"),
+        fileName: (format) => (format === "es" ? "main.mjs" : "main.cjs"),
         formats: ["es", "cjs"]
       },
       rollupOptions: {
