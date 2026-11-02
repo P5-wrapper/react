@@ -419,9 +419,9 @@ Everything exported from `src/main.tsx` is public API and semver-protected:
 ## CI/CD
 
 - **CI** (`continuous-integration.yml`): Runs on all PRs to `main` and
-  `workflow_dispatch`. Jobs: `format`, `lint`, `test` (with coverage artifact
-  and clover coverage delta comment), `build`, and `npm-dry-run` (validates the
-  npm publish would succeed). CI concurrency cancels in-progress runs. Uses the
+  `workflow_dispatch`. Jobs: `lint`, `test` (with coverage artifact and clover
+  coverage delta comment), `build`, and `npm-dry-run` (validates the npm publish
+  would succeed). CI concurrency cancels in-progress runs. Uses the
   `./.github/actions/setup` composite action with
   `pnpm install --frozen-lockfile`
 - **CD** (`continuous-deployment.yml`): Runs on push to `main` and
