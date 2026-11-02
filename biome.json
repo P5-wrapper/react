@@ -34,12 +34,14 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "double",
-      "semicolons": "always"
+      "semicolons": "always",
+      "trailingCommas": "none"
     }
   },
   "json": {
     "formatter": {
-      "enabled": true
+      "enabled": true,
+      "trailingCommas": "none"
     }
   },
   "css": {

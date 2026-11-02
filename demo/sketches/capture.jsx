@@ -11,7 +11,7 @@ export function sketch(p5) {
       const capture = p5.capture.getInstance();
       capture.start({
         format: "gif",
-        duration: 100,
+        duration: 100
       });
     }
   };

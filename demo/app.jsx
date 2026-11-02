@@ -14,7 +14,7 @@ function App() {
   const [state, setState] = useState({
     rotation: 160,
     sketch: box,
-    unmount: false,
+    unmount: false
   });
 
   const onChangeSketch = useCallback(() => {
@@ -40,7 +40,7 @@ function App() {
   const onRotationChange = useCallback((event) => {
     setState((state) => ({
       ...state,
-      rotation: parseInt(event.target.value, 10),
+      rotation: parseInt(event.target.value, 10)
     }));
   }, []);
 

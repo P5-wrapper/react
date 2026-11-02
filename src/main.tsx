@@ -5,5 +5,5 @@ export {
   type P5CanvasInstance,
   type Sketch,
   type SketchProps,
-  type Updater,
+  type Updater
 } from "@p5-wrapper/common";

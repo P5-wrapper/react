@@ -221,7 +221,7 @@ export function App() {
   useEffect(() => {
     const interval = setInterval(
       () => setRotation((rotation) => rotation + 100),
-      100,
+      100
     );
 
     return () => {
@@ -271,7 +271,7 @@ export function App() {
   useEffect(() => {
     const interval = setInterval(
       () => setRotation((rotation) => rotation + 100),
-      100,
+      100
     );
 
     return () => {
@@ -386,7 +386,7 @@ export function App() {
   useEffect(() => {
     const interval = setInterval(
       () => setRotation((rotation) => rotation + 100),
-      100,
+      100
     );
 
     return () => {
@@ -595,9 +595,9 @@ const sketch: Sketch = (p5) => {
           },
           () => {
             console.error(
-              `Could not load the requested sound file ${songPath}`,
+              `Could not load the requested sound file ${songPath}`
             );
-          },
+          }
         );
         return;
       }

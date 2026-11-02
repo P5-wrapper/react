@@ -7,8 +7,8 @@ import { FallbackProps } from "react-error-boundary";
 
 const ErrorBoundary = React.lazy(() =>
   import("react-error-boundary").then((m) => ({
-    default: m.ErrorBoundary,
-  })),
+    default: m.ErrorBoundary
+  }))
 );
 
 const P5CanvasGuard = (props: P5CanvasProps) => {

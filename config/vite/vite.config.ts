@@ -14,6 +14,6 @@ export default defineConfig(({ mode }): UserConfig => {
 
   return {
     ...common(root),
-    ...config(root),
+    ...config(root)
   } satisfies UserConfig;
 });

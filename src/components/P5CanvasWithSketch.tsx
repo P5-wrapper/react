@@ -6,7 +6,7 @@ import {
   type Sketch,
   type SketchProps,
   type Updater,
-  updateP5CanvasInstance,
+  updateP5CanvasInstance
 } from "@p5-wrapper/common";
 import * as React from "react";
 import { type ReactNode } from "react";
@@ -32,7 +32,7 @@ const P5CanvasWithSketch = (props: P5CanvasWithSketchProps) => {
     p5CanvasInstanceRef.current = updateP5CanvasInstance(
       p5CanvasInstanceRef,
       canvasContainerRef,
-      props.sketch,
+      props.sketch
     );
   }, [props.sketch]);
 

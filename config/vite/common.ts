@@ -9,8 +9,8 @@ export function common(root: string): UserConfig {
         "@components": resolve(root, "src", "components"),
         "@utils": resolve(root, "src", "utils"),
         "@constants": resolve(root, "src", "constants"),
-        "@contracts": resolve(root, "src", "contracts"),
-      },
-    },
+        "@contracts": resolve(root, "src", "contracts")
+      }
+    }
   };
 }

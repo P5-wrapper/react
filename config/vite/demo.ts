@@ -18,9 +18,9 @@ export function demo(root: string): UserConfig {
             if (moduleId.includes("node_modules/p5")) {
               return "p5";
             }
-          },
-        },
-      },
-    },
+          }
+        }
+      }
+    }
   };
 }

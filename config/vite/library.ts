@@ -10,9 +10,9 @@ export function library(root: string): UserConfig {
     plugins: [
       dts({
         bundleTypes: true,
-        tsconfigPath: resolve(root, "tsconfig.json"),
+        tsconfigPath: resolve(root, "tsconfig.json")
       }),
-      react(),
+      react()
     ],
     build: {
       emptyOutDir: true,
@@ -20,7 +20,7 @@ export function library(root: string): UserConfig {
         entry: resolve(root, "src", "main.tsx"),
         name: "P5Canvas",
         fileName: (format) => (format === "es" ? "main.mjs" : "main.cjs"),
-        formats: ["es", "cjs"],
+        formats: ["es", "cjs"]
       },
       rollupOptions: {
         external: [
@@ -28,7 +28,7 @@ export function library(root: string): UserConfig {
           "react/jsx-runtime",
           "react-dom",
           "p5",
-          "@p5-wrapper/common",
+          "@p5-wrapper/common"
         ],
         output: {
           assetFileNames: "assets/[name][extname]",
@@ -38,10 +38,10 @@ export function library(root: string): UserConfig {
             react: "React",
             "react/jsx-runtime": "jsxRuntime",
             "react-dom": "ReactDom",
-            "@p5-wrapper/common": "P5WrapperCommon",
-          },
-        },
-      },
+            "@p5-wrapper/common": "P5WrapperCommon"
+          }
+        }
+      }
     },
     test: {
       globals: true,
@@ -49,16 +49,16 @@ export function library(root: string): UserConfig {
       environment: "happy-dom",
       coverage: {
         include: [posix.join("src", "**/*.{ts,tsx,js,jsx}")],
-        reporter: ["text-summary", "html", "clover"],
+        reporter: ["text-summary", "html", "clover"]
       },
       setupFiles: resolve(root, "tests", "setup.ts"),
       deps: {
         optimizer: {
           web: {
-            include: ["vitest-canvas-mock"],
-          },
-        },
-      },
-    },
+            include: ["vitest-canvas-mock"]
+          }
+        }
+      }
+    }
   };
 }

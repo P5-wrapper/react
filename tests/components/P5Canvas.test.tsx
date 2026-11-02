@@ -3,14 +3,14 @@ import {
   CanvasContainerClassName,
   type P5CanvasInstance,
   type Sketch,
-  type Updater,
+  type Updater
 } from "@p5-wrapper/common";
 import { RenderResult, render, waitFor } from "@testing-library/react";
 import { renderToStaticMarkup, renderToString } from "react-dom/server";
 import { assert, describe, expect, it, vi } from "vitest";
 
 function createSketch(
-  updateFunction?: P5CanvasInstance["updateWithProps"],
+  updateFunction?: P5CanvasInstance["updateWithProps"]
 ): Sketch {
   return vi.fn((instance) => {
     instance.setup = () => instance.createCanvas(720, 400);
@@ -77,7 +77,7 @@ describe("P5Canvas", () => {
       it("Unmounts the canvas when the element is removed from the DOM", async () => {
         const sketch = createSketch();
         const { container, unmount, findByTestId } = render(
-          <P5Canvas sketch={sketch} />,
+          <P5Canvas sketch={sketch} />
         );
 
         await waitForCanvas(findByTestId);
@@ -106,7 +106,7 @@ describe("P5Canvas", () => {
         await waitFor(() => {
           expect(errorLoggerSpy).toHaveBeenCalledOnce();
           expect(errorLoggerSpy).toHaveBeenCalledWith(
-            "[P5Canvas] The `sketch` prop is required.",
+            "[P5Canvas] The `sketch` prop is required."
           );
 
           errorLoggerSpy.mockReset();
@@ -128,7 +128,7 @@ describe("P5Canvas", () => {
         const sketch = createSketch();
         const fallbackView = vi.fn(() => <div data-testid="fallback" />);
         const { rerender, findByTestId } = render(
-          <P5Canvas fallback={() => <h1>Oh no</h1>} sketch={sketch} />,
+          <P5Canvas fallback={() => <h1>Oh no</h1>} sketch={sketch} />
         );
 
         await waitForCanvas(findByTestId);
@@ -156,7 +156,7 @@ describe("P5Canvas", () => {
           <p data-testid="loading">Loading test...</p>
         ));
         const { findByTestId } = render(
-          <P5Canvas loading={LoadingView} sketch={sketch} />,
+          <P5Canvas loading={LoadingView} sketch={sketch} />
         );
         const loading = await waitForLoading(findByTestId);
 
@@ -171,7 +171,7 @@ describe("P5Canvas", () => {
         const { findByTestId } = render(
           <P5Canvas sketch={sketch}>
             <ErrorChild />
-          </P5Canvas>,
+          </P5Canvas>
         );
 
         const error = await findByTestId("error");
@@ -191,7 +191,7 @@ describe("P5Canvas", () => {
         const { findByTestId } = render(
           <P5Canvas error={ErrorView} sketch={sketch}>
             <ErrorChild />
-          </P5Canvas>,
+          </P5Canvas>
         );
 
         const error = await findByTestId("error");
@@ -212,7 +212,7 @@ describe("P5Canvas", () => {
         const { findByTestId } = render(
           <P5Canvas error={ErrorView} sketch={sketch}>
             <ErrorChild />
-          </P5Canvas>,
+          </P5Canvas>
         );
 
         await findByTestId("error");
@@ -220,11 +220,11 @@ describe("P5Canvas", () => {
         expect(errorLoggerSpy).toHaveBeenCalledTimes(2);
         expect(errorLoggerSpy).toHaveBeenCalledWith(
           expect.stringContaining(
-            "[P5Canvas] The error boundary was triggered. The error message was:",
-          ),
+            "[P5Canvas] The error boundary was triggered. The error message was:"
+          )
         );
         expect(errorLoggerSpy).toHaveBeenCalledWith(
-          expect.stringContaining("oops"),
+          expect.stringContaining("oops")
         );
 
         errorLoggerSpy.mockReset();
@@ -238,18 +238,18 @@ describe("P5Canvas", () => {
         const StringComponent = renderToString(<P5Canvas sketch={sketch} />);
 
         expect(StringComponent).toBe(
-          `<!--$--><div class="${CanvasContainerClassName}" data-testid="canvas-container"></div><!--/$-->`,
+          `<!--$--><div class="${CanvasContainerClassName}" data-testid="canvas-container"></div><!--/$-->`
         );
       });
 
       it("Renders as expected when using `renderToStaticMarkup`", () => {
         const sketch = createSketch();
         const StaticComponent = renderToStaticMarkup(
-          <P5Canvas sketch={sketch} />,
+          <P5Canvas sketch={sketch} />
         );
 
         expect(StaticComponent).toBe(
-          `<div class="${CanvasContainerClassName}" data-testid="canvas-container"></div>`,
+          `<div class="${CanvasContainerClassName}" data-testid="canvas-container"></div>`
         );
       });
     });
@@ -273,7 +273,7 @@ describe("P5Canvas", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} x={100} />,
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -289,7 +289,7 @@ describe("P5Canvas", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} x={100} />,
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -305,7 +305,7 @@ describe("P5Canvas", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} x={100} />,
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -321,7 +321,7 @@ describe("P5Canvas", () => {
       const updateFunction = vi.fn();
       const sketch = createSketch(updateFunction);
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} x={100} />,
+        <P5Canvas sketch={sketch} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -340,7 +340,7 @@ describe("P5Canvas", () => {
       const sketch = createSketch();
 
       const { findByTestId } = render(
-        <P5Canvas sketch={sketch} updater={updater} x={100} />,
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -357,7 +357,7 @@ describe("P5Canvas", () => {
       const updater = vi.fn<Updater>();
       const sketch = createSketch();
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} updater={updater} x={100} />,
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -377,7 +377,7 @@ describe("P5Canvas", () => {
       const secondUpdater = vi.fn<Updater>();
       const sketch = createSketch();
       const { rerender, findByTestId } = render(
-        <P5Canvas sketch={sketch} updater={firstUpdater} x={100} />,
+        <P5Canvas sketch={sketch} updater={firstUpdater} x={100} />
       );
 
       await waitForCanvas(findByTestId);
@@ -399,7 +399,7 @@ describe("P5Canvas", () => {
       const sketch = createSketch(updateFunction);
 
       const { findByTestId } = render(
-        <P5Canvas sketch={sketch} updater={updater} x={100} />,
+        <P5Canvas sketch={sketch} updater={updater} x={100} />
       );
 
       await waitForCanvas(findByTestId);

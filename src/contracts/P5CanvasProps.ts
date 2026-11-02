@@ -1,6 +1,6 @@
 import {
   type P5CanvasProps as CommonP5CanvasProps,
-  type SketchProps,
+  type SketchProps
 } from "@p5-wrapper/common";
 import { type ReactNode } from "react";
 
