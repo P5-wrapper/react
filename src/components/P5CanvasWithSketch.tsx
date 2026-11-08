@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   CanvasContainerClassName,
   type CanvasContainerRef,
@@ -6,9 +5,10 @@ import {
   removeP5CanvasInstance,
   type Sketch,
   type SketchProps,
-  updateP5CanvasInstance,
-  type Updater
+  type Updater,
+  updateP5CanvasInstance
 } from "@p5-wrapper/common";
+import * as React from "react";
 import { type ReactNode } from "react";
 
 interface P5CanvasWithSketchProps {
@@ -43,7 +43,7 @@ const P5CanvasWithSketch = (props: P5CanvasWithSketchProps) => {
     if (updaterRef.current && p5CanvasInstanceRef.current) {
       updaterRef.current(p5CanvasInstanceRef.current, props.sketchProps);
     }
-  }, [props.sketchProps, canvasContainerRef, p5CanvasInstanceRef]);
+  }, [props.sketchProps]);
 
   React.useEffect(() => () => removeP5CanvasInstance(p5CanvasInstanceRef), []);
 
