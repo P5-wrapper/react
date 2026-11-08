@@ -8,3 +8,5 @@ onlyBuiltDependencies:
 
 overrides:
   "@babel/plugin-proposal-private-methods": npm:@babel/plugin-transform-private-methods@^7.29.7
+minimumReleaseAgeExclude:
+  - "@p5-wrapper/common@0.1.1"
